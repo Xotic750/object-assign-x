@@ -21,8 +21,31 @@ if (typeof module === 'object' && module.exports) {
   assign = returnExports;
 }
 
-// assign = Object.assign;
-var ifExtensionsPreventable = Object.preventExtensions ? it : xit;
+var supportsGetSet;
+try {
+  Object.defineProperty({}, 'a', {
+    get: function () {
+      return 1;
+    },
+    set: function () {}
+  });
+
+  supportsGetSet = true;
+} catch (ignore) {}
+
+var ifGetSet = supportsGetSet ? it : xit;
+
+var supportsPreventExtensions;
+try {
+  if (typeof Object.preventExtensions === 'function') {
+    var objTest = {};
+    Object.preventExtensions(objTest);
+    objTest[0] = 1;
+    supportsPreventExtensions = objTest[0] === void 0;
+  }
+} catch (ignore) {}
+
+var ifExtensionsPreventable = supportsPreventExtensions ? it : xit;
 
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol('') === 'symbol';
 var ifSymbolsIt = hasSymbols ? it : xit;
@@ -115,7 +138,12 @@ describe('assign', function () {
 
     expect(typeof result.string).toBe('object');
     expect(String.prototype.valueOf.call(result.string)).toBe('1');
-    expect(result.string).toEqual({
+    var compare = Object.keys(result.string).reduce(function (acc, key) {
+      acc[key] = (/\d+/).test(key) ? result.string.charAt(key) : result.string[key];
+      return acc;
+    }, {});
+
+    expect(compare).toEqual({
       0: '1', a: 1, b: 1
     });
   });
@@ -135,24 +163,11 @@ describe('assign', function () {
       3: 4
     };
 
-    var props = {
-      get: function () {
-        return 3;
-      },
-      set: function (v) {
-        throw new RangeError('IE 9 does not throw on preventExtensions: ' + v);
-      }
-    };
-
-    Object.defineProperty(thrower, 2, props);
-
     var expected = {
       1: 2,
       2: 3,
       3: 4
     };
-
-    Object.defineProperty(expected, 2, props);
 
     Object.preventExtensions(thrower);
     Object.preventExtensions(expected);
@@ -172,6 +187,36 @@ describe('assign', function () {
       expect(error).toEqual(jasmine.any(TypeError));
       expect(thrower).toEqual(expected);
     }
+  });
+
+  ifGetSet('works with getters and setters', function () {
+    var subject = {
+      1: 2,
+      2: 3,
+      3: 4
+    };
+
+    var props = {
+      get: function () {
+        return 3;
+      },
+      set: function (v) {
+        throw new RangeError('IE 9 does not throw on preventExtensions: ' + v);
+      }
+    };
+
+    Object.defineProperty(subject, 2, props);
+
+    var expected = {
+      1: 2,
+      2: 3,
+      3: 4
+    };
+
+    Object.defineProperty(expected, 2, props);
+    expect(subject).toEqual(expected);
+    var actual = assign({}, subject);
+    expect(actual).toEqual(expected);
   });
 
   ifSymbolsIt('includes enumerable symbols, after keys', function () {

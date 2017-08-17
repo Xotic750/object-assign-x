@@ -119,11 +119,11 @@ var $assign;
 if (shouldImplement) {
   var toObject = require('to-object-x');
   var slice = require('array-slice-x');
-  var filter = require('array-filter-x');
   var isArray = require('is-array-x');
   var isNil = require('is-nil-x');
   var getOPS = isFunction(Object.getOwnPropertySymbols) && Object.getOwnPropertySymbols;
   var isEnumerable;
+  var emptyArr;
   var hasWorkingGOPS = (function () {
     try {
       if (isArray(Object.getOwnPropertySymbols({}))) {
@@ -131,38 +131,33 @@ if (shouldImplement) {
         return true;
       }
     } catch (ignore) {}
+    emptyArr = [];
     return false;
   }());
-
-  var assignTo = function _assignTo(source) {
-    return function assignToSource(target, key) {
-      target[key] = source[key];
-      return target;
-    };
-  };
-
-  var assignReducer = function _assignReducer(target, source) {
-    if (isNil(source)) {
-      return target;
-    }
-
-    var object = Object(source);
-    var sourceKeys = objectKeys(object);
-    if (hasWorkingGOPS) {
-      var symbols = filter(getOPS(object), function _filter(symbol) {
-        return isEnumerable.call(object, symbol);
-      });
-
-      sourceKeys = sourceKeys.concat(symbols);
-    }
-
-    return reduce(sourceKeys, assignTo(object), target);
-  };
 
   // 19.1.3.1
   $assign = function assign(target) {
     var to = toObject(target);
-    return reduce(slice(arguments, 1), assignReducer, to);
+    return reduce(slice(arguments, 1), function _assignSources(tgt, source) {
+      if (isNil(source)) {
+        return tgt;
+      }
+
+      var object = Object(source);
+      var symbols = hasWorkingGOPS ? getOPS(object) : emptyArr;
+      var sourceKeys = reduce(symbols, function _concatFilter(src, symbol) {
+        if (isEnumerable.call(object, symbol)) {
+          src[src.length] = symbol;
+        }
+
+        return src;
+      }, objectKeys(object));
+
+      return reduce(sourceKeys, function _assignTo(tar, key) {
+        tar[key] = object[key];
+        return tar;
+      }, tgt);
+    }, to);
   };
 } else {
   $assign = nativeAssign;
