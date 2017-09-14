@@ -1,6 +1,6 @@
 /**
  * @file Used to copy the values of all enumerable own properties from one or more source objects to a target object.
- * @version 1.0.0
+ * @version 1.1.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -9,52 +9,42 @@
 
 'use strict';
 
+var attempt = require('attempt-x');
 var objectKeys = require('object-keys-x');
 var isFunction = require('is-function-x');
 var reduce = require('array-reduce-x');
+var getOwnPropertyNames = require('get-own-property-names-x');
+var isObjectLike = require('is-object-like-x');
 var nativeAssign = isFunction(Object.assign) && Object.assign;
 
 var workingNativeAssign = function _nativeWorks() {
-  try {
-    var obj = {};
-    var result = nativeAssign(obj, { 0: 1 }, { 1: 2 });
-    if (result !== obj || objectKeys(obj).length !== 2 || obj[0] !== 1 || obj[1] !== 2) {
-      return false;
-    }
-  } catch (ignore) {
-    return false;
-  }
-
-  return true;
+  var obj = {};
+  var res = attempt(nativeAssign, obj, { 0: 1 }, { 1: 2 });
+  return res.threw === false && res.value === obj && objectKeys(obj).length === 2 && obj[0] === 1 && obj[1] === 2;
 };
 
 // eslint-disable-next-line id-length
 var lacksProperEnumerationOrder = function _enumOrder() {
-  if (isFunction(Object.getOwnPropertyNames)) {
-    try {
-      // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-      var test1 = Object('abc');
-      test1[5] = 'de';
-      if (Object.getOwnPropertyNames(test1)[0] === '5') {
-        return true;
-      }
+  // https://bugs.chromium.org/p/v8/issues/detail?id=4118
+  var test1 = Object('abc');
+  test1[5] = 'de';
+  if (getOwnPropertyNames(test1)[0] === '5') {
+    return true;
+  }
 
-      var strNums = '0123456789';
-      // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-      var test2 = reduce(strNums.split(''), function (acc, ignore, index) {
-        acc['_' + String.fromCharCode(index)] = index;
-        return acc;
-      }, {});
+  var strNums = '0123456789';
+  // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+  var test2 = reduce(strNums.split(''), function (acc, ignore, index) {
+    acc['_' + String.fromCharCode(index)] = index;
+    return acc;
+  }, {});
 
-      var names = Object.getOwnPropertyNames(test2);
-      var order = reduce(names, function (acc, name) {
-        return acc + test2[name];
-      }, '');
+  var order = reduce(getOwnPropertyNames(test2), function (acc, name) {
+    return acc + test2[name];
+  }, '');
 
-      if (order !== strNums) {
-        return true;
-      }
-    } catch (ignore) {}
+  if (order !== strNums) {
+    return true;
   }
 
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
@@ -64,11 +54,8 @@ var lacksProperEnumerationOrder = function _enumOrder() {
     return acc;
   }, {});
 
-  if (objectKeys(Object.assign({}, test3)).join('') !== letters) {
-    return true;
-  }
-
-  return false;
+  var result = attempt(nativeAssign, {}, test3);
+  return result.threw === false && objectKeys(result.value).join('') !== letters;
 };
 
 // eslint-disable-next-line id-length
@@ -79,20 +66,14 @@ var assignHasPendingExceptions = function _exceptions() {
 
   // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
-  var thrower;
-  try {
-    thrower = Object.preventExtensions({ 1: 2 });
-  } catch (ignore) {
+  var result = attempt(Object.preventExtensions, { 1: 2 });
+  if (result.threw || isObjectLike(result.value) === false) {
     return false;
   }
 
-  try {
-    Object.assign(thrower, 'xy');
-  } catch (ignore) {
-    return thrower[1] === 'y';
-  }
-
-  return false;
+  var thrower = result.value;
+  result = attempt(nativeAssign, thrower, 'xy');
+  return result.threw ? thrower[1] === 'y' : false;
 };
 
 var shouldImplement = (function () {
@@ -119,45 +100,23 @@ var $assign;
 if (shouldImplement) {
   var toObject = require('to-object-x');
   var slice = require('array-slice-x');
-  var isArray = require('is-array-x');
   var isNil = require('is-nil-x');
-  var getOPS = isFunction(Object.getOwnPropertySymbols) && Object.getOwnPropertySymbols;
-  var isEnumerable;
-  var emptyArr;
-  var hasWorkingGOPS = (function () {
-    try {
-      if (isArray(Object.getOwnPropertySymbols({}))) {
-        isEnumerable = Object.prototype.propertyIsEnumerable;
-        return true;
-      }
-    } catch (ignore) {}
-    emptyArr = [];
-    return false;
-  }());
+  var getOEPS = require('get-own-enumerable-property-symbols-x');
+  var concat = Array.prototype.concat;
 
   // 19.1.3.1
   $assign = function assign(target) {
-    var to = toObject(target);
     return reduce(slice(arguments, 1), function _assignSources(tgt, source) {
       if (isNil(source)) {
         return tgt;
       }
 
       var object = Object(source);
-      var symbols = hasWorkingGOPS ? getOPS(object) : emptyArr;
-      var sourceKeys = reduce(symbols, function _concatFilter(src, symbol) {
-        if (isEnumerable.call(object, symbol)) {
-          src[src.length] = symbol;
-        }
-
-        return src;
-      }, objectKeys(object));
-
-      return reduce(sourceKeys, function _assignTo(tar, key) {
+      return reduce(concat.call(objectKeys(object), getOEPS(object)), function _assignTo(tar, key) {
         tar[key] = object[key];
         return tar;
       }, tgt);
-    }, to);
+    }, toObject(target));
   };
 } else {
   $assign = nativeAssign;
