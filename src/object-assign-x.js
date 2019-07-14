@@ -7,76 +7,94 @@
  * @module object-assign-x
  */
 
-'use strict';
+const attempt = require('attempt-x');
+const objectKeys = require('object-keys-x');
+const isFunction = require('is-function-x');
+const reduce = require('array-reduce-x');
+const getOwnPropertyNames = require('get-own-property-names-x');
+const isObjectLike = require('is-object-like-x');
 
-var attempt = require('attempt-x');
-var objectKeys = require('object-keys-x');
-var isFunction = require('is-function-x');
-var reduce = require('array-reduce-x');
-var getOwnPropertyNames = require('get-own-property-names-x');
-var isObjectLike = require('is-object-like-x');
-var nativeAssign = isFunction(Object.assign) && Object.assign;
+const nativeAssign = isFunction(Object.assign) && Object.assign;
 
-var workingNativeAssign = function _nativeWorks() {
-  var obj = {};
-  var res = attempt(nativeAssign, obj, { 0: 1 }, { 1: 2 });
+const workingNativeAssign = function _nativeWorks() {
+  const obj = {};
+  const res = attempt(nativeAssign, obj, {0: 1}, {1: 2});
+
   return res.threw === false && res.value === obj && objectKeys(obj).length === 2 && obj[0] === 1 && obj[1] === 2;
 };
 
 // eslint-disable-next-line id-length
-var lacksProperEnumerationOrder = function _enumOrder() {
+const lacksProperEnumerationOrder = function _enumOrder() {
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  var test1 = Object('abc');
+  const test1 = Object('abc');
   test1[5] = 'de';
+
   if (getOwnPropertyNames(test1)[0] === '5') {
     return true;
   }
 
-  var strNums = '0123456789';
+  const strNums = '0123456789';
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  var test2 = reduce(strNums.split(''), function (acc, ignore, index) {
-    acc['_' + String.fromCharCode(index)] = index;
-    return acc;
-  }, {});
+  const test2 = reduce(
+    strNums.split(''),
+    function(acc, ignore, index) {
+      acc[`_${String.fromCharCode(index)}`] = index;
 
-  var order = reduce(getOwnPropertyNames(test2), function (acc, name) {
-    return acc + test2[name];
-  }, '');
+      return acc;
+    },
+    {},
+  );
+
+  const order = reduce(
+    getOwnPropertyNames(test2),
+    function(acc, name) {
+      return acc + test2[name];
+    },
+    '',
+  );
 
   if (order !== strNums) {
     return true;
   }
 
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  var letters = 'abcdefghijklmnopqrst';
-  var test3 = reduce(letters.split(''), function (acc, letter) {
-    acc[letter] = letter;
-    return acc;
-  }, {});
+  const letters = 'abcdefghijklmnopqrst';
+  const test3 = reduce(
+    letters.split(''),
+    function(acc, letter) {
+      acc[letter] = letter;
 
-  var result = attempt(nativeAssign, {}, test3);
+      return acc;
+    },
+    {},
+  );
+
+  const result = attempt(nativeAssign, {}, test3);
+
   return result.threw === false && objectKeys(result.value).join('') !== letters;
 };
 
 // eslint-disable-next-line id-length
-var assignHasPendingExceptions = function _exceptions() {
+const assignHasPendingExceptions = function _exceptions() {
   if (isFunction(Object.preventExtensions) === false) {
     return false;
   }
 
   // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
-  var result = attempt(Object.preventExtensions, { 1: 2 });
+  let result = attempt(Object.preventExtensions, {1: 2});
+
   if (result.threw || isObjectLike(result.value) === false) {
     return false;
   }
 
-  var thrower = result.value;
+  const thrower = result.value;
   result = attempt(nativeAssign, thrower, 'xy');
+
   return result.threw ? thrower[1] === 'y' : false;
 };
 
-var shouldImplement = (function () {
+const shouldImplement = (function() {
   if (nativeAssign === false) {
     return true;
   }
@@ -94,29 +112,40 @@ var shouldImplement = (function () {
   }
 
   return false;
-}());
+})();
 
-var $assign;
+let $assign;
+
 if (shouldImplement) {
-  var toObject = require('to-object-x');
-  var slice = require('array-slice-x');
-  var isNil = require('is-nil-x');
-  var getOEPS = require('get-own-enumerable-property-symbols-x');
-  var concat = Array.prototype.concat;
+  const toObject = require('to-object-x');
+  const slice = require('array-slice-x');
+  const isNil = require('is-nil-x');
+  const getOEPS = require('get-own-enumerable-property-symbols-x');
+  const {concat} = Array.prototype;
 
   // 19.1.3.1
   $assign = function assign(target) {
-    return reduce(slice(arguments, 1), function _assignSources(tgt, source) {
-      if (isNil(source)) {
-        return tgt;
-      }
+    return reduce(
+      slice(arguments, 1),
+      function _assignSources(tgt, source) {
+        if (isNil(source)) {
+          return tgt;
+        }
 
-      var object = Object(source);
-      return reduce(concat.call(objectKeys(object), getOEPS(object)), function _assignTo(tar, key) {
-        tar[key] = object[key];
-        return tar;
-      }, tgt);
-    }, toObject(target));
+        const object = Object(source);
+
+        return reduce(
+          concat.call(objectKeys(object), getOEPS(object)),
+          function _assignTo(tar, key) {
+            tar[key] = object[key];
+
+            return tar;
+          },
+          tgt,
+        );
+      },
+      toObject(target),
+    );
   };
 } else {
   $assign = nativeAssign;
@@ -129,7 +158,7 @@ if (shouldImplement) {
  * @param {*} target - The target object.
  * @param {*} [...source] - The source object(s).
  * @throws {TypeError} If target is null or undefined.
- * @returns {Object} The target object.
+ * @returns {object} The target object.
  * @example
  * var assign = require('object-assign-x');
  *
