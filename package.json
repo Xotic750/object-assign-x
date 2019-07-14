@@ -59,7 +59,7 @@
     "is-nil-x": "^2.0.5",
     "is-object-like-x": "^2.0.4",
     "object-keys-x": "^2.5.0",
-    "to-object-x": "^1.5.0"
+    "to-object-x": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
