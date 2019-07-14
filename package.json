@@ -51,13 +51,13 @@
   "dependencies": {
     "array-reduce-x": "^2.1.0",
     "array-slice-x": "^3.5.0",
-    "attempt-x": "^2.0.2",
+    "attempt-x": "^2.0.3",
     "get-own-enumerable-property-symbols-x": "^1.0.0",
     "get-own-property-names-x": "^2.2.0",
     "get-own-property-symbols-x": "^1.1.0",
-    "is-function-x": "^4.0.5",
-    "is-nil-x": "^2.0.4",
-    "is-object-like-x": "^2.0.3",
+    "is-function-x": "^4.0.6",
+    "is-nil-x": "^2.0.5",
+    "is-object-like-x": "^2.0.4",
     "object-keys-x": "^2.5.0",
     "to-object-x": "^1.5.0"
   },
