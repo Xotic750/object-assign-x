@@ -58,7 +58,7 @@
     "is-function-x": "^4.0.8",
     "is-nil-x": "^2.0.6",
     "is-object-like-x": "^2.0.6",
-    "object-keys-x": "^2.5.0",
+    "object-keys-x": "^3.0.0",
     "to-object-x": "^2.0.1"
   },
   "devDependencies": {
