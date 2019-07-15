@@ -50,16 +50,16 @@
   },
   "dependencies": {
     "array-reduce-x": "^2.1.0",
-    "array-slice-x": "^4.0.0",
-    "attempt-x": "^2.0.3",
+    "array-slice-x": "^4.0.3",
+    "attempt-x": "^2.0.4",
     "get-own-enumerable-property-symbols-x": "^1.0.0",
     "get-own-property-names-x": "^2.2.0",
     "get-own-property-symbols-x": "^1.1.0",
-    "is-function-x": "^4.0.6",
-    "is-nil-x": "^2.0.5",
-    "is-object-like-x": "^2.0.4",
+    "is-function-x": "^4.0.8",
+    "is-nil-x": "^2.0.6",
+    "is-object-like-x": "^2.0.6",
     "object-keys-x": "^2.5.0",
-    "to-object-x": "^2.0.0"
+    "to-object-x": "^2.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
