@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "array-reduce-x": "^2.1.0",
-    "array-slice-x": "^3.5.0",
+    "array-slice-x": "^4.0.0",
     "attempt-x": "^2.0.3",
     "get-own-enumerable-property-symbols-x": "^1.0.0",
     "get-own-property-names-x": "^2.2.0",
