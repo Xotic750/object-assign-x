@@ -33,7 +33,9 @@ try {
   });
 
   supportsGetSet = true;
-} catch (ignore) {}
+} catch (ignore) {
+  // empty
+}
 
 const ifGetSet = supportsGetSet ? it : xit;
 
@@ -45,7 +47,9 @@ try {
     objTest[0] = 1;
     supportsPreventExtensions = objTest[0] === void 0;
   }
-} catch (ignore) {}
+} catch (ignore) {
+  // empty
+}
 
 const ifExtensionsPreventable = supportsPreventExtensions ? it : xit;
 
@@ -55,10 +59,12 @@ const ifSymbolsIt = hasSymbols ? it : xit;
 describe('assign', function() {
   it('is a function', function() {
     expect.assertions(1);
+    expect.assertions(1);
     expect(typeof assign).toBe('function');
   });
 
   it('should throw when target is null or undefined', function() {
+    expect.assertions(1);
     expect.assertions(1);
     expect(function() {
       assign();
@@ -75,6 +81,7 @@ describe('assign', function() {
 
   it('returns the modified target object', function() {
     expect.assertions(1);
+    expect.assertions(1);
     const target = {};
     const returned = assign(target, {a: 1});
     expect(returned).toStrictEqual(target);
@@ -82,12 +89,14 @@ describe('assign', function() {
 
   it('should merge two objects', function() {
     expect.assertions(1);
+    expect.assertions(1);
     const target = {a: 1};
     const returned = assign(target, {b: 2});
     expect(returned).toStrictEqual({a: 1, b: 2});
   });
 
   it('should merge three objects', function() {
+    expect.assertions(1);
     expect.assertions(1);
     const target = {a: 1};
     const source1 = {b: 2};
@@ -102,6 +111,7 @@ describe('assign', function() {
 
   it('only iterates over own keys', function() {
     expect.assertions(1);
+    expect.assertions(1);
     const Foo = function() {};
 
     Foo.prototype.bar = true;
@@ -114,6 +124,7 @@ describe('assign', function() {
   });
 
   it('coerces lone target to an object', function() {
+    expect.assertions(1);
     expect.assertions(1);
     const result = {
       bool: assign(true),
@@ -132,6 +143,7 @@ describe('assign', function() {
   });
 
   it('coerces target to an object, assigns from sources', function() {
+    expect.assertions(1);
     expect.assertions(1);
     const sourceA = {a: 1};
     const sourceB = {b: 1};
@@ -165,6 +177,7 @@ describe('assign', function() {
   });
 
   it('ignores non-object sources', function() {
+    expect.assertions(1);
     expect.assertions(1);
     expect(assign({a: 1}, null, {b: 2})).toStrictEqual({a: 1, b: 2});
     expect(assign({a: 1}, undefined, {b: 2})).toStrictEqual({a: 1, b: 2});
