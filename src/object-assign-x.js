@@ -1,12 +1,3 @@
-/**
- * @file Used to copy the values of all enumerable own properties from one or more source objects to a target object.
- * @version 1.1.0
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module object-assign-x
- */
-
 import attempt from 'attempt-x';
 
 import objectKeys from 'object-keys-x';
@@ -160,11 +151,5 @@ if (shouldImplement) {
  * @param {*} [...source] - The source object(s).
  * @throws {TypeError} If target is null or undefined.
  * @returns {object} The target object.
- * @example
- * var assign = require('object-assign-x');
- *
- * var obj = { a: 1 };
- * var copy = assign({}, obj);
- * console.log(copy); // { a: 1 }
  */
 export default $assign;
