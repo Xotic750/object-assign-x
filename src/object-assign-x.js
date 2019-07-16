@@ -7,12 +7,13 @@
  * @module object-assign-x
  */
 
-const attempt = require('attempt-x');
-const objectKeys = require('object-keys-x');
-const isFunction = require('is-function-x');
-const reduce = require('array-reduce-x');
-const getOwnPropertyNames = require('get-own-property-names-x');
-const isObjectLike = require('is-object-like-x');
+import attempt from 'attempt-x';
+
+import objectKeys from 'object-keys-x';
+import isFunction from 'is-function-x';
+import reduce from 'array-reduce-x';
+import getOwnPropertyNames from 'get-own-property-names-x';
+import isObjectLike from 'is-object-like-x';
 
 const nativeAssign = isFunction(Object.assign) && Object.assign;
 
@@ -166,4 +167,4 @@ if (shouldImplement) {
  * var copy = assign({}, obj);
  * console.log(copy); // { a: 1 }
  */
-module.exports = $assign;
+export default $assign;
