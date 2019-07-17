@@ -21,15 +21,13 @@
 <a name="module_object-assign-x"></a>
 
 ## object-assign-x
+
 Used to copy the values of all enumerable own properties from one or more source objects to a target object.
 
-**Version**: 1.1.0  
-**Author**: Xotic750 <Xotic750@gmail.com>  
-**License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
-**Copyright**: Xotic750  
 <a name="exp_module_object-assign-x--module.exports"></a>
 
 ### `module.exports` ⇒ <code>Object</code> ⏏
+
 This method is used to copy the values of all enumerable own properties from
 one or more source objects to a target object. It will return the target object.
 
@@ -39,17 +37,17 @@ one or more source objects to a target object. It will return the target object.
 
 - <code>TypeError</code> If target is null or undefined.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| target | <code>\*</code> | The target object. |
+| Param       | Type            | Description           |
+| ----------- | --------------- | --------------------- |
+| target      | <code>\*</code> | The target object.    |
 | [...source] | <code>\*</code> | The source object(s). |
 
-**Example**  
-```js
-var assign = require('object-assign-x');
+**Example**
 
-var obj = { a: 1 };
-var copy = assign({}, obj);
+```js
+import assign from 'object-assign-x';
+
+const obj = {a: 1};
+const copy = assign({}, obj);
 console.log(copy); // { a: 1 }
 ```

@@ -1,4 +1,4 @@
-let assign;
+import assign from '../src/object-assign-x';
 
 let supportsGetSet;
 try {
@@ -40,7 +40,7 @@ describe('assign', function() {
   });
 
   it('should throw when target is null or undefined', function() {
-    expect.assertions(1);
+    expect.assertions(3);
     expect(function() {
       assign();
     }).toThrowErrorMatchingSnapshot();
@@ -82,7 +82,7 @@ describe('assign', function() {
   });
 
   it('only iterates over own keys', function() {
-    expect.assertions(1);
+    expect.assertions(2);
     const Foo = function() {};
 
     Foo.prototype.bar = true;
@@ -95,7 +95,7 @@ describe('assign', function() {
   });
 
   it('coerces lone target to an object', function() {
-    expect.assertions(1);
+    expect.assertions(6);
     const result = {
       bool: assign(true),
       number: assign(1),
@@ -113,7 +113,7 @@ describe('assign', function() {
   });
 
   it('coerces target to an object, assigns from sources', function() {
-    expect.assertions(1);
+    expect.assertions(8);
     const sourceA = {a: 1};
     const sourceB = {b: 1};
 
@@ -125,7 +125,10 @@ describe('assign', function() {
 
     expect(typeof result.bool).toBe('object');
     expect(Boolean.prototype.valueOf.call(result.bool)).toBe(true);
-    expect(result.bool).toStrictEqual({a: 1, b: 1});
+    const bool = Object(true);
+    bool.a = 1;
+    bool.b = 1;
+    expect(result.bool).toStrictEqual(bool);
 
     expect(typeof result.number).toBe('object');
     expect(Number.prototype.valueOf.call(result.number)).toBe(1);
@@ -146,7 +149,7 @@ describe('assign', function() {
   });
 
   it('ignores non-object sources', function() {
-    expect.assertions(1);
+    expect.assertions(3);
     expect(assign({a: 1}, null, {b: 2})).toStrictEqual({a: 1, b: 2});
     expect(assign({a: 1}, undefined, {b: 2})).toStrictEqual({a: 1, b: 2});
     expect(assign({a: 1}, {b: 2}, null)).toStrictEqual({a: 1, b: 2});

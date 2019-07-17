@@ -1,12 +1,17 @@
 import attempt from 'attempt-x';
-
 import objectKeys from 'object-keys-x';
 import isFunction from 'is-function-x';
 import reduce from 'array-reduce-x';
 import getOwnPropertyNames from 'get-own-property-names-x';
 import isObjectLike from 'is-object-like-x';
+import toObject from 'to-object-x';
+import slice from 'array-slice-x';
+import isNil from 'is-nil-x';
+import getOEPS from 'get-own-enumerable-property-symbols-x';
 
-const nativeAssign = isFunction(Object.assign) && Object.assign;
+const ObjectCtr = {}.constructor;
+const nAssign = ObjectCtr.assign;
+const nativeAssign = isFunction(nAssign) && nAssign;
 
 const workingNativeAssign = function _nativeWorks() {
   const obj = {};
@@ -15,7 +20,6 @@ const workingNativeAssign = function _nativeWorks() {
   return res.threw === false && res.value === obj && objectKeys(obj).length === 2 && obj[0] === 1 && obj[1] === 2;
 };
 
-// eslint-disable-next-line id-length
 const lacksProperEnumerationOrder = function _enumOrder() {
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
   const test1 = Object('abc');
@@ -29,7 +33,7 @@ const lacksProperEnumerationOrder = function _enumOrder() {
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
   const test2 = reduce(
     strNums.split(''),
-    function(acc, ignore, index) {
+    (acc, ignore, index) => {
       acc[`_${String.fromCharCode(index)}`] = index;
 
       return acc;
@@ -39,7 +43,7 @@ const lacksProperEnumerationOrder = function _enumOrder() {
 
   const order = reduce(
     getOwnPropertyNames(test2),
-    function(acc, name) {
+    (acc, name) => {
       return acc + test2[name];
     },
     '',
@@ -53,7 +57,7 @@ const lacksProperEnumerationOrder = function _enumOrder() {
   const letters = 'abcdefghijklmnopqrst';
   const test3 = reduce(
     letters.split(''),
-    function(acc, letter) {
+    (acc, letter) => {
       acc[letter] = letter;
 
       return acc;
@@ -66,7 +70,6 @@ const lacksProperEnumerationOrder = function _enumOrder() {
   return result.threw === false && objectKeys(result.value).join('') !== letters;
 };
 
-// eslint-disable-next-line id-length
 const assignHasPendingExceptions = function _exceptions() {
   if (isFunction(Object.preventExtensions) === false) {
     return false;
@@ -86,7 +89,7 @@ const assignHasPendingExceptions = function _exceptions() {
   return result.threw ? thrower[1] === 'y' : false;
 };
 
-const shouldImplement = (function() {
+const shouldImplement = (function getShouldImplement() {
   if (nativeAssign === false) {
     return true;
   }
@@ -99,25 +102,27 @@ const shouldImplement = (function() {
     return true;
   }
 
-  if (assignHasPendingExceptions()) {
-    return true;
-  }
-
-  return false;
+  return assignHasPendingExceptions();
 })();
 
+/**
+ * This method is used to copy the values of all enumerable own properties from
+ * one or more source objects to a target object. It will return the target object.
+ *
+ * @param {*} target - The target object.
+ * @param {*} [...source] - The source object(s).
+ * @throws {TypeError} If target is null or undefined.
+ * @returns {object} The target object.
+ */
 let $assign;
 
 if (shouldImplement) {
-  const toObject = require('to-object-x');
-  const slice = require('array-slice-x');
-  const isNil = require('is-nil-x');
-  const getOEPS = require('get-own-enumerable-property-symbols-x');
   const {concat} = Array.prototype;
 
   // 19.1.3.1
   $assign = function assign(target) {
     return reduce(
+      /* eslint-disable-next-line prefer-rest-params */
       slice(arguments, 1),
       function _assignSources(tgt, source) {
         if (isNil(source)) {
@@ -143,13 +148,6 @@ if (shouldImplement) {
   $assign = nativeAssign;
 }
 
-/**
- * This method is used to copy the values of all enumerable own properties from
- * one or more source objects to a target object. It will return the target object.
- *
- * @param {*} target - The target object.
- * @param {*} [...source] - The source object(s).
- * @throws {TypeError} If target is null or undefined.
- * @returns {object} The target object.
- */
-export default $assign;
+const assign = $assign;
+
+export default assign;
