@@ -10,11 +10,14 @@ import toObject from 'to-object-x';
 import slice from 'array-slice-x';
 import isNil from 'is-nil-x';
 import getOEPS from 'get-own-enumerable-property-symbols-x';
-var ObjectCtr = {}.constructor;
-var nAssign = ObjectCtr.assign;
+var EMPTY_STRING = '';
+var StringCtr = EMPTY_STRING.constructor;
+var fromCharCode = StringCtr.fromCharCode;
+var castObject = {}.constructor;
+var nAssign = castObject.assign;
 var nativeAssign = isFunction(nAssign) && nAssign;
 
-var workingNativeAssign = function _nativeWorks() {
+var workingNativeAssign = function nativeWorks() {
   var obj = {};
   var res = attempt(nativeAssign, obj, {
     0: 1
@@ -24,11 +27,11 @@ var workingNativeAssign = function _nativeWorks() {
   return res.threw === false && res.value === obj && objectKeys(obj).length === 2 && obj[0] === 1 && obj[1] === 2;
 };
 
-var lacksProperEnumerationOrder = function _enumOrder() {
+var lacksProperEnumerationOrder = function enumOrder() {
   var _this = this;
 
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  var test1 = Object('abc');
+  var test1 = castObject('abc');
   test1[5] = 'de';
 
   if (getOwnPropertyNames(test1)[0] === '5') {
@@ -37,17 +40,17 @@ var lacksProperEnumerationOrder = function _enumOrder() {
 
   var strNums = '0123456789'; // https://bugs.chromium.org/p/v8/issues/detail?id=3056
 
-  var test2 = reduce(strNums.split(''), function (acc, ignore, index) {
+  var test2 = reduce(strNums.split(EMPTY_STRING), function (acc, ignore, index) {
     _newArrowCheck(this, _this);
 
-    acc["_".concat(String.fromCharCode(index))] = index;
+    acc["_".concat(fromCharCode(index))] = index;
     return acc;
   }.bind(this), {});
   var order = reduce(getOwnPropertyNames(test2), function (acc, name) {
     _newArrowCheck(this, _this);
 
     return acc + test2[name];
-  }.bind(this), '');
+  }.bind(this), EMPTY_STRING);
 
   if (order !== strNums) {
     return true;
@@ -55,24 +58,24 @@ var lacksProperEnumerationOrder = function _enumOrder() {
 
 
   var letters = 'abcdefghijklmnopqrst';
-  var test3 = reduce(letters.split(''), function (acc, letter) {
+  var test3 = reduce(letters.split(EMPTY_STRING), function (acc, letter) {
     _newArrowCheck(this, _this);
 
     acc[letter] = letter;
     return acc;
   }.bind(this), {});
   var result = attempt(nativeAssign, {}, test3);
-  return result.threw === false && objectKeys(result.value).join('') !== letters;
+  return result.threw === false && objectKeys(result.value).join(EMPTY_STRING) !== letters;
 };
 
-var assignHasPendingExceptions = function _exceptions() {
-  if (isFunction(Object.preventExtensions) === false) {
+var assignHasPendingExceptions = function exceptions() {
+  if (isFunction(castObject.preventExtensions) === false) {
     return false;
   } // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
 
 
-  var result = attempt(Object.preventExtensions, {
+  var result = attempt(castObject.preventExtensions, {
     1: 2
   });
 
@@ -114,22 +117,30 @@ var shouldImplement = function getShouldImplement() {
 var $assign;
 
 if (shouldImplement) {
-  var concat = Array.prototype.concat; // 19.1.3.1
+  var concat = [].concat; // 19.1.3.1
 
   $assign = function assign(target) {
+    var _this2 = this;
+
     return reduce(
     /* eslint-disable-next-line prefer-rest-params */
-    slice(arguments, 1), function _assignSources(tgt, source) {
+    slice(arguments, 1), function (tgt, source) {
+      var _this3 = this;
+
+      _newArrowCheck(this, _this2);
+
       if (isNil(source)) {
         return tgt;
       }
 
-      var object = Object(source);
-      return reduce(concat.call(objectKeys(object), getOEPS(object)), function _assignTo(tar, key) {
+      var object = castObject(source);
+      return reduce(concat.call(objectKeys(object), getOEPS(object)), function (tar, key) {
+        _newArrowCheck(this, _this3);
+
         tar[key] = object[key];
         return tar;
-      }, tgt);
-    }, toObject(target));
+      }.bind(this), tgt);
+    }.bind(this), toObject(target));
   };
 } else {
   $assign = nativeAssign;

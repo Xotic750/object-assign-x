@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-17T21:12:04.178Z",
+  "date": "2019-07-17T21:36:25.332Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "6c79319a69b99ff2aa63",
+  "hash": "6a9c57422d8be0e00391",
   "license": "MIT",
-  "version": "2.0.0"
+  "version": "2.0.1"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -7993,11 +7993,14 @@ function object_assign_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis
 
 
 
-var object_assign_x_esm_ObjectCtr = {}.constructor;
-var nAssign = object_assign_x_esm_ObjectCtr.assign;
+var object_assign_x_esm_EMPTY_STRING = '';
+var object_assign_x_esm_StringCtr = object_assign_x_esm_EMPTY_STRING.constructor;
+var fromCharCode = object_assign_x_esm_StringCtr.fromCharCode;
+var object_assign_x_esm_castObject = {}.constructor;
+var nAssign = object_assign_x_esm_castObject.assign;
 var nativeAssign = is_function_x_esm(nAssign) && nAssign;
 
-var workingNativeAssign = function _nativeWorks() {
+var workingNativeAssign = function nativeWorks() {
   var obj = {};
   var res = attempt_x_esm(nativeAssign, obj, {
     0: 1
@@ -8007,11 +8010,11 @@ var workingNativeAssign = function _nativeWorks() {
   return res.threw === false && res.value === obj && object_keys_x_esm(obj).length === 2 && obj[0] === 1 && obj[1] === 2;
 };
 
-var lacksProperEnumerationOrder = function _enumOrder() {
+var lacksProperEnumerationOrder = function enumOrder() {
   var _this = this;
 
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  var test1 = Object('abc');
+  var test1 = object_assign_x_esm_castObject('abc');
   test1[5] = 'de';
 
   if (get_own_property_names_x_esm(test1)[0] === '5') {
@@ -8020,17 +8023,17 @@ var lacksProperEnumerationOrder = function _enumOrder() {
 
   var strNums = '0123456789'; // https://bugs.chromium.org/p/v8/issues/detail?id=3056
 
-  var test2 = array_reduce_x_esm(strNums.split(''), function (acc, ignore, index) {
+  var test2 = array_reduce_x_esm(strNums.split(object_assign_x_esm_EMPTY_STRING), function (acc, ignore, index) {
     object_assign_x_esm_newArrowCheck(this, _this);
 
-    acc["_".concat(String.fromCharCode(index))] = index;
+    acc["_".concat(fromCharCode(index))] = index;
     return acc;
   }.bind(this), {});
   var order = array_reduce_x_esm(get_own_property_names_x_esm(test2), function (acc, name) {
     object_assign_x_esm_newArrowCheck(this, _this);
 
     return acc + test2[name];
-  }.bind(this), '');
+  }.bind(this), object_assign_x_esm_EMPTY_STRING);
 
   if (order !== strNums) {
     return true;
@@ -8038,24 +8041,24 @@ var lacksProperEnumerationOrder = function _enumOrder() {
 
 
   var letters = 'abcdefghijklmnopqrst';
-  var test3 = array_reduce_x_esm(letters.split(''), function (acc, letter) {
+  var test3 = array_reduce_x_esm(letters.split(object_assign_x_esm_EMPTY_STRING), function (acc, letter) {
     object_assign_x_esm_newArrowCheck(this, _this);
 
     acc[letter] = letter;
     return acc;
   }.bind(this), {});
   var result = attempt_x_esm(nativeAssign, {}, test3);
-  return result.threw === false && object_keys_x_esm(result.value).join('') !== letters;
+  return result.threw === false && object_keys_x_esm(result.value).join(object_assign_x_esm_EMPTY_STRING) !== letters;
 };
 
-var assignHasPendingExceptions = function _exceptions() {
-  if (is_function_x_esm(Object.preventExtensions) === false) {
+var assignHasPendingExceptions = function exceptions() {
+  if (is_function_x_esm(object_assign_x_esm_castObject.preventExtensions) === false) {
     return false;
   } // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
 
 
-  var result = attempt_x_esm(Object.preventExtensions, {
+  var result = attempt_x_esm(object_assign_x_esm_castObject.preventExtensions, {
     1: 2
   });
 
@@ -8097,22 +8100,30 @@ var shouldImplement = function getShouldImplement() {
 var $assign;
 
 if (shouldImplement) {
-  var concat = Array.prototype.concat; // 19.1.3.1
+  var concat = [].concat; // 19.1.3.1
 
   $assign = function assign(target) {
+    var _this2 = this;
+
     return array_reduce_x_esm(
     /* eslint-disable-next-line prefer-rest-params */
-    array_slice_x_esm(arguments, 1), function _assignSources(tgt, source) {
+    array_slice_x_esm(arguments, 1), function (tgt, source) {
+      var _this3 = this;
+
+      object_assign_x_esm_newArrowCheck(this, _this2);
+
       if (is_nil_x_esm(source)) {
         return tgt;
       }
 
-      var object = Object(source);
-      return array_reduce_x_esm(concat.call(object_keys_x_esm(object), get_own_enumerable_property_symbols_x_esm(object)), function _assignTo(tar, key) {
+      var object = object_assign_x_esm_castObject(source);
+      return array_reduce_x_esm(concat.call(object_keys_x_esm(object), get_own_enumerable_property_symbols_x_esm(object)), function (tar, key) {
+        object_assign_x_esm_newArrowCheck(this, _this3);
+
         tar[key] = object[key];
         return tar;
-      }, tgt);
-    }, to_object_x_esm(target));
+      }.bind(this), tgt);
+    }.bind(this), to_object_x_esm(target));
   };
 } else {
   $assign = nativeAssign;

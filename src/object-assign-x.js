@@ -9,20 +9,23 @@ import slice from 'array-slice-x';
 import isNil from 'is-nil-x';
 import getOEPS from 'get-own-enumerable-property-symbols-x';
 
-const ObjectCtr = {}.constructor;
-const nAssign = ObjectCtr.assign;
+const EMPTY_STRING = '';
+const StringCtr = EMPTY_STRING.constructor;
+const {fromCharCode} = StringCtr;
+const castObject = {}.constructor;
+const nAssign = castObject.assign;
 const nativeAssign = isFunction(nAssign) && nAssign;
 
-const workingNativeAssign = function _nativeWorks() {
+const workingNativeAssign = function nativeWorks() {
   const obj = {};
   const res = attempt(nativeAssign, obj, {0: 1}, {1: 2});
 
   return res.threw === false && res.value === obj && objectKeys(obj).length === 2 && obj[0] === 1 && obj[1] === 2;
 };
 
-const lacksProperEnumerationOrder = function _enumOrder() {
+const lacksProperEnumerationOrder = function enumOrder() {
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  const test1 = Object('abc');
+  const test1 = castObject('abc');
   test1[5] = 'de';
 
   if (getOwnPropertyNames(test1)[0] === '5') {
@@ -32,9 +35,9 @@ const lacksProperEnumerationOrder = function _enumOrder() {
   const strNums = '0123456789';
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
   const test2 = reduce(
-    strNums.split(''),
+    strNums.split(EMPTY_STRING),
     (acc, ignore, index) => {
-      acc[`_${String.fromCharCode(index)}`] = index;
+      acc[`_${fromCharCode(index)}`] = index;
 
       return acc;
     },
@@ -46,7 +49,7 @@ const lacksProperEnumerationOrder = function _enumOrder() {
     (acc, name) => {
       return acc + test2[name];
     },
-    '',
+    EMPTY_STRING,
   );
 
   if (order !== strNums) {
@@ -56,7 +59,7 @@ const lacksProperEnumerationOrder = function _enumOrder() {
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
   const letters = 'abcdefghijklmnopqrst';
   const test3 = reduce(
-    letters.split(''),
+    letters.split(EMPTY_STRING),
     (acc, letter) => {
       acc[letter] = letter;
 
@@ -67,17 +70,17 @@ const lacksProperEnumerationOrder = function _enumOrder() {
 
   const result = attempt(nativeAssign, {}, test3);
 
-  return result.threw === false && objectKeys(result.value).join('') !== letters;
+  return result.threw === false && objectKeys(result.value).join(EMPTY_STRING) !== letters;
 };
 
-const assignHasPendingExceptions = function _exceptions() {
-  if (isFunction(Object.preventExtensions) === false) {
+const assignHasPendingExceptions = function exceptions() {
+  if (isFunction(castObject.preventExtensions) === false) {
     return false;
   }
 
   // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
-  let result = attempt(Object.preventExtensions, {1: 2});
+  let result = attempt(castObject.preventExtensions, {1: 2});
 
   if (result.threw || isObjectLike(result.value) === false) {
     return false;
@@ -117,23 +120,23 @@ const shouldImplement = (function getShouldImplement() {
 let $assign;
 
 if (shouldImplement) {
-  const {concat} = Array.prototype;
+  const {concat} = [];
 
   // 19.1.3.1
   $assign = function assign(target) {
     return reduce(
       /* eslint-disable-next-line prefer-rest-params */
       slice(arguments, 1),
-      function _assignSources(tgt, source) {
+      (tgt, source) => {
         if (isNil(source)) {
           return tgt;
         }
 
-        const object = Object(source);
+        const object = castObject(source);
 
         return reduce(
           concat.call(objectKeys(object), getOEPS(object)),
-          function _assignTo(tar, key) {
+          (tar, key) => {
             tar[key] = object[key];
 
             return tar;
