@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-18T00:34:58.734Z",
+  "date": "2019-07-18T22:55:11.575Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "cf1eebe4430f2d037076",
+  "hash": "3d4d4ca8844700fe4513",
   "license": "MIT",
-  "version": "2.0.2"
+  "version": "2.0.3"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -2509,11 +2509,11 @@ var toPropertyDescriptor = function _toPropertyDescriptor(desc) {
   var descriptor = {};
 
   if (has_own_property_x_esm(object, 'enumerable')) {
-    descriptor.enumerable = Boolean(object.enumerable);
+    descriptor.enumerable = object_define_property_x_esm_castBoolean(object.enumerable);
   }
 
   if (has_own_property_x_esm(object, 'configurable')) {
-    descriptor.configurable = Boolean(object.configurable);
+    descriptor.configurable = object_define_property_x_esm_castBoolean(object.configurable);
   }
 
   if (has_own_property_x_esm(object, 'value')) {
@@ -2521,7 +2521,7 @@ var toPropertyDescriptor = function _toPropertyDescriptor(desc) {
   }
 
   if (has_own_property_x_esm(object, 'writable')) {
-    descriptor.writable = Boolean(object.writable);
+    descriptor.writable = object_define_property_x_esm_castBoolean(object.writable);
   }
 
   if (has_own_property_x_esm(object, 'get')) {
