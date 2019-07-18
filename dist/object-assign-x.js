@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-17T21:36:25.332Z",
+  "date": "2019-07-18T00:34:58.734Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "6a9c57422d8be0e00391",
+  "hash": "cf1eebe4430f2d037076",
   "license": "MIT",
-  "version": "2.0.1"
+  "version": "2.0.2"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -120,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 var toStr = Object.prototype.toString;
-var hasSymbols = __webpack_require__(14)();
+var hasSymbols = __webpack_require__(7)();
 
 if (hasSymbols) {
 	var symToStr = Symbol.prototype.toString;
@@ -170,6 +170,28 @@ if (hasSymbols) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*!
+ * is-primitive <https://github.com/jonschlinkert/is-primitive>
+ *
+ * Copyright (c) 2014-present, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+
+
+module.exports = function isPrimitive(val) {
+  if (typeof val === 'object') {
+    return val === null;
+  }
+  return typeof val !== 'function';
+};
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 var strValue = String.prototype.valueOf;
@@ -193,56 +215,7 @@ module.exports = function isString(value) {
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var getDay = Date.prototype.getDay;
-var tryDateObject = function tryDateObject(value) {
-	try {
-		getDay.call(value);
-		return true;
-	} catch (e) {
-		return false;
-	}
-};
-
-var toStr = Object.prototype.toString;
-var dateClass = '[object Date]';
-var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
-
-module.exports = function isDateObject(value) {
-	if (typeof value !== 'object' || value === null) { return false; }
-	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
-};
-
-
-/***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -280,95 +253,7 @@ module.exports = supportsStandardArguments ? isStandardArguments : isLegacyArgum
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 9 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -392,61 +277,44 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 10 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
 
 
+var getDay = Date.prototype.getDay;
+var tryDateObject = function tryDateObject(value) {
+	try {
+		getDay.call(value);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
 
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
+var toStr = Object.prototype.toString;
+var dateClass = '[object Date]';
+var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
+
+module.exports = function isDateObject(value) {
+	if (typeof value !== 'object' || value === null) { return false; }
+	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
 };
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 12 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(9);
+var isArgs = __webpack_require__(4);
 
 var origKeys = Object.keys;
-var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(17);
+var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(10);
 
 var originalKeys = Object.keys;
 
@@ -475,36 +343,14 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * is-primitive <https://github.com/jonschlinkert/is-primitive>
- *
- * Copyright (c) 2014-present, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function isPrimitive(val) {
-  if (typeof val === 'object') {
-    return val === null;
-  }
-  return typeof val !== 'function';
-};
-
-
-/***/ }),
-/* 14 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
 var origSymbol = global.Symbol;
-var hasSymbolSham = __webpack_require__(16);
+var hasSymbolSham = __webpack_require__(9);
 
 module.exports = function hasNativeSymbols() {
 	if (typeof origSymbol !== 'function') { return false; }
@@ -515,10 +361,10 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(8)))
 
 /***/ }),
-/* 15 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var g;
@@ -544,7 +390,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 16 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -593,7 +439,7 @@ module.exports = function hasSymbols() {
 
 
 /***/ }),
-/* 17 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -604,7 +450,7 @@ if (!Object.keys) {
 	// modified from https://github.com/es-shims/es5-shim
 	var has = Object.prototype.hasOwnProperty;
 	var toStr = Object.prototype.toString;
-	var isArgs = __webpack_require__(9); // eslint-disable-line global-require
+	var isArgs = __webpack_require__(4); // eslint-disable-line global-require
 	var isEnumerable = Object.prototype.propertyIsEnumerable;
 	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -722,7 +568,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 18 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -776,7 +622,7 @@ var isNil = function isNil(value) {
 /* harmony default export */ var is_nil_x_esm = (isNil);
 
 
-// CONCATENATED MODULE: ./node_modules/to-object-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
+// CONCATENATED MODULE: ./node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
 
 /**
  * The abstract operation RequireObjectCoercible throws an error if argument
@@ -817,7 +663,7 @@ var to_object_x_esm_toObject = function toObject(value) {
 /* harmony default export */ var to_object_x_esm = (to_object_x_esm_toObject);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-string-tag-x/dist/to-string-tag-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-string-tag-x/dist/to-string-tag-x.esm.js
 var nativeObjectToString = {}.toString;
 /**
  * The `toStringTag` method returns "[object type]", where type is the
@@ -842,7 +688,7 @@ var toStringTag = function toStringTag(value) {
 /* harmony default export */ var to_string_tag_x_esm = (toStringTag);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/is-array-x/dist/is-array-x.esm.js
+// CONCATENATED MODULE: ./node_modules/is-array-x/dist/is-array-x.esm.js
 var is_array_x_esm_this = undefined;
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
@@ -881,14 +727,14 @@ var isArrayFn = function iife() {
 
 
 // EXTERNAL MODULE: ./node_modules/is-arguments/index.js
-var is_arguments = __webpack_require__(4);
+var is_arguments = __webpack_require__(3);
 var is_arguments_default = /*#__PURE__*/__webpack_require__.n(is_arguments);
 
 // EXTERNAL MODULE: ./node_modules/is-symbol/index.js
 var is_symbol = __webpack_require__(0);
 var is_symbol_default = /*#__PURE__*/__webpack_require__.n(is_symbol);
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
+// CONCATENATED MODULE: ./node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
 var has_symbol_support_x_esm_this = undefined;
 
 function has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
@@ -911,15 +757,15 @@ var hasSymbolSupport = attempt_x_esm(function () {
 /* harmony default export */ var has_symbol_support_x_esm = (hasSymbolSupport.threw === false && hasSymbolSupport.value === true);
 
 
-// EXTERNAL MODULE: ./node_modules/object-keys-x/node_modules/is-primitive/index.js
-var is_primitive = __webpack_require__(3);
+// EXTERNAL MODULE: ./node_modules/is-primitive/index.js
+var is_primitive = __webpack_require__(1);
 var is_primitive_default = /*#__PURE__*/__webpack_require__.n(is_primitive);
 
 // EXTERNAL MODULE: ./node_modules/is-date-object/index.js
-var is_date_object = __webpack_require__(2);
+var is_date_object = __webpack_require__(5);
 var is_date_object_default = /*#__PURE__*/__webpack_require__.n(is_date_object);
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/to-boolean-x/dist/to-boolean-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-boolean-x/dist/to-boolean-x.esm.js
 /**
  * The abstract operation ToBoolean converts argument to a value of type Boolean.
  *
@@ -933,55 +779,7 @@ var toBoolean = function toBoolean(value) {
 /* harmony default export */ var to_boolean_x_esm = (toBoolean);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/to-string-tag-x/dist/to-string-tag-x.esm.js
-var to_string_tag_x_esm_nativeObjectToString = {}.toString;
-/**
- * The `toStringTag` method returns "[object type]", where type is the
- * object type.
- *
- * @param {*} [value] - The object of which to get the object type string.
- * @returns {string} The object type string.
- */
-
-var to_string_tag_x_esm_toStringTag = function toStringTag(value) {
-  if (value === null) {
-    return '[object Null]';
-  }
-
-  if (typeof value === 'undefined') {
-    return '[object Undefined]';
-  }
-
-  return to_string_tag_x_esm_nativeObjectToString.call(value);
-};
-
-/* harmony default export */ var dist_to_string_tag_x_esm = (to_string_tag_x_esm_toStringTag);
-
-
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var dist_has_symbol_support_x_esm_this = undefined;
-
-function dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  dist_has_symbol_support_x_esm_newArrowCheck(this, dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var dist_has_symbol_support_x_esm = (has_symbol_support_x_esm_hasSymbolSupport.threw === false && has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/has-to-string-tag-x/dist/has-to-string-tag-x.esm.js
+// CONCATENATED MODULE: ./node_modules/has-to-string-tag-x/dist/has-to-string-tag-x.esm.js
 
 
 /**
@@ -991,38 +789,12 @@ var has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
  * @type boolean
  */
 
-/* harmony default export */ var has_to_string_tag_x_esm = (dist_has_symbol_support_x_esm &&
+/* harmony default export */ var has_to_string_tag_x_esm = (has_symbol_support_x_esm &&
 /* eslint-disable-next-line compat/compat */
 is_symbol_default()(Symbol.toStringTag));
 
 
-// EXTERNAL MODULE: ./node_modules/is-function-x/node_modules/is-primitive/index.js
-var node_modules_is_primitive = __webpack_require__(10);
-var node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(node_modules_is_primitive);
-
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-var dist_require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
-  if (is_nil_x_esm(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-};
-
-/* harmony default export */ var dist_require_object_coercible_x_esm = (dist_require_object_coercible_x_esm_requireObjectCoercible);
-
-
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/to-string-x/dist/to-string-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-string-x/dist/to-string-x.esm.js
 
 var ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
 var castString = ERROR_MESSAGE.constructor;
@@ -1045,7 +817,7 @@ var to_string_x_esm_ToString = function ToString(value) {
 /* harmony default export */ var to_string_x_esm = (to_string_x_esm_ToString);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
+// CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
 
 
 /**
@@ -1057,13 +829,13 @@ var to_string_x_esm_ToString = function ToString(value) {
  */
 
 var require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
-  return to_string_x_esm(dist_require_object_coercible_x_esm(value));
+  return to_string_x_esm(require_object_coercible_x_esm(value));
 };
 
 /* harmony default export */ var require_coercible_to_string_x_esm = (require_coercible_to_string_x_esm_requireCoercibleToString);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/white-space-x/dist/white-space-x.esm.js
+// CONCATENATED MODULE: ./node_modules/white-space-x/dist/white-space-x.esm.js
 /**
  * A record of a white space character.
  *
@@ -1376,7 +1148,7 @@ var string2018 = stringES2018;
 var string2016 = stringES2016;
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/trim-left-x/dist/trim-left-x.esm.js
+// CONCATENATED MODULE: ./node_modules/trim-left-x/dist/trim-left-x.esm.js
 
 
 var EMPTY_STRING = '';
@@ -1410,7 +1182,7 @@ var trim_left_x_esm_trimLeft2018 = function trimLeft2018(string) {
 /* harmony default export */ var trim_left_x_esm = (trim_left_x_esm_trimLeft2018);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/trim-right-x/dist/trim-right-x.esm.js
+// CONCATENATED MODULE: ./node_modules/trim-right-x/dist/trim-right-x.esm.js
 
 
 var trim_right_x_esm_EMPTY_STRING = '';
@@ -1444,7 +1216,7 @@ var trim_right_x_esm_trimRight2018 = function trimRight2018(string) {
 /* harmony default export */ var trim_right_x_esm = (trim_right_x_esm_trimRight2018);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/trim-x/dist/trim-x.esm.js
+// CONCATENATED MODULE: ./node_modules/trim-x/dist/trim-x.esm.js
 
 
 /**
@@ -1475,7 +1247,7 @@ var trim_x_esm_trim2018 = function trim2018(string) {
 /* harmony default export */ var trim_x_esm = (trim_x_esm_trim2018);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/normalize-space-x/dist/normalize-space-x.esm.js
+// CONCATENATED MODULE: ./node_modules/normalize-space-x/dist/normalize-space-x.esm.js
 
 
 var SPACE = ' ';
@@ -1512,7 +1284,7 @@ var normalize_space_x_esm_normalizeSpace2018 = function normalizeSpace2018(strin
 /* harmony default export */ var normalize_space_x_esm = (normalize_space_x_esm_normalizeSpace2018);
 
 
-// CONCATENATED MODULE: ./node_modules/is-function-x/node_modules/replace-comments-x/dist/replace-comments-x.esm.js
+// CONCATENATED MODULE: ./node_modules/replace-comments-x/dist/replace-comments-x.esm.js
 
 
 var replace_comments_x_esm_EMPTY_STRING = '';
@@ -1600,7 +1372,7 @@ var tryFuncToString = function funcToString(value, allowClass) {
 
 
 var is_function_x_esm_isFunction = function isFunction(value, allowClass) {
-  if (node_modules_is_primitive_default()(value)) {
+  if (is_primitive_default()(value)) {
     return false;
   }
 
@@ -1612,36 +1384,14 @@ var is_function_x_esm_isFunction = function isFunction(value, allowClass) {
     return false;
   }
 
-  var strTag = dist_to_string_tag_x_esm(value);
+  var strTag = to_string_tag_x_esm(value);
   return strTag === funcTag || strTag === genTag || strTag === asyncTag;
 };
 
 /* harmony default export */ var is_function_x_esm = (is_function_x_esm_isFunction);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-var require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
-  if (is_nil_x_esm(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-};
-
-/* harmony default export */ var require_object_coercible_x_dist_require_object_coercible_x_esm = (require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible);
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-primitive-x/dist/to-primitive-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-primitive-x/dist/to-primitive-x.esm.js
 
 
 
@@ -1679,7 +1429,7 @@ var orderLength = 2;
  */
 
 var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  require_object_coercible_x_dist_require_object_coercible_x_esm(ordinary);
+  require_object_coercible_x_esm(ordinary);
 
   if (typeof hint !== 'string' || hint !== NUMBER && hint !== STRING) {
     throw new TypeError('hint must be "string" or "number"');
@@ -1808,460 +1558,7 @@ var to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) 
 /* harmony default export */ var to_primitive_x_esm = (to_primitive_x_esm_toPrimitive);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-string-x/dist/to-string-x.esm.js
-
-var to_string_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
-var to_string_x_esm_castString = to_string_x_esm_ERROR_MESSAGE.constructor;
-/**
- * The abstract operation ToString converts argument to a value of type String.
- *
- * @param {*} [value] - The value to convert to a string.
- * @throws {TypeError} If `value` is a Symbol.
- * @returns {string} The converted value.
- */
-
-var dist_to_string_x_esm_ToString = function ToString(value) {
-  if (is_symbol_default()(value)) {
-    throw new TypeError(to_string_x_esm_ERROR_MESSAGE);
-  }
-
-  return to_string_x_esm_castString(value);
-};
-
-/* harmony default export */ var dist_to_string_x_esm = (dist_to_string_x_esm_ToString);
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
-
-
-/**
- * This method requires an argument is corecible then converts using ToString.
- *
- * @param {*} [value] - The value to converted to a string.
- * @throws {TypeError} If value is null or undefined.
- * @returns {string} The value as a string.
- */
-
-var dist_require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
-  return dist_to_string_x_esm(require_object_coercible_x_dist_require_object_coercible_x_esm(value));
-};
-
-/* harmony default export */ var dist_require_coercible_to_string_x_esm = (dist_require_coercible_to_string_x_esm_requireCoercibleToString);
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/white-space-x/dist/white-space-x.esm.js
-/**
- * A record of a white space character.
- *
- * @typedef {object} CharRecord
- * @property {number} code - The character code.
- * @property {string} description - A description of the character.
- * @property {boolean} es5 - Whether the spec lists this as a white space.
- * @property {boolean} es2015 - Whether the spec lists this as a white space.
- * @property {boolean} es2016 - Whether the spec lists this as a white space.
- * @property {boolean} es2017 - Whether the spec lists this as a white space.
- * @property {boolean} es2018 - Whether the spec lists this as a white space.
- * @property {string} string - The character string.
- */
-
-/**
- * An array of the whitespace char codes, string, descriptions and language
- * presence in the specifications.
- *
- * @type Array.<CharRecord>
- */
-var white_space_x_esm_list = [{
-  code: 0x0009,
-  description: 'Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\t"
-}, {
-  code: 0x000a,
-  description: 'Line Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\n"
-}, {
-  code: 0x000b,
-  description: 'Vertical Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\x0B"
-}, {
-  code: 0x000c,
-  description: 'Form Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\f"
-}, {
-  code: 0x000d,
-  description: 'Carriage Return',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\r"
-}, {
-  code: 0x0020,
-  description: 'Space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: " "
-},
-/*
-{
-  code: 0x0085,
-  description: 'Next line',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u0085'
-}
-*/
-{
-  code: 0x00a0,
-  description: 'No-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\xA0"
-}, {
-  code: 0x1680,
-  description: 'Ogham space mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u1680"
-}, {
-  code: 0x180e,
-  description: 'Mongolian vowel separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: false,
-  es2018: false,
-  string: "\u180E"
-}, {
-  code: 0x2000,
-  description: 'En quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2000"
-}, {
-  code: 0x2001,
-  description: 'Em quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2001"
-}, {
-  code: 0x2002,
-  description: 'En space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2002"
-}, {
-  code: 0x2003,
-  description: 'Em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2003"
-}, {
-  code: 0x2004,
-  description: 'Three-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2004"
-}, {
-  code: 0x2005,
-  description: 'Four-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2005"
-}, {
-  code: 0x2006,
-  description: 'Six-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2006"
-}, {
-  code: 0x2007,
-  description: 'Figure space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2007"
-}, {
-  code: 0x2008,
-  description: 'Punctuation space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2008"
-}, {
-  code: 0x2009,
-  description: 'Thin space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2009"
-}, {
-  code: 0x200a,
-  description: 'Hair space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u200A"
-},
-/*
-{
-  code: 0x200b,
-  description: 'Zero width space',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u200b'
-},
-*/
-{
-  code: 0x2028,
-  description: 'Line separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2028"
-}, {
-  code: 0x2029,
-  description: 'Paragraph separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2029"
-}, {
-  code: 0x202f,
-  description: 'Narrow no-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u202F"
-}, {
-  code: 0x205f,
-  description: 'Medium mathematical space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u205F"
-}, {
-  code: 0x3000,
-  description: 'Ideographic space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u3000"
-}, {
-  code: 0xfeff,
-  description: 'Byte Order Mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\uFEFF"
-}];
-/**
- * A string of the ES5 to ES2016 whitespace characters.
- *
- * @type string
- */
-
-var white_space_x_esm_stringES2016 = '';
-/**
- * A string of the ES2017 to ES2018 whitespace characters.
- *
- * @type string
- */
-
-var white_space_x_esm_stringES2018 = '';
-var dist_white_space_x_esm_length = white_space_x_esm_list.length;
-
-for (var dist_white_space_x_esm_i = 0; dist_white_space_x_esm_i < dist_white_space_x_esm_length; dist_white_space_x_esm_i += 1) {
-  if (white_space_x_esm_list[dist_white_space_x_esm_i].es2016) {
-    white_space_x_esm_stringES2016 += white_space_x_esm_list[dist_white_space_x_esm_i].string;
-  }
-
-  if (white_space_x_esm_list[dist_white_space_x_esm_i].es2018) {
-    white_space_x_esm_stringES2018 += white_space_x_esm_list[dist_white_space_x_esm_i].string;
-  }
-}
-
-var white_space_x_esm_string2018 = white_space_x_esm_stringES2018;
-/* harmony default export */ var dist_white_space_x_esm = (white_space_x_esm_string2018);
-var white_space_x_esm_string2016 = white_space_x_esm_stringES2016;
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/trim-left-x/dist/trim-left-x.esm.js
-
-
-var trim_left_x_esm_EMPTY_STRING = '';
-var trim_left_x_esm_RegExpCtr = /none/.constructor;
-var trim_left_x_esm_reLeft2016 = new trim_left_x_esm_RegExpCtr("^[".concat(white_space_x_esm_string2016, "]+"));
-var trim_left_x_esm_reLeft = new trim_left_x_esm_RegExpCtr("^[".concat(dist_white_space_x_esm, "]+"));
-var trim_left_x_esm_replace = trim_left_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the left end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-function trim_left_x_esm_trimLeft2016(string) {
-  return trim_left_x_esm_replace.call(dist_require_coercible_to_string_x_esm(string), trim_left_x_esm_reLeft2016, trim_left_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the left end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-var dist_trim_left_x_esm_trimLeft2018 = function trimLeft2018(string) {
-  return trim_left_x_esm_replace.call(dist_require_coercible_to_string_x_esm(string), trim_left_x_esm_reLeft, trim_left_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var dist_trim_left_x_esm = (dist_trim_left_x_esm_trimLeft2018);
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/trim-right-x/dist/trim-right-x.esm.js
-
-
-var dist_trim_right_x_esm_EMPTY_STRING = '';
-var dist_trim_right_x_esm_RegExpCtr = /none/.constructor;
-var trim_right_x_esm_reRight2016 = new dist_trim_right_x_esm_RegExpCtr("[".concat(white_space_x_esm_string2016, "]+$"));
-var trim_right_x_esm_reRight2018 = new dist_trim_right_x_esm_RegExpCtr("[".concat(dist_white_space_x_esm, "]+$"));
-var dist_trim_right_x_esm_replace = dist_trim_right_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the right end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-function trim_right_x_esm_trimRight2016(string) {
-  return dist_trim_right_x_esm_replace.call(dist_require_coercible_to_string_x_esm(string), trim_right_x_esm_reRight2016, dist_trim_right_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the right end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-var dist_trim_right_x_esm_trimRight2018 = function trimRight2018(string) {
-  return dist_trim_right_x_esm_replace.call(dist_require_coercible_to_string_x_esm(string), trim_right_x_esm_reRight2018, dist_trim_right_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var dist_trim_right_x_esm = (dist_trim_right_x_esm_trimRight2018);
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/trim-x/dist/trim-x.esm.js
-
-
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2016).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-function trim_x_esm_trim2016(string) {
-  return trim_left_x_esm_trimLeft2016(trim_right_x_esm_trimRight2016(string));
-}
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2018).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-var dist_trim_x_esm_trim2018 = function trim2018(string) {
-  return dist_trim_left_x_esm(dist_trim_right_x_esm(string));
-};
-
-/* harmony default export */ var dist_trim_x_esm = (dist_trim_x_esm_trim2018);
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/nan-x/dist/nan-x.esm.js
+// CONCATENATED MODULE: ./node_modules/nan-x/dist/nan-x.esm.js
 /**
  * The constant NaN derived mathematically by 0 / 0.
  *
@@ -2270,7 +1567,7 @@ var dist_trim_x_esm_trim2018 = function trim2018(string) {
 /* harmony default export */ var nan_x_esm = (0 / 0);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/parse-int-x/dist/parse-int-x.esm.js
+// CONCATENATED MODULE: ./node_modules/parse-int-x/dist/parse-int-x.esm.js
 
 
 
@@ -2302,7 +1599,7 @@ var parse_int_x_esm_test = hexRegex.test;
  */
 
 function parseInt2016(string, radix) {
-  var str = trim_left_x_esm_trimLeft2016(dist_to_string_x_esm(string));
+  var str = trimLeft2016(to_string_x_esm(string));
   return nativeParseInt(str, castNumber(radix) || (parse_int_x_esm_test.call(hexRegex, str) ? 16 : 10));
 }
 /**
@@ -2324,7 +1621,7 @@ function parseInt2016(string, radix) {
  */
 
 var parse_int_x_esm_parseInt2018 = function parseInt2018(string, radix) {
-  var str = dist_trim_left_x_esm(dist_to_string_x_esm(string));
+  var str = trim_left_x_esm(to_string_x_esm(string));
 
   if (charAt.call(str, 0) === "\u180E") {
     return nan_x_esm;
@@ -2336,7 +1633,7 @@ var parse_int_x_esm_parseInt2018 = function parseInt2018(string, radix) {
 /* harmony default export */ var parse_int_x_esm = (parse_int_x_esm_parseInt2018);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-number-x/dist/to-number-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-number-x/dist/to-number-x.esm.js
 
 
 
@@ -2412,7 +1709,7 @@ function toNumber2016(argument) {
       return nan_x_esm;
     }
 
-    var trimmed = trim_x_esm_trim2016(value);
+    var trimmed = trim2016(value);
 
     if (trimmed !== value) {
       return toNumber2016(trimmed);
@@ -2449,7 +1746,7 @@ var to_number_x_esm_toNumber2018 = function toNumber2018(argument) {
       return nan_x_esm;
     }
 
-    var trimmed = dist_trim_x_esm(value);
+    var trimmed = trim_x_esm(value);
 
     if (trimmed !== value) {
       return toNumber2018(trimmed);
@@ -2462,7 +1759,7 @@ var to_number_x_esm_toNumber2018 = function toNumber2018(argument) {
 /* harmony default export */ var to_number_x_esm = (to_number_x_esm_toNumber2018);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/is-nan-x/dist/is-nan-x.esm.js
+// CONCATENATED MODULE: ./node_modules/is-nan-x/dist/is-nan-x.esm.js
 /**
  * This method determines whether the passed value is NaN and its type is
  * `Number`. It is a more robust version of the original, global isNaN().
@@ -2479,7 +1776,7 @@ var is_nan_x_esm_isNaN = function isNaN(value) {
 /* harmony default export */ var is_nan_x_esm = (is_nan_x_esm_isNaN);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/infinity-x/dist/infinity-x.esm.js
+// CONCATENATED MODULE: ./node_modules/infinity-x/dist/infinity-x.esm.js
 /**
  * The constant value Infinity derived mathematically by 1 / 0.
  *
@@ -2488,7 +1785,7 @@ var is_nan_x_esm_isNaN = function isNaN(value) {
 /* harmony default export */ var infinity_x_esm = (1 / 0);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/is-finite-x/dist/is-finite-x.esm.js
+// CONCATENATED MODULE: ./node_modules/is-finite-x/dist/is-finite-x.esm.js
 
 
 /**
@@ -2505,7 +1802,7 @@ var is_finite_x_esm_isFinite = function isFinite(number) {
 /* harmony default export */ var is_finite_x_esm = (is_finite_x_esm_isFinite);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/math-sign-x/dist/math-sign-x.esm.js
+// CONCATENATED MODULE: ./node_modules/math-sign-x/dist/math-sign-x.esm.js
 
 
 /**
@@ -2550,7 +1847,7 @@ var math_sign_x_esm_sign2018 = function sign2018(x) {
 /* harmony default export */ var math_sign_x_esm = (math_sign_x_esm_sign2018);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-integer-x/dist/to-integer-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-integer-x/dist/to-integer-x.esm.js
 
 
 
@@ -2601,7 +1898,7 @@ var to_integer_x_esm_toInteger2018 = function toInteger2018(value) {
 /* harmony default export */ var to_integer_x_esm = (to_integer_x_esm_toInteger2018);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-length-x/dist/to-length-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-length-x/dist/to-length-x.esm.js
 
 var MAX_SAFE_INTEGER = 9007199254740991;
 /**
@@ -2650,7 +1947,7 @@ var to_length_x_esm_toLength2018 = function toLength2018(value) {
 /* harmony default export */ var to_length_x_esm = (to_length_x_esm_toLength2018);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
+// CONCATENATED MODULE: ./node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
 var has_boxed_string_x_esm_string = 'a';
 var boxedString = {}.constructor(has_boxed_string_x_esm_string);
 /**
@@ -2667,10 +1964,10 @@ var hasBoxed = boxedString[0] === has_boxed_string_x_esm_string && 0 in boxedStr
 
 
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
-var is_string = __webpack_require__(1);
+var is_string = __webpack_require__(2);
 var is_string_default = /*#__PURE__*/__webpack_require__.n(is_string);
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
+// CONCATENATED MODULE: ./node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
 
 
 var split_if_boxed_bug_x_esm_EMPTY_STRING = '';
@@ -2692,7 +1989,7 @@ var splitIfBoxedBug = function splitIfBoxedBug(value) {
 /* harmony default export */ var split_if_boxed_bug_x_esm = (splitIfBoxedBug);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/array-like-slice-x/dist/array-like-slice-x.esm.js
+// CONCATENATED MODULE: ./node_modules/array-like-slice-x/dist/array-like-slice-x.esm.js
 
 
 
@@ -2758,10 +2055,6 @@ var array_like_slice_x_esm_slice = function slice(arrayLike, start, end) {
 /* harmony default export */ var array_like_slice_x_esm = (array_like_slice_x_esm_slice);
 
 
-// EXTERNAL MODULE: ./node_modules/is-object-like-x/node_modules/is-primitive/index.js
-var is_object_like_x_node_modules_is_primitive = __webpack_require__(11);
-var is_object_like_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(is_object_like_x_node_modules_is_primitive);
-
 // CONCATENATED MODULE: ./node_modules/is-object-like-x/dist/is-object-like-x.esm.js
 
 
@@ -2774,28 +2067,13 @@ var is_object_like_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_
  */
 
 var is_object_like_x_esm_isObjectLike = function isObjectLike(value) {
-  return is_object_like_x_node_modules_is_primitive_default()(value) === false && is_function_x_esm(value, true) === false;
+  return is_primitive_default()(value) === false && is_function_x_esm(value, true) === false;
 };
 
 /* harmony default export */ var is_object_like_x_esm = (is_object_like_x_esm_isObjectLike);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/has-to-string-tag-x/dist/has-to-string-tag-x.esm.js
-
-
-/**
- * Indicates if `Symbol.toStringTag`exists and is the correct type.
- * `true`, if it exists and is the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var dist_has_to_string_tag_x_esm = (has_symbol_support_x_esm &&
-/* eslint-disable-next-line compat/compat */
-is_symbol_default()(Symbol.toStringTag));
-
-
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-property-key-x/dist/to-property-key-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-property-key-x/dist/to-property-key-x.esm.js
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -2811,13 +2089,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var to_property_key_x_esm_toPropertyKey = function toPropertyKey(argument) {
   var key = to_primitive_x_esm(argument, String);
-  return has_symbol_support_x_esm && _typeof(key) === 'symbol' ? key : dist_to_string_x_esm(key);
+  return has_symbol_support_x_esm && _typeof(key) === 'symbol' ? key : to_string_x_esm(key);
 };
 
 /* harmony default export */ var to_property_key_x_esm = (to_property_key_x_esm_toPropertyKey);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/has-own-property-x/dist/has-own-property-x.esm.js
+// CONCATENATED MODULE: ./node_modules/has-own-property-x/dist/has-own-property-x.esm.js
 
 
 var hop = {}.hasOwnProperty;
@@ -2839,7 +2117,7 @@ var has_own_property_x_esm_hasOwnProperty = function hasOwnProperty(object, prop
 /* harmony default export */ var has_own_property_x_esm = (has_own_property_x_esm_hasOwnProperty);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/to-string-symbols-supported-x/dist/to-string-symbols-supported-x.esm.js
+// CONCATENATED MODULE: ./node_modules/to-string-symbols-supported-x/dist/to-string-symbols-supported-x.esm.js
 
 
 /* eslint-disable-next-line compat/compat */
@@ -2866,7 +2144,7 @@ var toStringSymbolsSupported = function toStringSymbolsSupported(value) {
 /* harmony default export */ var to_string_symbols_supported_x_esm = (toStringSymbolsSupported);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/math-clamp-x/dist/math-clamp-x.esm.js
+// CONCATENATED MODULE: ./node_modules/math-clamp-x/dist/math-clamp-x.esm.js
  // eslint-disable jsdoc/check-param-names
 // noinspection JSCommentMatchesSignature
 
@@ -2920,7 +2198,7 @@ var math_clamp_x_esm_clamp = function clamp(value) {
 /* harmony default export */ var math_clamp_x_esm = (math_clamp_x_esm_clamp);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/is-index-x/dist/is-index-x.esm.js
+// CONCATENATED MODULE: ./node_modules/is-index-x/dist/is-index-x.esm.js
 
 
 
@@ -2959,7 +2237,7 @@ var is_index_x_esm_isIndex = function isIndex(value, length) {
 /* harmony default export */ var is_index_x_esm = (is_index_x_esm_isIndex);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/property-is-enumerable-x/dist/property-is-enumerable-x.esm.js
+// CONCATENATED MODULE: ./node_modules/property-is-enumerable-x/dist/property-is-enumerable-x.esm.js
 
 
 var propIsEnumerable = {}.propertyIsEnumerable;
@@ -2982,7 +2260,7 @@ var property_is_enumerable_x_esm_propertyIsEnumerable = function propertyIsEnume
 /* harmony default export */ var property_is_enumerable_x_esm = (property_is_enumerable_x_esm_propertyIsEnumerable);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/object-get-own-property-descriptor-x/dist/object-get-own-property-descriptor-x.esm.js
+// CONCATENATED MODULE: ./node_modules/object-get-own-property-descriptor-x/dist/object-get-own-property-descriptor-x.esm.js
 
 
 
@@ -3190,7 +2468,7 @@ var gOPS = $getOwnPropertyDescriptor;
 /* harmony default export */ var object_get_own_property_descriptor_x_esm = (gOPS);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/assert-is-object-x/dist/assert-is-object-x.esm.js
+// CONCATENATED MODULE: ./node_modules/assert-is-object-x/dist/assert-is-object-x.esm.js
 
 
 /**
@@ -3213,7 +2491,7 @@ var assert_is_object_x_esm_assertIsObject = function assertIsObject(value) {
 /* harmony default export */ var assert_is_object_x_esm = (assert_is_object_x_esm_assertIsObject);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/object-define-property-x/dist/object-define-property-x.esm.js
+// CONCATENATED MODULE: ./node_modules/object-define-property-x/dist/object-define-property-x.esm.js
 
 
 
@@ -3396,7 +2674,7 @@ var defProp = $defineProperty;
 /* harmony default export */ var object_define_property_x_esm = (defProp);
 
 
-// CONCATENATED MODULE: ./node_modules/object-keys-x/node_modules/is-regexp-x/dist/is-regexp-x.esm.js
+// CONCATENATED MODULE: ./node_modules/is-regexp-x/dist/is-regexp-x.esm.js
 
 
 
@@ -3430,7 +2708,7 @@ var is_regexp_x_esm_isRegex = function isRegex(value) {
     return false;
   }
 
-  if (dist_has_to_string_tag_x_esm === false) {
+  if (has_to_string_tag_x_esm === false) {
     return to_string_tag_x_esm(value) === regexClass;
   }
 
@@ -3448,7 +2726,7 @@ var is_regexp_x_esm_isRegex = function isRegex(value) {
 
 
 // EXTERNAL MODULE: ./node_modules/object-keys/index.js
-var object_keys = __webpack_require__(12);
+var object_keys = __webpack_require__(6);
 var object_keys_default = /*#__PURE__*/__webpack_require__.n(object_keys);
 
 // CONCATENATED MODULE: ./node_modules/object-keys-x/dist/object-keys-x.esm.js
@@ -3559,1156 +2837,6 @@ var ok = objectKeys;
 /* harmony default export */ var object_keys_x_esm = (ok);
 
 
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
-var dist_has_boxed_string_x_esm_string = 'a';
-var has_boxed_string_x_esm_boxedString = {}.constructor(dist_has_boxed_string_x_esm_string);
-/**
- * Check failure of by-index access of string characters (IE < 9)
- * and failure of `0 in boxedString` (Rhino).
- *
- * `true` if no failure; otherwise `false`.
- *
- * @type boolean
- */
-
-var has_boxed_string_x_esm_hasBoxed = has_boxed_string_x_esm_boxedString[0] === dist_has_boxed_string_x_esm_string && 0 in has_boxed_string_x_esm_boxedString;
-/* harmony default export */ var dist_has_boxed_string_x_esm = (has_boxed_string_x_esm_hasBoxed);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
-
-
-var dist_split_if_boxed_bug_x_esm_EMPTY_STRING = '';
-var split_if_boxed_bug_x_esm_strSplit = dist_split_if_boxed_bug_x_esm_EMPTY_STRING.split;
-var split_if_boxed_bug_x_esm_isStringFn = dist_has_boxed_string_x_esm === false && typeof split_if_boxed_bug_x_esm_strSplit === 'function' && is_string_default.a;
-/**
- * This method tests if a value is a string with the boxed bug; splits to an
- * array for iteration; otherwise returns the original value.
- *
- * @param {*} [value] - The value to be tested.
- * @returns {*} An array or characters if value was a string with the boxed bug;
- *  otherwise the value.
- */
-
-var split_if_boxed_bug_x_esm_splitIfBoxedBug = function splitIfBoxedBug(value) {
-  return split_if_boxed_bug_x_esm_isStringFn && split_if_boxed_bug_x_esm_isStringFn(value) ? split_if_boxed_bug_x_esm_strSplit.call(value, dist_split_if_boxed_bug_x_esm_EMPTY_STRING) : value;
-};
-
-/* harmony default export */ var dist_split_if_boxed_bug_x_esm = (split_if_boxed_bug_x_esm_splitIfBoxedBug);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var has_symbol_support_x_dist_has_symbol_support_x_esm_this = undefined;
-
-function has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var dist_has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(this, has_symbol_support_x_dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var has_symbol_support_x_dist_has_symbol_support_x_esm = (dist_has_symbol_support_x_esm_hasSymbolSupport.threw === false && dist_has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
-// EXTERNAL MODULE: ./node_modules/array-reduce-x/node_modules/is-primitive/index.js
-var array_reduce_x_node_modules_is_primitive = __webpack_require__(5);
-var array_reduce_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(array_reduce_x_node_modules_is_primitive);
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-var node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
-  if (is_nil_x_esm(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-};
-
-/* harmony default export */ var node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm = (node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/to-primitive-x/dist/to-primitive-x.esm.js
-
-
-
-
-
-
-
-var to_primitive_x_esm_ZERO = 0;
-var to_primitive_x_esm_ONE = 1;
-/* eslint-disable-next-line no-void */
-
-var to_primitive_x_esm_UNDEFINED = void to_primitive_x_esm_ZERO;
-var to_primitive_x_esm_NUMBER = 'number';
-var to_primitive_x_esm_STRING = 'string';
-var to_primitive_x_esm_DEFAULT = 'default';
-/** @type {StringConstructor} */
-
-var to_primitive_x_esm_StringCtr = to_primitive_x_esm_STRING.constructor;
-/** @type {NumberConstructor} */
-
-var to_primitive_x_esm_NumberCtr = to_primitive_x_esm_ZERO.constructor;
-/* eslint-disable-next-line compat/compat */
-
-var to_primitive_x_esm_symToPrimitive = has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.toPrimitive;
-/* eslint-disable-next-line compat/compat */
-
-var to_primitive_x_esm_symValueOf = has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.prototype.valueOf;
-var to_primitive_x_esm_toStringOrder = ['toString', 'valueOf'];
-var to_primitive_x_esm_toNumberOrder = ['valueOf', 'toString'];
-var to_primitive_x_esm_orderLength = 2;
-/**
- * @param {*} ordinary - The ordinary to convert.
- * @param {*} hint - The hint.
- * @returns {*} - The primitive.
- */
-
-var to_primitive_x_esm_ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(ordinary);
-
-  if (typeof hint !== 'string' || hint !== to_primitive_x_esm_NUMBER && hint !== to_primitive_x_esm_STRING) {
-    throw new TypeError('hint must be "string" or "number"');
-  }
-
-  var methodNames = hint === to_primitive_x_esm_STRING ? to_primitive_x_esm_toStringOrder : to_primitive_x_esm_toNumberOrder;
-  var method;
-  var result;
-
-  for (var i = to_primitive_x_esm_ZERO; i < to_primitive_x_esm_orderLength; i += to_primitive_x_esm_ONE) {
-    method = ordinary[methodNames[i]];
-
-    if (is_function_x_esm(method)) {
-      result = method.call(ordinary);
-
-      if (array_reduce_x_node_modules_is_primitive_default()(result)) {
-        return result;
-      }
-    }
-  }
-
-  throw new TypeError('No default value');
-};
-/**
- * @param {*} object - The object.
- * @param {*} property - The property.
- * @returns {undefined|Function} - The method.
- */
-
-
-var to_primitive_x_esm_getMethod = function _getMethod(object, property) {
-  var func = object[property];
-
-  if (is_nil_x_esm(func) === false) {
-    if (is_function_x_esm(func) === false) {
-      throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
-    }
-
-    return func;
-  }
-
-  return to_primitive_x_esm_UNDEFINED;
-};
-/**
- * Get the hint.
- *
- * @param {*} value - The value to compare.
- * @param {boolean} supplied - Was a value supplied.
- * @returns {string} - The hint string.
- */
-
-
-var to_primitive_x_esm_getHint = function getHint(value, supplied) {
-  if (supplied) {
-    if (value === to_primitive_x_esm_StringCtr) {
-      return to_primitive_x_esm_STRING;
-    }
-
-    if (value === to_primitive_x_esm_NumberCtr) {
-      return to_primitive_x_esm_NUMBER;
-    }
-  }
-
-  return to_primitive_x_esm_DEFAULT;
-};
-/**
- * Get the primitive from the exotic.
- *
- * @param {*} value - The exotic.
- * @returns {*} - The primitive.
- */
-
-
-var dist_to_primitive_x_esm_getExoticToPrim = function getExoticToPrim(value) {
-  if (has_symbol_support_x_dist_has_symbol_support_x_esm) {
-    if (to_primitive_x_esm_symToPrimitive) {
-      return to_primitive_x_esm_getMethod(value, to_primitive_x_esm_symToPrimitive);
-    }
-
-    if (is_symbol_default()(value)) {
-      return to_primitive_x_esm_symValueOf;
-    }
-  }
-
-  return to_primitive_x_esm_UNDEFINED;
-};
-/**
- * This method converts a JavaScript object to a primitive value.
- * Note: When toPrimitive is called with no hint, then it generally behaves as
- * if the hint were Number. However, objects may over-ride this behaviour by
- * defining a @@toPrimitive method. Of the objects defined in this specification
- * only Date objects (see 20.3.4.45) and Symbol objects (see 19.4.3.4) over-ride
- * the default ToPrimitive behaviour. Date objects treat no hint as if the hint
- * were String.
- *
- * @param {*} input - The input to convert.
- * @param {NumberConstructor|StringConstructor} [preferredType] - The preferred type (String or Number).
- * @throws {TypeError} If unable to convert input to a primitive.
- * @returns {string|number} The converted input as a primitive.
- * @see {http://www.ecma-international.org/ecma-262/6.0/#sec-toprimitive}
- */
-
-
-var dist_to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) {
-  if (array_reduce_x_node_modules_is_primitive_default()(input)) {
-    return input;
-  }
-
-  var hint = to_primitive_x_esm_getHint(preferredType, arguments.length > to_primitive_x_esm_ONE);
-  var exoticToPrim = dist_to_primitive_x_esm_getExoticToPrim(input);
-
-  if (typeof exoticToPrim !== 'undefined') {
-    var result = exoticToPrim.call(input, hint);
-
-    if (array_reduce_x_node_modules_is_primitive_default()(result)) {
-      return result;
-    }
-
-    throw new TypeError('unable to convert exotic object to primitive');
-  }
-
-  var newHint = hint === to_primitive_x_esm_DEFAULT && (is_date_object_default()(input) || is_symbol_default()(input)) ? to_primitive_x_esm_STRING : hint;
-  return to_primitive_x_esm_ordinaryToPrimitive(input, newHint === to_primitive_x_esm_DEFAULT ? to_primitive_x_esm_NUMBER : newHint);
-};
-
-/* harmony default export */ var dist_to_primitive_x_esm = (dist_to_primitive_x_esm_toPrimitive);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/to-string-x/dist/to-string-x.esm.js
-
-var dist_to_string_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
-var dist_to_string_x_esm_castString = dist_to_string_x_esm_ERROR_MESSAGE.constructor;
-/**
- * The abstract operation ToString converts argument to a value of type String.
- *
- * @param {*} [value] - The value to convert to a string.
- * @throws {TypeError} If `value` is a Symbol.
- * @returns {string} The converted value.
- */
-
-var to_string_x_dist_to_string_x_esm_ToString = function ToString(value) {
-  if (is_symbol_default()(value)) {
-    throw new TypeError(dist_to_string_x_esm_ERROR_MESSAGE);
-  }
-
-  return dist_to_string_x_esm_castString(value);
-};
-
-/* harmony default export */ var to_string_x_dist_to_string_x_esm = (to_string_x_dist_to_string_x_esm_ToString);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
-
-
-/**
- * This method requires an argument is corecible then converts using ToString.
- *
- * @param {*} [value] - The value to converted to a string.
- * @throws {TypeError} If value is null or undefined.
- * @returns {string} The value as a string.
- */
-
-var require_coercible_to_string_x_dist_require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
-  return to_string_x_dist_to_string_x_esm(node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(value));
-};
-
-/* harmony default export */ var require_coercible_to_string_x_dist_require_coercible_to_string_x_esm = (require_coercible_to_string_x_dist_require_coercible_to_string_x_esm_requireCoercibleToString);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/white-space-x/dist/white-space-x.esm.js
-/**
- * A record of a white space character.
- *
- * @typedef {object} CharRecord
- * @property {number} code - The character code.
- * @property {string} description - A description of the character.
- * @property {boolean} es5 - Whether the spec lists this as a white space.
- * @property {boolean} es2015 - Whether the spec lists this as a white space.
- * @property {boolean} es2016 - Whether the spec lists this as a white space.
- * @property {boolean} es2017 - Whether the spec lists this as a white space.
- * @property {boolean} es2018 - Whether the spec lists this as a white space.
- * @property {string} string - The character string.
- */
-
-/**
- * An array of the whitespace char codes, string, descriptions and language
- * presence in the specifications.
- *
- * @type Array.<CharRecord>
- */
-var dist_white_space_x_esm_list = [{
-  code: 0x0009,
-  description: 'Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\t"
-}, {
-  code: 0x000a,
-  description: 'Line Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\n"
-}, {
-  code: 0x000b,
-  description: 'Vertical Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\x0B"
-}, {
-  code: 0x000c,
-  description: 'Form Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\f"
-}, {
-  code: 0x000d,
-  description: 'Carriage Return',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\r"
-}, {
-  code: 0x0020,
-  description: 'Space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: " "
-},
-/*
-{
-  code: 0x0085,
-  description: 'Next line',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u0085'
-}
-*/
-{
-  code: 0x00a0,
-  description: 'No-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\xA0"
-}, {
-  code: 0x1680,
-  description: 'Ogham space mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u1680"
-}, {
-  code: 0x180e,
-  description: 'Mongolian vowel separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: false,
-  es2018: false,
-  string: "\u180E"
-}, {
-  code: 0x2000,
-  description: 'En quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2000"
-}, {
-  code: 0x2001,
-  description: 'Em quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2001"
-}, {
-  code: 0x2002,
-  description: 'En space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2002"
-}, {
-  code: 0x2003,
-  description: 'Em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2003"
-}, {
-  code: 0x2004,
-  description: 'Three-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2004"
-}, {
-  code: 0x2005,
-  description: 'Four-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2005"
-}, {
-  code: 0x2006,
-  description: 'Six-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2006"
-}, {
-  code: 0x2007,
-  description: 'Figure space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2007"
-}, {
-  code: 0x2008,
-  description: 'Punctuation space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2008"
-}, {
-  code: 0x2009,
-  description: 'Thin space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2009"
-}, {
-  code: 0x200a,
-  description: 'Hair space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u200A"
-},
-/*
-{
-  code: 0x200b,
-  description: 'Zero width space',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u200b'
-},
-*/
-{
-  code: 0x2028,
-  description: 'Line separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2028"
-}, {
-  code: 0x2029,
-  description: 'Paragraph separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2029"
-}, {
-  code: 0x202f,
-  description: 'Narrow no-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u202F"
-}, {
-  code: 0x205f,
-  description: 'Medium mathematical space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u205F"
-}, {
-  code: 0x3000,
-  description: 'Ideographic space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u3000"
-}, {
-  code: 0xfeff,
-  description: 'Byte Order Mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\uFEFF"
-}];
-/**
- * A string of the ES5 to ES2016 whitespace characters.
- *
- * @type string
- */
-
-var dist_white_space_x_esm_stringES2016 = '';
-/**
- * A string of the ES2017 to ES2018 whitespace characters.
- *
- * @type string
- */
-
-var dist_white_space_x_esm_stringES2018 = '';
-var white_space_x_dist_white_space_x_esm_length = dist_white_space_x_esm_list.length;
-
-for (var white_space_x_dist_white_space_x_esm_i = 0; white_space_x_dist_white_space_x_esm_i < white_space_x_dist_white_space_x_esm_length; white_space_x_dist_white_space_x_esm_i += 1) {
-  if (dist_white_space_x_esm_list[white_space_x_dist_white_space_x_esm_i].es2016) {
-    dist_white_space_x_esm_stringES2016 += dist_white_space_x_esm_list[white_space_x_dist_white_space_x_esm_i].string;
-  }
-
-  if (dist_white_space_x_esm_list[white_space_x_dist_white_space_x_esm_i].es2018) {
-    dist_white_space_x_esm_stringES2018 += dist_white_space_x_esm_list[white_space_x_dist_white_space_x_esm_i].string;
-  }
-}
-
-var dist_white_space_x_esm_string2018 = dist_white_space_x_esm_stringES2018;
-/* harmony default export */ var white_space_x_dist_white_space_x_esm = (dist_white_space_x_esm_string2018);
-var dist_white_space_x_esm_string2016 = dist_white_space_x_esm_stringES2016;
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/trim-left-x/dist/trim-left-x.esm.js
-
-
-var dist_trim_left_x_esm_EMPTY_STRING = '';
-var dist_trim_left_x_esm_RegExpCtr = /none/.constructor;
-var dist_trim_left_x_esm_reLeft2016 = new dist_trim_left_x_esm_RegExpCtr("^[".concat(dist_white_space_x_esm_string2016, "]+"));
-var dist_trim_left_x_esm_reLeft = new dist_trim_left_x_esm_RegExpCtr("^[".concat(white_space_x_dist_white_space_x_esm, "]+"));
-var dist_trim_left_x_esm_replace = dist_trim_left_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the left end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-function dist_trim_left_x_esm_trimLeft2016(string) {
-  return dist_trim_left_x_esm_replace.call(require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), dist_trim_left_x_esm_reLeft2016, dist_trim_left_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the left end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-var trim_left_x_dist_trim_left_x_esm_trimLeft2018 = function trimLeft2018(string) {
-  return dist_trim_left_x_esm_replace.call(require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), dist_trim_left_x_esm_reLeft, dist_trim_left_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var trim_left_x_dist_trim_left_x_esm = (trim_left_x_dist_trim_left_x_esm_trimLeft2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/trim-right-x/dist/trim-right-x.esm.js
-
-
-var trim_right_x_dist_trim_right_x_esm_EMPTY_STRING = '';
-var trim_right_x_dist_trim_right_x_esm_RegExpCtr = /none/.constructor;
-var dist_trim_right_x_esm_reRight2016 = new trim_right_x_dist_trim_right_x_esm_RegExpCtr("[".concat(dist_white_space_x_esm_string2016, "]+$"));
-var dist_trim_right_x_esm_reRight2018 = new trim_right_x_dist_trim_right_x_esm_RegExpCtr("[".concat(white_space_x_dist_white_space_x_esm, "]+$"));
-var trim_right_x_dist_trim_right_x_esm_replace = trim_right_x_dist_trim_right_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the right end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-function dist_trim_right_x_esm_trimRight2016(string) {
-  return trim_right_x_dist_trim_right_x_esm_replace.call(require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), dist_trim_right_x_esm_reRight2016, trim_right_x_dist_trim_right_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the right end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-var trim_right_x_dist_trim_right_x_esm_trimRight2018 = function trimRight2018(string) {
-  return trim_right_x_dist_trim_right_x_esm_replace.call(require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), dist_trim_right_x_esm_reRight2018, trim_right_x_dist_trim_right_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var trim_right_x_dist_trim_right_x_esm = (trim_right_x_dist_trim_right_x_esm_trimRight2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/trim-x/dist/trim-x.esm.js
-
-
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2016).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-function dist_trim_x_esm_trim2016(string) {
-  return dist_trim_left_x_esm_trimLeft2016(dist_trim_right_x_esm_trimRight2016(string));
-}
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2018).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-var trim_x_dist_trim_x_esm_trim2018 = function trim2018(string) {
-  return trim_left_x_dist_trim_left_x_esm(trim_right_x_dist_trim_right_x_esm(string));
-};
-
-/* harmony default export */ var trim_x_dist_trim_x_esm = (trim_x_dist_trim_x_esm_trim2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/nan-x/dist/nan-x.esm.js
-/**
- * The constant NaN derived mathematically by 0 / 0.
- *
- * @type number
- */
-/* harmony default export */ var dist_nan_x_esm = (0 / 0);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/parse-int-x/dist/parse-int-x.esm.js
-
-
-
-var parse_int_x_esm_nativeParseInt = parseInt;
-/**  @type {Function} */
-
-var parse_int_x_esm_castNumber = 0 .constructor; // noinspection JSPotentiallyInvalidConstructorUsage
-
-var parse_int_x_esm_ref = '',
-    parse_int_x_esm_charAt = parse_int_x_esm_ref.charAt;
-var parse_int_x_esm_hexRegex = /^[-+]?0[xX]/;
-var dist_parse_int_x_esm_test = parse_int_x_esm_hexRegex.test;
-/**
- * This method parses a string argument and returns an integer of the specified
- * radix (the base in mathematical numeral systems). (ES2016).
- *
- * @param {string} [string] - The value to parse. If the string argument is not a
- *  string, then it is converted to a string (using the ToString abstract
- *  operation). Leading whitespace in the string argument is ignored.
- * @param {number} [radix] - An integer between 2 and 36 that represents the radix
- *  (the base in mathematical numeral systems) of the above mentioned string.
- *  Specify 10 for the decimal numeral system commonly used by humans. Always
- *  specify this parameter to eliminate reader confusion and to guarantee
- *  predictable behavior. Different implementations produce different results
- *  when a radix is not specified, usually defaulting the value to 10.
- * @throws {TypeError} If target is a Symbol or is not coercible.
- * @returns {number} An integer number parsed from the given string. If the first
- *  character cannot be converted to a number, NaN is returned.
- */
-
-function parse_int_x_esm_parseInt2016(string, radix) {
-  var str = dist_trim_left_x_esm_trimLeft2016(to_string_x_dist_to_string_x_esm(string));
-  return parse_int_x_esm_nativeParseInt(str, parse_int_x_esm_castNumber(radix) || (dist_parse_int_x_esm_test.call(parse_int_x_esm_hexRegex, str) ? 16 : 10));
-}
-/**
- * This method parses a string argument and returns an integer of the specified
- * radix (the base in mathematical numeral systems). (ES2018).
- *
- * @param {string} [string] - The value to parse. If the string argument is not a
- *  string, then it is converted to a string (using the ToString abstract
- *  operation). Leading whitespace in the string argument is ignored.
- * @param {number} [radix] - An integer between 2 and 36 that represents the radix
- *  (the base in mathematical numeral systems) of the above mentioned string.
- *  Specify 10 for the decimal numeral system commonly used by humans. Always
- *  specify this parameter to eliminate reader confusion and to guarantee
- *  predictable behavior. Different implementations produce different results
- *  when a radix is not specified, usually defaulting the value to 10.
- * @throws {TypeError} If target is a Symbol or is not coercible.
- * @returns {number} An integer number parsed from the given string. If the first
- *  character cannot be converted to a number, NaN is returned.
- */
-
-var dist_parse_int_x_esm_parseInt2018 = function parseInt2018(string, radix) {
-  var str = trim_left_x_dist_trim_left_x_esm(to_string_x_dist_to_string_x_esm(string));
-
-  if (parse_int_x_esm_charAt.call(str, 0) === "\u180E") {
-    return dist_nan_x_esm;
-  }
-
-  return parse_int_x_esm_nativeParseInt(str, parse_int_x_esm_castNumber(radix) || (dist_parse_int_x_esm_test.call(parse_int_x_esm_hexRegex, str) ? 16 : 10));
-};
-
-/* harmony default export */ var dist_parse_int_x_esm = (dist_parse_int_x_esm_parseInt2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/to-number-x/dist/to-number-x.esm.js
-
-
-
-
-
-var to_number_x_esm_binaryRadix = 2;
-var to_number_x_esm_octalRadix = 8;
-var to_number_x_esm_testCharsCount = 2;
-var dist_to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
-var dist_to_number_x_esm_castNumber = to_number_x_esm_testCharsCount.constructor;
-var to_number_x_esm_pStrSlice = dist_to_number_x_esm_ERROR_MESSAGE.slice;
-var to_number_x_esm_binaryRegex = /^0b[01]+$/i;
-var to_number_x_esm_RegExpConstructor = to_number_x_esm_binaryRegex.constructor; // Note that in IE 8, RegExp.prototype.test doesn't seem to exist: ie, "test" is
-// an own property of regexes. wtf.
-
-var dist_to_number_x_esm_test = to_number_x_esm_binaryRegex.test;
-
-var to_number_x_esm_isBinary = function _isBinary(value) {
-  return dist_to_number_x_esm_test.call(to_number_x_esm_binaryRegex, value);
-};
-
-var to_number_x_esm_octalRegex = /^0o[0-7]+$/i;
-
-var to_number_x_esm_isOctal = function _isOctal(value) {
-  return dist_to_number_x_esm_test.call(to_number_x_esm_octalRegex, value);
-};
-
-var to_number_x_esm_nonWSregex2016 = new to_number_x_esm_RegExpConstructor("[\x85\u200B\uFFFE]", 'g');
-
-var to_number_x_esm_hasNonWS2016 = function _hasNonWS(value) {
-  return dist_to_number_x_esm_test.call(to_number_x_esm_nonWSregex2016, value);
-};
-
-var to_number_x_esm_nonWSregex2018 = new to_number_x_esm_RegExpConstructor("[\x85\u180E\u200B\uFFFE]", 'g');
-
-var to_number_x_esm_hasNonWS2018 = function _hasNonWS(value) {
-  return dist_to_number_x_esm_test.call(to_number_x_esm_nonWSregex2018, value);
-};
-
-var to_number_x_esm_invalidHexLiteral = /^[-+]0x[0-9a-f]+$/i;
-
-var to_number_x_esm_isInvalidHexLiteral = function _isInvalidHexLiteral(value) {
-  return dist_to_number_x_esm_test.call(to_number_x_esm_invalidHexLiteral, value);
-};
-/**
- * This method converts argument to a value of type Number. (ES2016).
- *
- * @param {*} [argument] - The argument to convert to a number.
- * @throws {TypeError} - If argument is a Symbol or not coercible.
- * @returns {*} The argument converted to a number.
- */
-
-
-function to_number_x_esm_toNumber2016(argument) {
-  var value = dist_to_primitive_x_esm(argument, Number);
-
-  if (is_symbol_default()(value)) {
-    throw new TypeError(dist_to_number_x_esm_ERROR_MESSAGE);
-  }
-
-  if (typeof value === 'string') {
-    if (to_number_x_esm_isBinary(value)) {
-      return to_number_x_esm_toNumber2016(parse_int_x_esm_parseInt2016(to_number_x_esm_pStrSlice.call(value, to_number_x_esm_testCharsCount), to_number_x_esm_binaryRadix));
-    }
-
-    if (to_number_x_esm_isOctal(value)) {
-      return to_number_x_esm_toNumber2016(parse_int_x_esm_parseInt2016(to_number_x_esm_pStrSlice.call(value, to_number_x_esm_testCharsCount), to_number_x_esm_octalRadix));
-    }
-
-    if (to_number_x_esm_hasNonWS2016(value) || to_number_x_esm_isInvalidHexLiteral(value)) {
-      return dist_nan_x_esm;
-    }
-
-    var trimmed = dist_trim_x_esm_trim2016(value);
-
-    if (trimmed !== value) {
-      return to_number_x_esm_toNumber2016(trimmed);
-    }
-  }
-
-  return dist_to_number_x_esm_castNumber(value);
-}
-/**
- * This method converts argument to a value of type Number. (ES2018).
- *
- * @param {*} [argument] - The argument to convert to a number.
- * @throws {TypeError} - If argument is a Symbol or not coercible.
- * @returns {*} The argument converted to a number.
- */
-
-var dist_to_number_x_esm_toNumber2018 = function toNumber2018(argument) {
-  var value = dist_to_primitive_x_esm(argument, dist_to_number_x_esm_castNumber);
-
-  if (is_symbol_default()(value)) {
-    throw new TypeError(dist_to_number_x_esm_ERROR_MESSAGE);
-  }
-
-  if (typeof value === 'string') {
-    if (to_number_x_esm_isBinary(value)) {
-      return toNumber2018(dist_parse_int_x_esm(to_number_x_esm_pStrSlice.call(value, to_number_x_esm_testCharsCount), to_number_x_esm_binaryRadix));
-    }
-
-    if (to_number_x_esm_isOctal(value)) {
-      return toNumber2018(dist_parse_int_x_esm(to_number_x_esm_pStrSlice.call(value, to_number_x_esm_testCharsCount), to_number_x_esm_octalRadix));
-    }
-
-    if (to_number_x_esm_hasNonWS2018(value) || to_number_x_esm_isInvalidHexLiteral(value)) {
-      return dist_nan_x_esm;
-    }
-
-    var trimmed = trim_x_dist_trim_x_esm(value);
-
-    if (trimmed !== value) {
-      return toNumber2018(trimmed);
-    }
-  }
-
-  return dist_to_number_x_esm_castNumber(value);
-};
-
-/* harmony default export */ var dist_to_number_x_esm = (dist_to_number_x_esm_toNumber2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/is-nan-x/dist/is-nan-x.esm.js
-/**
- * This method determines whether the passed value is NaN and its type is
- * `Number`. It is a more robust version of the original, global isNaN().
- *
- * @param {*} [value] - The value to be tested for NaN.
- * @returns {boolean} `true` if the given value is NaN and its type is Number;
- *  otherwise, `false`.
- */
-var dist_is_nan_x_esm_isNaN = function isNaN(value) {
-  /* eslint-disable-next-line no-self-compare */
-  return value !== value;
-};
-
-/* harmony default export */ var dist_is_nan_x_esm = (dist_is_nan_x_esm_isNaN);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/infinity-x/dist/infinity-x.esm.js
-/**
- * The constant value Infinity derived mathematically by 1 / 0.
- *
- * @type number
- */
-/* harmony default export */ var dist_infinity_x_esm = (1 / 0);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/is-finite-x/dist/is-finite-x.esm.js
-
-
-/**
- * This method determines whether the passed value is a finite number.
- *
- * @param {*} [number] - The value to be tested for finiteness.
- * @returns {boolean} A Boolean indicating whether or not the given value is a finite number.
- */
-
-var dist_is_finite_x_esm_isFinite = function isFinite(number) {
-  return typeof number === 'number' && dist_is_nan_x_esm(number) === false && number !== dist_infinity_x_esm && number !== -dist_infinity_x_esm;
-};
-
-/* harmony default export */ var dist_is_finite_x_esm = (dist_is_finite_x_esm_isFinite);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/math-sign-x/dist/math-sign-x.esm.js
-
-
-/**
- * This method returns the sign of a number, indicating whether the number is positive,
- * negative or zero. (ES2016).
- *
- * @param {*} x - A number.
- * @returns {number} A number representing the sign of the given argument. If the argument
- * is a positive number, negative number, positive zero or negative zero, the function will
- * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
- */
-
-function math_sign_x_esm_sign2016(x) {
-  var n = to_number_x_esm_toNumber2016(x);
-
-  if (n === 0 || dist_is_nan_x_esm(n)) {
-    return n;
-  }
-
-  return n > 0 ? 1 : -1;
-}
-/**
- * This method returns the sign of a number, indicating whether the number is positive,
- * negative or zero. (ES2018).
- *
- * @param {*} x - A number.
- * @returns {number} A number representing the sign of the given argument. If the argument
- * is a positive number, negative number, positive zero or negative zero, the function will
- * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
- */
-
-var dist_math_sign_x_esm_sign2018 = function sign2018(x) {
-  var n = dist_to_number_x_esm(x);
-
-  if (n === 0 || dist_is_nan_x_esm(n)) {
-    return n;
-  }
-
-  return n > 0 ? 1 : -1;
-};
-
-/* harmony default export */ var dist_math_sign_x_esm = (dist_math_sign_x_esm_sign2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/to-integer-x/dist/to-integer-x.esm.js
-
-
-
-
-var to_integer_x_esm_abs = Math.abs,
-    to_integer_x_esm_floor = Math.floor;
-/**
- * Converts `value` to an integer. (ES2016).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-function to_integer_x_esm_toInteger2016(value) {
-  var number = to_number_x_esm_toNumber2016(value);
-
-  if (dist_is_nan_x_esm(number)) {
-    return 0;
-  }
-
-  if (number === 0 || dist_is_finite_x_esm(number) === false) {
-    return number;
-  }
-
-  return math_sign_x_esm_sign2016(number) * to_integer_x_esm_floor(to_integer_x_esm_abs(number));
-}
-/**
- * Converts `value` to an integer. (ES2018).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-var dist_to_integer_x_esm_toInteger2018 = function toInteger2018(value) {
-  var number = dist_to_number_x_esm(value);
-
-  if (dist_is_nan_x_esm(number)) {
-    return 0;
-  }
-
-  if (number === 0 || dist_is_finite_x_esm(number) === false) {
-    return number;
-  }
-
-  return dist_math_sign_x_esm(number) * to_integer_x_esm_floor(to_integer_x_esm_abs(number));
-};
-
-/* harmony default export */ var dist_to_integer_x_esm = (dist_to_integer_x_esm_toInteger2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-reduce-x/node_modules/to-length-x/dist/to-length-x.esm.js
-
-var to_length_x_esm_MAX_SAFE_INTEGER = 9007199254740991;
-/**
- * Converts `value` to an integer suitable for use as the length of an
- * array-like object. (ES2016).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-function to_length_x_esm_toLength2016(value) {
-  var len = to_integer_x_esm_toInteger2016(value); // includes converting -0 to +0
-
-  if (len <= 0) {
-    return 0;
-  }
-
-  if (len > to_length_x_esm_MAX_SAFE_INTEGER) {
-    return to_length_x_esm_MAX_SAFE_INTEGER;
-  }
-
-  return len;
-}
-/**
- * Converts `value` to an integer suitable for use as the length of an
- * array-like object. (ES2018).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-var dist_to_length_x_esm_toLength2018 = function toLength2018(value) {
-  var len = dist_to_integer_x_esm(value); // includes converting -0 to +0
-
-  if (len <= 0) {
-    return 0;
-  }
-
-  if (len > to_length_x_esm_MAX_SAFE_INTEGER) {
-    return to_length_x_esm_MAX_SAFE_INTEGER;
-  }
-
-  return len;
-};
-
-/* harmony default export */ var dist_to_length_x_esm = (dist_to_length_x_esm_toLength2018);
-
-
-// CONCATENATED MODULE: ./node_modules/assert-is-function-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this = undefined;
-
-function node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(this, node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm = (has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.threw === false && has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
-// CONCATENATED MODULE: ./node_modules/assert-is-function-x/node_modules/to-string-symbols-supported-x/dist/to-string-symbols-supported-x.esm.js
-
-
-/* eslint-disable-next-line compat/compat */
-
-var to_string_symbols_supported_x_esm_pToString = node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.prototype.toString;
-var to_string_symbols_supported_x_esm_isSymbolFn = typeof to_string_symbols_supported_x_esm_pToString === 'function' && is_symbol_default.a;
-/** @type {Function} */
-
-var dist_to_string_symbols_supported_x_esm_castString = ''.constructor;
-/**
- * The abstract operation ToString converts argument to a value of type String,
- * however the specification states that if the argument is a Symbol then a
- * 'TypeError' is thrown. This version also allows Symbols be converted to
- * a string. Other uncoercible exotics will still throw though.
- *
- * @param {*} [value] - The value to convert to a string.
- * @returns {string} The converted value.
- */
-
-var to_string_symbols_supported_x_esm_toStringSymbolsSupported = function toStringSymbolsSupported(value) {
-  return to_string_symbols_supported_x_esm_isSymbolFn && to_string_symbols_supported_x_esm_isSymbolFn(value) ? to_string_symbols_supported_x_esm_pToString.call(value) : dist_to_string_symbols_supported_x_esm_castString(value);
-};
-
-/* harmony default export */ var dist_to_string_symbols_supported_x_esm = (to_string_symbols_supported_x_esm_toStringSymbolsSupported);
-
-
-// EXTERNAL MODULE: ./node_modules/assert-is-function-x/node_modules/is-primitive/index.js
-var assert_is_function_x_node_modules_is_primitive = __webpack_require__(13);
-var assert_is_function_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(assert_is_function_x_node_modules_is_primitive);
-
 // CONCATENATED MODULE: ./node_modules/assert-is-function-x/dist/assert-is-function-x.esm.js
 
 
@@ -4724,7 +2852,7 @@ var assert_is_function_x_node_modules_is_primitive_default = /*#__PURE__*/__webp
 
 var assert_is_function_x_esm_assertIsFunction = function assertIsFunction(callback) {
   if (is_function_x_esm(callback) === false) {
-    var msg = assert_is_function_x_node_modules_is_primitive_default()(callback) ? dist_to_string_symbols_supported_x_esm(callback) : '#<Object>';
+    var msg = is_primitive_default()(callback) ? to_string_symbols_supported_x_esm(callback) : '#<Object>';
     throw new TypeError("".concat(msg, " is not a function"));
   }
 
@@ -4863,8 +2991,8 @@ if (nativeReduce && array_reduce_x_esm_isWorking) {
     var object = to_object_x_esm(array); // If no callback function or if callback is not a callable function
 
     assert_is_function_x_esm(callBack);
-    var iterable = dist_split_if_boxed_bug_x_esm(object);
-    var length = dist_to_length_x_esm(iterable.length);
+    var iterable = split_if_boxed_bug_x_esm(object);
+    var length = to_length_x_esm(iterable.length);
     var argsLength = arguments.length; // no value to return if no initial value and an empty array
 
     if (length === 0 && argsLength < 3) {
@@ -4912,1294 +3040,6 @@ var red = $reduce;
 /* harmony default export */ var array_reduce_x_esm = (red);
 
 
-// CONCATENATED MODULE: ./node_modules/to-string-tag-x/dist/to-string-tag-x.esm.js
-var dist_to_string_tag_x_esm_nativeObjectToString = {}.toString;
-/**
- * The `toStringTag` method returns "[object type]", where type is the
- * object type.
- *
- * @param {*} [value] - The object of which to get the object type string.
- * @returns {string} The object type string.
- */
-
-var dist_to_string_tag_x_esm_toStringTag = function toStringTag(value) {
-  if (value === null) {
-    return '[object Null]';
-  }
-
-  if (typeof value === 'undefined') {
-    return '[object Undefined]';
-  }
-
-  return dist_to_string_tag_x_esm_nativeObjectToString.call(value);
-};
-
-/* harmony default export */ var to_string_tag_x_dist_to_string_tag_x_esm = (dist_to_string_tag_x_esm_toStringTag);
-
-
-// CONCATENATED MODULE: ./node_modules/is-array-x/dist/is-array-x.esm.js
-var dist_is_array_x_esm_this = undefined;
-
-function is_array_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var is_array_x_esm_nativeIsArray = [].isArray;
-var is_array_x_esm_isArrayNative = typeof is_array_x_esm_nativeIsArray === 'function' && is_array_x_esm_nativeIsArray;
-var is_array_x_esm_testRes = is_array_x_esm_isArrayNative && attempt_x_esm(function () {
-  is_array_x_esm_newArrowCheck(this, dist_is_array_x_esm_this);
-
-  return is_array_x_esm_isArrayNative([]) === true && is_array_x_esm_isArrayNative({
-    length: 0
-  }) === false;
-}.bind(undefined));
-
-var is_array_x_esm_isArrayFn = function iife() {
-  if (is_array_x_esm_testRes && is_array_x_esm_testRes.threw === false && is_array_x_esm_testRes.value === true) {
-    return is_array_x_esm_isArrayNative;
-  }
-  /**
-   * The isArray() function determines whether the passed value is an Array.
-   *
-   * @function isArray
-   * @param {*} [value] - The object to be checked..
-   * @returns {boolean} `true` if the object is an Array; otherwise, `false`.
-   */
-
-
-  return function isArray(value) {
-    return to_string_tag_x_dist_to_string_tag_x_esm(value) === '[object Array]';
-  };
-}();
-
-/* harmony default export */ var dist_is_array_x_esm = (is_array_x_esm_isArrayFn);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/to-string-tag-x/dist/to-string-tag-x.esm.js
-var to_string_tag_x_dist_to_string_tag_x_esm_nativeObjectToString = {}.toString;
-/**
- * The `toStringTag` method returns "[object type]", where type is the
- * object type.
- *
- * @param {*} [value] - The object of which to get the object type string.
- * @returns {string} The object type string.
- */
-
-var to_string_tag_x_dist_to_string_tag_x_esm_toStringTag = function toStringTag(value) {
-  if (value === null) {
-    return '[object Null]';
-  }
-
-  if (typeof value === 'undefined') {
-    return '[object Undefined]';
-  }
-
-  return to_string_tag_x_dist_to_string_tag_x_esm_nativeObjectToString.call(value);
-};
-
-/* harmony default export */ var node_modules_to_string_tag_x_dist_to_string_tag_x_esm = (to_string_tag_x_dist_to_string_tag_x_esm_toStringTag);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/is-array-x/dist/is-array-x.esm.js
-var is_array_x_dist_is_array_x_esm_this = undefined;
-
-function dist_is_array_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var dist_is_array_x_esm_nativeIsArray = [].isArray;
-var dist_is_array_x_esm_isArrayNative = typeof dist_is_array_x_esm_nativeIsArray === 'function' && dist_is_array_x_esm_nativeIsArray;
-var dist_is_array_x_esm_testRes = dist_is_array_x_esm_isArrayNative && attempt_x_esm(function () {
-  dist_is_array_x_esm_newArrowCheck(this, is_array_x_dist_is_array_x_esm_this);
-
-  return dist_is_array_x_esm_isArrayNative([]) === true && dist_is_array_x_esm_isArrayNative({
-    length: 0
-  }) === false;
-}.bind(undefined));
-
-var dist_is_array_x_esm_isArrayFn = function iife() {
-  if (dist_is_array_x_esm_testRes && dist_is_array_x_esm_testRes.threw === false && dist_is_array_x_esm_testRes.value === true) {
-    return dist_is_array_x_esm_isArrayNative;
-  }
-  /**
-   * The isArray() function determines whether the passed value is an Array.
-   *
-   * @function isArray
-   * @param {*} [value] - The object to be checked..
-   * @returns {boolean} `true` if the object is an Array; otherwise, `false`.
-   */
-
-
-  return function isArray(value) {
-    return node_modules_to_string_tag_x_dist_to_string_tag_x_esm(value) === '[object Array]';
-  };
-}();
-
-/* harmony default export */ var is_array_x_dist_is_array_x_esm = (dist_is_array_x_esm_isArrayFn);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this = undefined;
-
-function array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(this, array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm = (node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.threw === false && node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
-// EXTERNAL MODULE: ./node_modules/array-slice-x/node_modules/is-primitive/index.js
-var array_slice_x_node_modules_is_primitive = __webpack_require__(6);
-var array_slice_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(array_slice_x_node_modules_is_primitive);
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-var array_slice_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
-  if (is_nil_x_esm(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-};
-
-/* harmony default export */ var array_slice_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm = (array_slice_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/to-primitive-x/dist/to-primitive-x.esm.js
-
-
-
-
-
-
-
-var dist_to_primitive_x_esm_ZERO = 0;
-var dist_to_primitive_x_esm_ONE = 1;
-/* eslint-disable-next-line no-void */
-
-var dist_to_primitive_x_esm_UNDEFINED = void dist_to_primitive_x_esm_ZERO;
-var dist_to_primitive_x_esm_NUMBER = 'number';
-var dist_to_primitive_x_esm_STRING = 'string';
-var dist_to_primitive_x_esm_DEFAULT = 'default';
-/** @type {StringConstructor} */
-
-var dist_to_primitive_x_esm_StringCtr = dist_to_primitive_x_esm_STRING.constructor;
-/** @type {NumberConstructor} */
-
-var dist_to_primitive_x_esm_NumberCtr = dist_to_primitive_x_esm_ZERO.constructor;
-/* eslint-disable-next-line compat/compat */
-
-var dist_to_primitive_x_esm_symToPrimitive = array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.toPrimitive;
-/* eslint-disable-next-line compat/compat */
-
-var dist_to_primitive_x_esm_symValueOf = array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.prototype.valueOf;
-var dist_to_primitive_x_esm_toStringOrder = ['toString', 'valueOf'];
-var dist_to_primitive_x_esm_toNumberOrder = ['valueOf', 'toString'];
-var dist_to_primitive_x_esm_orderLength = 2;
-/**
- * @param {*} ordinary - The ordinary to convert.
- * @param {*} hint - The hint.
- * @returns {*} - The primitive.
- */
-
-var dist_to_primitive_x_esm_ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  array_slice_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(ordinary);
-
-  if (typeof hint !== 'string' || hint !== dist_to_primitive_x_esm_NUMBER && hint !== dist_to_primitive_x_esm_STRING) {
-    throw new TypeError('hint must be "string" or "number"');
-  }
-
-  var methodNames = hint === dist_to_primitive_x_esm_STRING ? dist_to_primitive_x_esm_toStringOrder : dist_to_primitive_x_esm_toNumberOrder;
-  var method;
-  var result;
-
-  for (var i = dist_to_primitive_x_esm_ZERO; i < dist_to_primitive_x_esm_orderLength; i += dist_to_primitive_x_esm_ONE) {
-    method = ordinary[methodNames[i]];
-
-    if (is_function_x_esm(method)) {
-      result = method.call(ordinary);
-
-      if (array_slice_x_node_modules_is_primitive_default()(result)) {
-        return result;
-      }
-    }
-  }
-
-  throw new TypeError('No default value');
-};
-/**
- * @param {*} object - The object.
- * @param {*} property - The property.
- * @returns {undefined|Function} - The method.
- */
-
-
-var dist_to_primitive_x_esm_getMethod = function _getMethod(object, property) {
-  var func = object[property];
-
-  if (is_nil_x_esm(func) === false) {
-    if (is_function_x_esm(func) === false) {
-      throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
-    }
-
-    return func;
-  }
-
-  return dist_to_primitive_x_esm_UNDEFINED;
-};
-/**
- * Get the hint.
- *
- * @param {*} value - The value to compare.
- * @param {boolean} supplied - Was a value supplied.
- * @returns {string} - The hint string.
- */
-
-
-var dist_to_primitive_x_esm_getHint = function getHint(value, supplied) {
-  if (supplied) {
-    if (value === dist_to_primitive_x_esm_StringCtr) {
-      return dist_to_primitive_x_esm_STRING;
-    }
-
-    if (value === dist_to_primitive_x_esm_NumberCtr) {
-      return dist_to_primitive_x_esm_NUMBER;
-    }
-  }
-
-  return dist_to_primitive_x_esm_DEFAULT;
-};
-/**
- * Get the primitive from the exotic.
- *
- * @param {*} value - The exotic.
- * @returns {*} - The primitive.
- */
-
-
-var to_primitive_x_dist_to_primitive_x_esm_getExoticToPrim = function getExoticToPrim(value) {
-  if (array_slice_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm) {
-    if (dist_to_primitive_x_esm_symToPrimitive) {
-      return dist_to_primitive_x_esm_getMethod(value, dist_to_primitive_x_esm_symToPrimitive);
-    }
-
-    if (is_symbol_default()(value)) {
-      return dist_to_primitive_x_esm_symValueOf;
-    }
-  }
-
-  return dist_to_primitive_x_esm_UNDEFINED;
-};
-/**
- * This method converts a JavaScript object to a primitive value.
- * Note: When toPrimitive is called with no hint, then it generally behaves as
- * if the hint were Number. However, objects may over-ride this behaviour by
- * defining a @@toPrimitive method. Of the objects defined in this specification
- * only Date objects (see 20.3.4.45) and Symbol objects (see 19.4.3.4) over-ride
- * the default ToPrimitive behaviour. Date objects treat no hint as if the hint
- * were String.
- *
- * @param {*} input - The input to convert.
- * @param {NumberConstructor|StringConstructor} [preferredType] - The preferred type (String or Number).
- * @throws {TypeError} If unable to convert input to a primitive.
- * @returns {string|number} The converted input as a primitive.
- * @see {http://www.ecma-international.org/ecma-262/6.0/#sec-toprimitive}
- */
-
-
-var to_primitive_x_dist_to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) {
-  if (array_slice_x_node_modules_is_primitive_default()(input)) {
-    return input;
-  }
-
-  var hint = dist_to_primitive_x_esm_getHint(preferredType, arguments.length > dist_to_primitive_x_esm_ONE);
-  var exoticToPrim = to_primitive_x_dist_to_primitive_x_esm_getExoticToPrim(input);
-
-  if (typeof exoticToPrim !== 'undefined') {
-    var result = exoticToPrim.call(input, hint);
-
-    if (array_slice_x_node_modules_is_primitive_default()(result)) {
-      return result;
-    }
-
-    throw new TypeError('unable to convert exotic object to primitive');
-  }
-
-  var newHint = hint === dist_to_primitive_x_esm_DEFAULT && (is_date_object_default()(input) || is_symbol_default()(input)) ? dist_to_primitive_x_esm_STRING : hint;
-  return dist_to_primitive_x_esm_ordinaryToPrimitive(input, newHint === dist_to_primitive_x_esm_DEFAULT ? dist_to_primitive_x_esm_NUMBER : newHint);
-};
-
-/* harmony default export */ var to_primitive_x_dist_to_primitive_x_esm = (to_primitive_x_dist_to_primitive_x_esm_toPrimitive);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/to-string-x/dist/to-string-x.esm.js
-
-var to_string_x_dist_to_string_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
-var to_string_x_dist_to_string_x_esm_castString = to_string_x_dist_to_string_x_esm_ERROR_MESSAGE.constructor;
-/**
- * The abstract operation ToString converts argument to a value of type String.
- *
- * @param {*} [value] - The value to convert to a string.
- * @throws {TypeError} If `value` is a Symbol.
- * @returns {string} The converted value.
- */
-
-var node_modules_to_string_x_dist_to_string_x_esm_ToString = function ToString(value) {
-  if (is_symbol_default()(value)) {
-    throw new TypeError(to_string_x_dist_to_string_x_esm_ERROR_MESSAGE);
-  }
-
-  return to_string_x_dist_to_string_x_esm_castString(value);
-};
-
-/* harmony default export */ var node_modules_to_string_x_dist_to_string_x_esm = (node_modules_to_string_x_dist_to_string_x_esm_ToString);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
-
-
-/**
- * This method requires an argument is corecible then converts using ToString.
- *
- * @param {*} [value] - The value to converted to a string.
- * @throws {TypeError} If value is null or undefined.
- * @returns {string} The value as a string.
- */
-
-var node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
-  return node_modules_to_string_x_dist_to_string_x_esm(array_slice_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(value));
-};
-
-/* harmony default export */ var node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm = (node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm_requireCoercibleToString);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/white-space-x/dist/white-space-x.esm.js
-/**
- * A record of a white space character.
- *
- * @typedef {object} CharRecord
- * @property {number} code - The character code.
- * @property {string} description - A description of the character.
- * @property {boolean} es5 - Whether the spec lists this as a white space.
- * @property {boolean} es2015 - Whether the spec lists this as a white space.
- * @property {boolean} es2016 - Whether the spec lists this as a white space.
- * @property {boolean} es2017 - Whether the spec lists this as a white space.
- * @property {boolean} es2018 - Whether the spec lists this as a white space.
- * @property {string} string - The character string.
- */
-
-/**
- * An array of the whitespace char codes, string, descriptions and language
- * presence in the specifications.
- *
- * @type Array.<CharRecord>
- */
-var white_space_x_dist_white_space_x_esm_list = [{
-  code: 0x0009,
-  description: 'Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\t"
-}, {
-  code: 0x000a,
-  description: 'Line Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\n"
-}, {
-  code: 0x000b,
-  description: 'Vertical Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\x0B"
-}, {
-  code: 0x000c,
-  description: 'Form Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\f"
-}, {
-  code: 0x000d,
-  description: 'Carriage Return',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\r"
-}, {
-  code: 0x0020,
-  description: 'Space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: " "
-},
-/*
-{
-  code: 0x0085,
-  description: 'Next line',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u0085'
-}
-*/
-{
-  code: 0x00a0,
-  description: 'No-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\xA0"
-}, {
-  code: 0x1680,
-  description: 'Ogham space mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u1680"
-}, {
-  code: 0x180e,
-  description: 'Mongolian vowel separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: false,
-  es2018: false,
-  string: "\u180E"
-}, {
-  code: 0x2000,
-  description: 'En quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2000"
-}, {
-  code: 0x2001,
-  description: 'Em quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2001"
-}, {
-  code: 0x2002,
-  description: 'En space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2002"
-}, {
-  code: 0x2003,
-  description: 'Em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2003"
-}, {
-  code: 0x2004,
-  description: 'Three-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2004"
-}, {
-  code: 0x2005,
-  description: 'Four-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2005"
-}, {
-  code: 0x2006,
-  description: 'Six-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2006"
-}, {
-  code: 0x2007,
-  description: 'Figure space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2007"
-}, {
-  code: 0x2008,
-  description: 'Punctuation space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2008"
-}, {
-  code: 0x2009,
-  description: 'Thin space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2009"
-}, {
-  code: 0x200a,
-  description: 'Hair space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u200A"
-},
-/*
-{
-  code: 0x200b,
-  description: 'Zero width space',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u200b'
-},
-*/
-{
-  code: 0x2028,
-  description: 'Line separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2028"
-}, {
-  code: 0x2029,
-  description: 'Paragraph separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2029"
-}, {
-  code: 0x202f,
-  description: 'Narrow no-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u202F"
-}, {
-  code: 0x205f,
-  description: 'Medium mathematical space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u205F"
-}, {
-  code: 0x3000,
-  description: 'Ideographic space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u3000"
-}, {
-  code: 0xfeff,
-  description: 'Byte Order Mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\uFEFF"
-}];
-/**
- * A string of the ES5 to ES2016 whitespace characters.
- *
- * @type string
- */
-
-var white_space_x_dist_white_space_x_esm_stringES2016 = '';
-/**
- * A string of the ES2017 to ES2018 whitespace characters.
- *
- * @type string
- */
-
-var white_space_x_dist_white_space_x_esm_stringES2018 = '';
-var node_modules_white_space_x_dist_white_space_x_esm_length = white_space_x_dist_white_space_x_esm_list.length;
-
-for (var node_modules_white_space_x_dist_white_space_x_esm_i = 0; node_modules_white_space_x_dist_white_space_x_esm_i < node_modules_white_space_x_dist_white_space_x_esm_length; node_modules_white_space_x_dist_white_space_x_esm_i += 1) {
-  if (white_space_x_dist_white_space_x_esm_list[node_modules_white_space_x_dist_white_space_x_esm_i].es2016) {
-    white_space_x_dist_white_space_x_esm_stringES2016 += white_space_x_dist_white_space_x_esm_list[node_modules_white_space_x_dist_white_space_x_esm_i].string;
-  }
-
-  if (white_space_x_dist_white_space_x_esm_list[node_modules_white_space_x_dist_white_space_x_esm_i].es2018) {
-    white_space_x_dist_white_space_x_esm_stringES2018 += white_space_x_dist_white_space_x_esm_list[node_modules_white_space_x_dist_white_space_x_esm_i].string;
-  }
-}
-
-var white_space_x_dist_white_space_x_esm_string2018 = white_space_x_dist_white_space_x_esm_stringES2018;
-/* harmony default export */ var node_modules_white_space_x_dist_white_space_x_esm = (white_space_x_dist_white_space_x_esm_string2018);
-var white_space_x_dist_white_space_x_esm_string2016 = white_space_x_dist_white_space_x_esm_stringES2016;
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/trim-left-x/dist/trim-left-x.esm.js
-
-
-var trim_left_x_dist_trim_left_x_esm_EMPTY_STRING = '';
-var trim_left_x_dist_trim_left_x_esm_RegExpCtr = /none/.constructor;
-var trim_left_x_dist_trim_left_x_esm_reLeft2016 = new trim_left_x_dist_trim_left_x_esm_RegExpCtr("^[".concat(white_space_x_dist_white_space_x_esm_string2016, "]+"));
-var trim_left_x_dist_trim_left_x_esm_reLeft = new trim_left_x_dist_trim_left_x_esm_RegExpCtr("^[".concat(node_modules_white_space_x_dist_white_space_x_esm, "]+"));
-var trim_left_x_dist_trim_left_x_esm_replace = trim_left_x_dist_trim_left_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the left end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-function trim_left_x_dist_trim_left_x_esm_trimLeft2016(string) {
-  return trim_left_x_dist_trim_left_x_esm_replace.call(node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), trim_left_x_dist_trim_left_x_esm_reLeft2016, trim_left_x_dist_trim_left_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the left end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-var node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2018 = function trimLeft2018(string) {
-  return trim_left_x_dist_trim_left_x_esm_replace.call(node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), trim_left_x_dist_trim_left_x_esm_reLeft, trim_left_x_dist_trim_left_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var node_modules_trim_left_x_dist_trim_left_x_esm = (node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/trim-right-x/dist/trim-right-x.esm.js
-
-
-var node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING = '';
-var node_modules_trim_right_x_dist_trim_right_x_esm_RegExpCtr = /none/.constructor;
-var trim_right_x_dist_trim_right_x_esm_reRight2016 = new node_modules_trim_right_x_dist_trim_right_x_esm_RegExpCtr("[".concat(white_space_x_dist_white_space_x_esm_string2016, "]+$"));
-var trim_right_x_dist_trim_right_x_esm_reRight2018 = new node_modules_trim_right_x_dist_trim_right_x_esm_RegExpCtr("[".concat(node_modules_white_space_x_dist_white_space_x_esm, "]+$"));
-var node_modules_trim_right_x_dist_trim_right_x_esm_replace = node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the right end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-function trim_right_x_dist_trim_right_x_esm_trimRight2016(string) {
-  return node_modules_trim_right_x_dist_trim_right_x_esm_replace.call(node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), trim_right_x_dist_trim_right_x_esm_reRight2016, node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the right end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-var node_modules_trim_right_x_dist_trim_right_x_esm_trimRight2018 = function trimRight2018(string) {
-  return node_modules_trim_right_x_dist_trim_right_x_esm_replace.call(node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), trim_right_x_dist_trim_right_x_esm_reRight2018, node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var node_modules_trim_right_x_dist_trim_right_x_esm = (node_modules_trim_right_x_dist_trim_right_x_esm_trimRight2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/trim-x/dist/trim-x.esm.js
-
-
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2016).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-function trim_x_dist_trim_x_esm_trim2016(string) {
-  return trim_left_x_dist_trim_left_x_esm_trimLeft2016(trim_right_x_dist_trim_right_x_esm_trimRight2016(string));
-}
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2018).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-var node_modules_trim_x_dist_trim_x_esm_trim2018 = function trim2018(string) {
-  return node_modules_trim_left_x_dist_trim_left_x_esm(node_modules_trim_right_x_dist_trim_right_x_esm(string));
-};
-
-/* harmony default export */ var node_modules_trim_x_dist_trim_x_esm = (node_modules_trim_x_dist_trim_x_esm_trim2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/nan-x/dist/nan-x.esm.js
-/**
- * The constant NaN derived mathematically by 0 / 0.
- *
- * @type number
- */
-/* harmony default export */ var nan_x_dist_nan_x_esm = (0 / 0);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/parse-int-x/dist/parse-int-x.esm.js
-
-
-
-var dist_parse_int_x_esm_nativeParseInt = parseInt;
-/**  @type {Function} */
-
-var dist_parse_int_x_esm_castNumber = 0 .constructor; // noinspection JSPotentiallyInvalidConstructorUsage
-
-var dist_parse_int_x_esm_ref = '',
-    dist_parse_int_x_esm_charAt = dist_parse_int_x_esm_ref.charAt;
-var dist_parse_int_x_esm_hexRegex = /^[-+]?0[xX]/;
-var parse_int_x_dist_parse_int_x_esm_test = dist_parse_int_x_esm_hexRegex.test;
-/**
- * This method parses a string argument and returns an integer of the specified
- * radix (the base in mathematical numeral systems). (ES2016).
- *
- * @param {string} [string] - The value to parse. If the string argument is not a
- *  string, then it is converted to a string (using the ToString abstract
- *  operation). Leading whitespace in the string argument is ignored.
- * @param {number} [radix] - An integer between 2 and 36 that represents the radix
- *  (the base in mathematical numeral systems) of the above mentioned string.
- *  Specify 10 for the decimal numeral system commonly used by humans. Always
- *  specify this parameter to eliminate reader confusion and to guarantee
- *  predictable behavior. Different implementations produce different results
- *  when a radix is not specified, usually defaulting the value to 10.
- * @throws {TypeError} If target is a Symbol or is not coercible.
- * @returns {number} An integer number parsed from the given string. If the first
- *  character cannot be converted to a number, NaN is returned.
- */
-
-function dist_parse_int_x_esm_parseInt2016(string, radix) {
-  var str = trim_left_x_dist_trim_left_x_esm_trimLeft2016(node_modules_to_string_x_dist_to_string_x_esm(string));
-  return dist_parse_int_x_esm_nativeParseInt(str, dist_parse_int_x_esm_castNumber(radix) || (parse_int_x_dist_parse_int_x_esm_test.call(dist_parse_int_x_esm_hexRegex, str) ? 16 : 10));
-}
-/**
- * This method parses a string argument and returns an integer of the specified
- * radix (the base in mathematical numeral systems). (ES2018).
- *
- * @param {string} [string] - The value to parse. If the string argument is not a
- *  string, then it is converted to a string (using the ToString abstract
- *  operation). Leading whitespace in the string argument is ignored.
- * @param {number} [radix] - An integer between 2 and 36 that represents the radix
- *  (the base in mathematical numeral systems) of the above mentioned string.
- *  Specify 10 for the decimal numeral system commonly used by humans. Always
- *  specify this parameter to eliminate reader confusion and to guarantee
- *  predictable behavior. Different implementations produce different results
- *  when a radix is not specified, usually defaulting the value to 10.
- * @throws {TypeError} If target is a Symbol or is not coercible.
- * @returns {number} An integer number parsed from the given string. If the first
- *  character cannot be converted to a number, NaN is returned.
- */
-
-var parse_int_x_dist_parse_int_x_esm_parseInt2018 = function parseInt2018(string, radix) {
-  var str = node_modules_trim_left_x_dist_trim_left_x_esm(node_modules_to_string_x_dist_to_string_x_esm(string));
-
-  if (dist_parse_int_x_esm_charAt.call(str, 0) === "\u180E") {
-    return nan_x_dist_nan_x_esm;
-  }
-
-  return dist_parse_int_x_esm_nativeParseInt(str, dist_parse_int_x_esm_castNumber(radix) || (parse_int_x_dist_parse_int_x_esm_test.call(dist_parse_int_x_esm_hexRegex, str) ? 16 : 10));
-};
-
-/* harmony default export */ var parse_int_x_dist_parse_int_x_esm = (parse_int_x_dist_parse_int_x_esm_parseInt2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/to-number-x/dist/to-number-x.esm.js
-
-
-
-
-
-var dist_to_number_x_esm_binaryRadix = 2;
-var dist_to_number_x_esm_octalRadix = 8;
-var dist_to_number_x_esm_testCharsCount = 2;
-var to_number_x_dist_to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
-var to_number_x_dist_to_number_x_esm_castNumber = dist_to_number_x_esm_testCharsCount.constructor;
-var dist_to_number_x_esm_pStrSlice = to_number_x_dist_to_number_x_esm_ERROR_MESSAGE.slice;
-var dist_to_number_x_esm_binaryRegex = /^0b[01]+$/i;
-var dist_to_number_x_esm_RegExpConstructor = dist_to_number_x_esm_binaryRegex.constructor; // Note that in IE 8, RegExp.prototype.test doesn't seem to exist: ie, "test" is
-// an own property of regexes. wtf.
-
-var to_number_x_dist_to_number_x_esm_test = dist_to_number_x_esm_binaryRegex.test;
-
-var dist_to_number_x_esm_isBinary = function _isBinary(value) {
-  return to_number_x_dist_to_number_x_esm_test.call(dist_to_number_x_esm_binaryRegex, value);
-};
-
-var dist_to_number_x_esm_octalRegex = /^0o[0-7]+$/i;
-
-var dist_to_number_x_esm_isOctal = function _isOctal(value) {
-  return to_number_x_dist_to_number_x_esm_test.call(dist_to_number_x_esm_octalRegex, value);
-};
-
-var dist_to_number_x_esm_nonWSregex2016 = new dist_to_number_x_esm_RegExpConstructor("[\x85\u200B\uFFFE]", 'g');
-
-var dist_to_number_x_esm_hasNonWS2016 = function _hasNonWS(value) {
-  return to_number_x_dist_to_number_x_esm_test.call(dist_to_number_x_esm_nonWSregex2016, value);
-};
-
-var dist_to_number_x_esm_nonWSregex2018 = new dist_to_number_x_esm_RegExpConstructor("[\x85\u180E\u200B\uFFFE]", 'g');
-
-var dist_to_number_x_esm_hasNonWS2018 = function _hasNonWS(value) {
-  return to_number_x_dist_to_number_x_esm_test.call(dist_to_number_x_esm_nonWSregex2018, value);
-};
-
-var dist_to_number_x_esm_invalidHexLiteral = /^[-+]0x[0-9a-f]+$/i;
-
-var dist_to_number_x_esm_isInvalidHexLiteral = function _isInvalidHexLiteral(value) {
-  return to_number_x_dist_to_number_x_esm_test.call(dist_to_number_x_esm_invalidHexLiteral, value);
-};
-/**
- * This method converts argument to a value of type Number. (ES2016).
- *
- * @param {*} [argument] - The argument to convert to a number.
- * @throws {TypeError} - If argument is a Symbol or not coercible.
- * @returns {*} The argument converted to a number.
- */
-
-
-function dist_to_number_x_esm_toNumber2016(argument) {
-  var value = to_primitive_x_dist_to_primitive_x_esm(argument, Number);
-
-  if (is_symbol_default()(value)) {
-    throw new TypeError(to_number_x_dist_to_number_x_esm_ERROR_MESSAGE);
-  }
-
-  if (typeof value === 'string') {
-    if (dist_to_number_x_esm_isBinary(value)) {
-      return dist_to_number_x_esm_toNumber2016(dist_parse_int_x_esm_parseInt2016(dist_to_number_x_esm_pStrSlice.call(value, dist_to_number_x_esm_testCharsCount), dist_to_number_x_esm_binaryRadix));
-    }
-
-    if (dist_to_number_x_esm_isOctal(value)) {
-      return dist_to_number_x_esm_toNumber2016(dist_parse_int_x_esm_parseInt2016(dist_to_number_x_esm_pStrSlice.call(value, dist_to_number_x_esm_testCharsCount), dist_to_number_x_esm_octalRadix));
-    }
-
-    if (dist_to_number_x_esm_hasNonWS2016(value) || dist_to_number_x_esm_isInvalidHexLiteral(value)) {
-      return nan_x_dist_nan_x_esm;
-    }
-
-    var trimmed = trim_x_dist_trim_x_esm_trim2016(value);
-
-    if (trimmed !== value) {
-      return dist_to_number_x_esm_toNumber2016(trimmed);
-    }
-  }
-
-  return to_number_x_dist_to_number_x_esm_castNumber(value);
-}
-/**
- * This method converts argument to a value of type Number. (ES2018).
- *
- * @param {*} [argument] - The argument to convert to a number.
- * @throws {TypeError} - If argument is a Symbol or not coercible.
- * @returns {*} The argument converted to a number.
- */
-
-var to_number_x_dist_to_number_x_esm_toNumber2018 = function toNumber2018(argument) {
-  var value = to_primitive_x_dist_to_primitive_x_esm(argument, to_number_x_dist_to_number_x_esm_castNumber);
-
-  if (is_symbol_default()(value)) {
-    throw new TypeError(to_number_x_dist_to_number_x_esm_ERROR_MESSAGE);
-  }
-
-  if (typeof value === 'string') {
-    if (dist_to_number_x_esm_isBinary(value)) {
-      return toNumber2018(parse_int_x_dist_parse_int_x_esm(dist_to_number_x_esm_pStrSlice.call(value, dist_to_number_x_esm_testCharsCount), dist_to_number_x_esm_binaryRadix));
-    }
-
-    if (dist_to_number_x_esm_isOctal(value)) {
-      return toNumber2018(parse_int_x_dist_parse_int_x_esm(dist_to_number_x_esm_pStrSlice.call(value, dist_to_number_x_esm_testCharsCount), dist_to_number_x_esm_octalRadix));
-    }
-
-    if (dist_to_number_x_esm_hasNonWS2018(value) || dist_to_number_x_esm_isInvalidHexLiteral(value)) {
-      return nan_x_dist_nan_x_esm;
-    }
-
-    var trimmed = node_modules_trim_x_dist_trim_x_esm(value);
-
-    if (trimmed !== value) {
-      return toNumber2018(trimmed);
-    }
-  }
-
-  return to_number_x_dist_to_number_x_esm_castNumber(value);
-};
-
-/* harmony default export */ var to_number_x_dist_to_number_x_esm = (to_number_x_dist_to_number_x_esm_toNumber2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/is-nan-x/dist/is-nan-x.esm.js
-/**
- * This method determines whether the passed value is NaN and its type is
- * `Number`. It is a more robust version of the original, global isNaN().
- *
- * @param {*} [value] - The value to be tested for NaN.
- * @returns {boolean} `true` if the given value is NaN and its type is Number;
- *  otherwise, `false`.
- */
-var is_nan_x_dist_is_nan_x_esm_isNaN = function isNaN(value) {
-  /* eslint-disable-next-line no-self-compare */
-  return value !== value;
-};
-
-/* harmony default export */ var is_nan_x_dist_is_nan_x_esm = (is_nan_x_dist_is_nan_x_esm_isNaN);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/infinity-x/dist/infinity-x.esm.js
-/**
- * The constant value Infinity derived mathematically by 1 / 0.
- *
- * @type number
- */
-/* harmony default export */ var infinity_x_dist_infinity_x_esm = (1 / 0);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/is-finite-x/dist/is-finite-x.esm.js
-
-
-/**
- * This method determines whether the passed value is a finite number.
- *
- * @param {*} [number] - The value to be tested for finiteness.
- * @returns {boolean} A Boolean indicating whether or not the given value is a finite number.
- */
-
-var is_finite_x_dist_is_finite_x_esm_isFinite = function isFinite(number) {
-  return typeof number === 'number' && is_nan_x_dist_is_nan_x_esm(number) === false && number !== infinity_x_dist_infinity_x_esm && number !== -infinity_x_dist_infinity_x_esm;
-};
-
-/* harmony default export */ var is_finite_x_dist_is_finite_x_esm = (is_finite_x_dist_is_finite_x_esm_isFinite);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/math-sign-x/dist/math-sign-x.esm.js
-
-
-/**
- * This method returns the sign of a number, indicating whether the number is positive,
- * negative or zero. (ES2016).
- *
- * @param {*} x - A number.
- * @returns {number} A number representing the sign of the given argument. If the argument
- * is a positive number, negative number, positive zero or negative zero, the function will
- * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
- */
-
-function dist_math_sign_x_esm_sign2016(x) {
-  var n = dist_to_number_x_esm_toNumber2016(x);
-
-  if (n === 0 || is_nan_x_dist_is_nan_x_esm(n)) {
-    return n;
-  }
-
-  return n > 0 ? 1 : -1;
-}
-/**
- * This method returns the sign of a number, indicating whether the number is positive,
- * negative or zero. (ES2018).
- *
- * @param {*} x - A number.
- * @returns {number} A number representing the sign of the given argument. If the argument
- * is a positive number, negative number, positive zero or negative zero, the function will
- * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
- */
-
-var math_sign_x_dist_math_sign_x_esm_sign2018 = function sign2018(x) {
-  var n = to_number_x_dist_to_number_x_esm(x);
-
-  if (n === 0 || is_nan_x_dist_is_nan_x_esm(n)) {
-    return n;
-  }
-
-  return n > 0 ? 1 : -1;
-};
-
-/* harmony default export */ var math_sign_x_dist_math_sign_x_esm = (math_sign_x_dist_math_sign_x_esm_sign2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/to-integer-x/dist/to-integer-x.esm.js
-
-
-
-
-var dist_to_integer_x_esm_abs = Math.abs,
-    dist_to_integer_x_esm_floor = Math.floor;
-/**
- * Converts `value` to an integer. (ES2016).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-function dist_to_integer_x_esm_toInteger2016(value) {
-  var number = dist_to_number_x_esm_toNumber2016(value);
-
-  if (is_nan_x_dist_is_nan_x_esm(number)) {
-    return 0;
-  }
-
-  if (number === 0 || is_finite_x_dist_is_finite_x_esm(number) === false) {
-    return number;
-  }
-
-  return dist_math_sign_x_esm_sign2016(number) * dist_to_integer_x_esm_floor(dist_to_integer_x_esm_abs(number));
-}
-/**
- * Converts `value` to an integer. (ES2018).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-var to_integer_x_dist_to_integer_x_esm_toInteger2018 = function toInteger2018(value) {
-  var number = to_number_x_dist_to_number_x_esm(value);
-
-  if (is_nan_x_dist_is_nan_x_esm(number)) {
-    return 0;
-  }
-
-  if (number === 0 || is_finite_x_dist_is_finite_x_esm(number) === false) {
-    return number;
-  }
-
-  return math_sign_x_dist_math_sign_x_esm(number) * dist_to_integer_x_esm_floor(dist_to_integer_x_esm_abs(number));
-};
-
-/* harmony default export */ var to_integer_x_dist_to_integer_x_esm = (to_integer_x_dist_to_integer_x_esm_toInteger2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/to-length-x/dist/to-length-x.esm.js
-
-var dist_to_length_x_esm_MAX_SAFE_INTEGER = 9007199254740991;
-/**
- * Converts `value` to an integer suitable for use as the length of an
- * array-like object. (ES2016).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-function dist_to_length_x_esm_toLength2016(value) {
-  var len = dist_to_integer_x_esm_toInteger2016(value); // includes converting -0 to +0
-
-  if (len <= 0) {
-    return 0;
-  }
-
-  if (len > dist_to_length_x_esm_MAX_SAFE_INTEGER) {
-    return dist_to_length_x_esm_MAX_SAFE_INTEGER;
-  }
-
-  return len;
-}
-/**
- * Converts `value` to an integer suitable for use as the length of an
- * array-like object. (ES2018).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-var to_length_x_dist_to_length_x_esm_toLength2018 = function toLength2018(value) {
-  var len = to_integer_x_dist_to_integer_x_esm(value); // includes converting -0 to +0
-
-  if (len <= 0) {
-    return 0;
-  }
-
-  if (len > dist_to_length_x_esm_MAX_SAFE_INTEGER) {
-    return dist_to_length_x_esm_MAX_SAFE_INTEGER;
-  }
-
-  return len;
-};
-
-/* harmony default export */ var to_length_x_dist_to_length_x_esm = (to_length_x_dist_to_length_x_esm_toLength2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
-var has_boxed_string_x_dist_has_boxed_string_x_esm_string = 'a';
-var dist_has_boxed_string_x_esm_boxedString = {}.constructor(has_boxed_string_x_dist_has_boxed_string_x_esm_string);
-/**
- * Check failure of by-index access of string characters (IE < 9)
- * and failure of `0 in boxedString` (Rhino).
- *
- * `true` if no failure; otherwise `false`.
- *
- * @type boolean
- */
-
-var dist_has_boxed_string_x_esm_hasBoxed = dist_has_boxed_string_x_esm_boxedString[0] === has_boxed_string_x_dist_has_boxed_string_x_esm_string && 0 in dist_has_boxed_string_x_esm_boxedString;
-/* harmony default export */ var has_boxed_string_x_dist_has_boxed_string_x_esm = (dist_has_boxed_string_x_esm_hasBoxed);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
-
-
-var split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_EMPTY_STRING = '';
-var dist_split_if_boxed_bug_x_esm_strSplit = split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_EMPTY_STRING.split;
-var dist_split_if_boxed_bug_x_esm_isStringFn = has_boxed_string_x_dist_has_boxed_string_x_esm === false && typeof dist_split_if_boxed_bug_x_esm_strSplit === 'function' && is_string_default.a;
-/**
- * This method tests if a value is a string with the boxed bug; splits to an
- * array for iteration; otherwise returns the original value.
- *
- * @param {*} [value] - The value to be tested.
- * @returns {*} An array or characters if value was a string with the boxed bug;
- *  otherwise the value.
- */
-
-var dist_split_if_boxed_bug_x_esm_splitIfBoxedBug = function splitIfBoxedBug(value) {
-  return dist_split_if_boxed_bug_x_esm_isStringFn && dist_split_if_boxed_bug_x_esm_isStringFn(value) ? dist_split_if_boxed_bug_x_esm_strSplit.call(value, split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_EMPTY_STRING) : value;
-};
-
-/* harmony default export */ var split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm = (dist_split_if_boxed_bug_x_esm_splitIfBoxedBug);
-
-
-// CONCATENATED MODULE: ./node_modules/array-slice-x/node_modules/array-like-slice-x/dist/array-like-slice-x.esm.js
-
-
-
-
-
-var array_like_slice_x_esm_getMax = function _getMax(a, b) {
-  return a >= b ? a : b;
-};
-
-var array_like_slice_x_esm_getMin = function _getMin(a, b) {
-  return a <= b ? a : b;
-};
-
-var array_like_slice_x_esm_setRelative = function _setRelative(value, length) {
-  return value < 0 ? array_like_slice_x_esm_getMax(length + value, 0) : array_like_slice_x_esm_getMin(value, length);
-};
-/**
- * The slice() method returns a shallow copy of a portion of an array into a new
- * array object selected from begin to end (end not included). The original
- * array will not be modified.
- *
- * @param {!object} arrayLike - The array like object to slice.
- * @param {number} [start] - Zero-based index at which to begin extraction.
- *  A negative index can be used, indicating an offset from the end of the
- *  sequence. Running slice(-2) extracts the last two elements in the sequence.
- *  If begin is undefined, slice begins from index 0.
- * @param {number} [end] - Zero-based index before which to end extraction.
- *  Slice extracts up to but not including end. For example, slice([0,1,2,3,4],1,4)
- *  extracts the second element through the fourth element (elements indexed
- *  1, 2, and 3).
- *  A negative index can be used, indicating an offset from the end of the
- *  sequence. Running slice(2,-1) extracts the third element through the second-to-last
- *  element in the sequence.
- *  If end is omitted, slice extracts through the end of the sequence (arr.length).
- *  If end is greater than the length of the sequence, slice extracts through
- *  the end of the sequence (arr.length).
- * @returns {Array} A new array containing the extracted elements.
- */
-
-
-var dist_array_like_slice_x_esm_slice = function slice(arrayLike, start, end) {
-  var iterable = split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm(to_object_x_esm(arrayLike));
-  var length = to_length_x_dist_to_length_x_esm(iterable.length);
-  var k = array_like_slice_x_esm_setRelative(to_integer_x_dist_to_integer_x_esm(start), length);
-  var relativeEnd = typeof end === 'undefined' ? length : to_integer_x_dist_to_integer_x_esm(end);
-  var finalEnd = array_like_slice_x_esm_setRelative(relativeEnd, length);
-  var val = [];
-  val.length = array_like_slice_x_esm_getMax(finalEnd - k, 0);
-  var next = 0;
-
-  while (k < finalEnd) {
-    if (k in iterable) {
-      val[next] = iterable[k];
-    }
-
-    next += 1;
-    k += 1;
-  }
-
-  return val;
-};
-
-/* harmony default export */ var dist_array_like_slice_x_esm = (dist_array_like_slice_x_esm_slice);
-
-
 // CONCATENATED MODULE: ./node_modules/array-slice-x/dist/array-slice-x.esm.js
 
 
@@ -6209,9 +3049,9 @@ var dist_array_like_slice_x_esm_slice = function slice(arrayLike, start, end) {
 
 var nativeSlice = [].slice;
 var resultArray = nativeSlice ? attempt_x_esm.call([1, 2, 3], nativeSlice, 1, 2) : null;
-var failArray = resultArray ? resultArray.threw || is_array_x_dist_is_array_x_esm(resultArray.value) === false || resultArray.value.length !== 1 || resultArray.value[0] !== 2 : false;
+var failArray = resultArray ? resultArray.threw || is_array_x_esm(resultArray.value) === false || resultArray.value.length !== 1 || resultArray.value[0] !== 2 : false;
 var resultString = nativeSlice ? attempt_x_esm.call('abc', nativeSlice, 1, 2) : null;
-var failString = resultString ? resultString.threw || is_array_x_dist_is_array_x_esm(resultString.value) === false || resultString.value.length !== 1 || resultString.value[0] !== 'b' : false;
+var failString = resultString ? resultString.threw || is_array_x_esm(resultString.value) === false || resultString.value.length !== 1 || resultString.value[0] !== 'b' : false;
 var array_slice_x_esm_doc = typeof document !== 'undefined' && document;
 var resultDocElement = nativeSlice && array_slice_x_esm_doc ? attempt_x_esm.call(array_slice_x_esm_doc.documentElement, nativeSlice).threw : null;
 var failDOM = resultDocElement ? resultDocElement.threw : false;
@@ -6242,13 +3082,13 @@ var failDOM = resultDocElement ? resultDocElement.threw : false;
 var array_slice_x_esm_slice = function slice(array, start, end) {
   var object = to_object_x_esm(array);
 
-  if (failArray || failDOM && is_array_x_dist_is_array_x_esm(object) === false || failString && is_string_default()(object) || is_arguments_default()(object)) {
-    return dist_array_like_slice_x_esm(object, start, end);
+  if (failArray || failDOM && is_array_x_esm(object) === false || failString && is_string_default()(object) || is_arguments_default()(object)) {
+    return array_like_slice_x_esm(object, start, end);
   }
   /* eslint-disable-next-line prefer-rest-params */
 
 
-  return nativeSlice.apply(object, dist_array_like_slice_x_esm(arguments, 1));
+  return nativeSlice.apply(object, array_like_slice_x_esm(arguments, 1));
 };
 
 /* harmony default export */ var array_slice_x_esm = (array_slice_x_esm_slice);
@@ -6281,7 +3121,7 @@ var getOPN;
 
 if (nativeGOPN) {
   var get_own_property_names_x_esm_isCorrectRes = function isCorrectRes(r, length) {
-    return r.threw === false && dist_is_array_x_esm(r.value) && r.value.length === length;
+    return r.threw === false && is_array_x_esm(r.value) && r.value.length === length;
   };
 
   var get_own_property_names_x_esm_either = function either(r, a, b) {
@@ -6307,7 +3147,7 @@ if (nativeGOPN) {
       getOPN = function getOwnPropertyNames(obj) {
         var val = to_object_x_esm(obj); // IE bug where layout engine calls userland gOPN for cross-domain `window` objects
 
-        if (win && win !== window && to_string_tag_x_dist_to_string_tag_x_esm(val) === '[object Window]') {
+        if (win && win !== window && to_string_tag_x_esm(val) === '[object Window]') {
           var result = attempt_x_esm(nativeGOPN, val);
           return result.threw ? array_slice_x_esm(cachedWindowNames) : result.value;
         }
@@ -6326,1102 +3166,6 @@ if (typeof getOPN !== 'function') {
 
 var gopn = getOPN;
 /* harmony default export */ var get_own_property_names_x_esm = (gopn);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
-var node_modules_has_boxed_string_x_dist_has_boxed_string_x_esm_string = 'a';
-var has_boxed_string_x_dist_has_boxed_string_x_esm_boxedString = {}.constructor(node_modules_has_boxed_string_x_dist_has_boxed_string_x_esm_string);
-/**
- * Check failure of by-index access of string characters (IE < 9)
- * and failure of `0 in boxedString` (Rhino).
- *
- * `true` if no failure; otherwise `false`.
- *
- * @type boolean
- */
-
-var has_boxed_string_x_dist_has_boxed_string_x_esm_hasBoxed = has_boxed_string_x_dist_has_boxed_string_x_esm_boxedString[0] === node_modules_has_boxed_string_x_dist_has_boxed_string_x_esm_string && 0 in has_boxed_string_x_dist_has_boxed_string_x_esm_boxedString;
-/* harmony default export */ var node_modules_has_boxed_string_x_dist_has_boxed_string_x_esm = (has_boxed_string_x_dist_has_boxed_string_x_esm_hasBoxed);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
-
-
-var node_modules_split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_EMPTY_STRING = '';
-var split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_strSplit = node_modules_split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_EMPTY_STRING.split;
-var split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_isStringFn = node_modules_has_boxed_string_x_dist_has_boxed_string_x_esm === false && typeof split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_strSplit === 'function' && is_string_default.a;
-/**
- * This method tests if a value is a string with the boxed bug; splits to an
- * array for iteration; otherwise returns the original value.
- *
- * @param {*} [value] - The value to be tested.
- * @returns {*} An array or characters if value was a string with the boxed bug;
- *  otherwise the value.
- */
-
-var split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_splitIfBoxedBug = function splitIfBoxedBug(value) {
-  return split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_isStringFn && split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_isStringFn(value) ? split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_strSplit.call(value, node_modules_split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_EMPTY_STRING) : value;
-};
-
-/* harmony default export */ var node_modules_split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm = (split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm_splitIfBoxedBug);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this = undefined;
-
-function array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(this, array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm = (array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.threw === false && array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
-// EXTERNAL MODULE: ./node_modules/array-filter-x/node_modules/is-primitive/index.js
-var array_filter_x_node_modules_is_primitive = __webpack_require__(7);
-var array_filter_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(array_filter_x_node_modules_is_primitive);
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-var array_filter_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
-  if (is_nil_x_esm(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-};
-
-/* harmony default export */ var array_filter_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm = (array_filter_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/to-primitive-x/dist/to-primitive-x.esm.js
-
-
-
-
-
-
-
-var to_primitive_x_dist_to_primitive_x_esm_ZERO = 0;
-var to_primitive_x_dist_to_primitive_x_esm_ONE = 1;
-/* eslint-disable-next-line no-void */
-
-var to_primitive_x_dist_to_primitive_x_esm_UNDEFINED = void to_primitive_x_dist_to_primitive_x_esm_ZERO;
-var to_primitive_x_dist_to_primitive_x_esm_NUMBER = 'number';
-var to_primitive_x_dist_to_primitive_x_esm_STRING = 'string';
-var to_primitive_x_dist_to_primitive_x_esm_DEFAULT = 'default';
-/** @type {StringConstructor} */
-
-var to_primitive_x_dist_to_primitive_x_esm_StringCtr = to_primitive_x_dist_to_primitive_x_esm_STRING.constructor;
-/** @type {NumberConstructor} */
-
-var to_primitive_x_dist_to_primitive_x_esm_NumberCtr = to_primitive_x_dist_to_primitive_x_esm_ZERO.constructor;
-/* eslint-disable-next-line compat/compat */
-
-var to_primitive_x_dist_to_primitive_x_esm_symToPrimitive = array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.toPrimitive;
-/* eslint-disable-next-line compat/compat */
-
-var to_primitive_x_dist_to_primitive_x_esm_symValueOf = array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.prototype.valueOf;
-var to_primitive_x_dist_to_primitive_x_esm_toStringOrder = ['toString', 'valueOf'];
-var to_primitive_x_dist_to_primitive_x_esm_toNumberOrder = ['valueOf', 'toString'];
-var to_primitive_x_dist_to_primitive_x_esm_orderLength = 2;
-/**
- * @param {*} ordinary - The ordinary to convert.
- * @param {*} hint - The hint.
- * @returns {*} - The primitive.
- */
-
-var to_primitive_x_dist_to_primitive_x_esm_ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  array_filter_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(ordinary);
-
-  if (typeof hint !== 'string' || hint !== to_primitive_x_dist_to_primitive_x_esm_NUMBER && hint !== to_primitive_x_dist_to_primitive_x_esm_STRING) {
-    throw new TypeError('hint must be "string" or "number"');
-  }
-
-  var methodNames = hint === to_primitive_x_dist_to_primitive_x_esm_STRING ? to_primitive_x_dist_to_primitive_x_esm_toStringOrder : to_primitive_x_dist_to_primitive_x_esm_toNumberOrder;
-  var method;
-  var result;
-
-  for (var i = to_primitive_x_dist_to_primitive_x_esm_ZERO; i < to_primitive_x_dist_to_primitive_x_esm_orderLength; i += to_primitive_x_dist_to_primitive_x_esm_ONE) {
-    method = ordinary[methodNames[i]];
-
-    if (is_function_x_esm(method)) {
-      result = method.call(ordinary);
-
-      if (array_filter_x_node_modules_is_primitive_default()(result)) {
-        return result;
-      }
-    }
-  }
-
-  throw new TypeError('No default value');
-};
-/**
- * @param {*} object - The object.
- * @param {*} property - The property.
- * @returns {undefined|Function} - The method.
- */
-
-
-var to_primitive_x_dist_to_primitive_x_esm_getMethod = function _getMethod(object, property) {
-  var func = object[property];
-
-  if (is_nil_x_esm(func) === false) {
-    if (is_function_x_esm(func) === false) {
-      throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
-    }
-
-    return func;
-  }
-
-  return to_primitive_x_dist_to_primitive_x_esm_UNDEFINED;
-};
-/**
- * Get the hint.
- *
- * @param {*} value - The value to compare.
- * @param {boolean} supplied - Was a value supplied.
- * @returns {string} - The hint string.
- */
-
-
-var to_primitive_x_dist_to_primitive_x_esm_getHint = function getHint(value, supplied) {
-  if (supplied) {
-    if (value === to_primitive_x_dist_to_primitive_x_esm_StringCtr) {
-      return to_primitive_x_dist_to_primitive_x_esm_STRING;
-    }
-
-    if (value === to_primitive_x_dist_to_primitive_x_esm_NumberCtr) {
-      return to_primitive_x_dist_to_primitive_x_esm_NUMBER;
-    }
-  }
-
-  return to_primitive_x_dist_to_primitive_x_esm_DEFAULT;
-};
-/**
- * Get the primitive from the exotic.
- *
- * @param {*} value - The exotic.
- * @returns {*} - The primitive.
- */
-
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_getExoticToPrim = function getExoticToPrim(value) {
-  if (array_filter_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm) {
-    if (to_primitive_x_dist_to_primitive_x_esm_symToPrimitive) {
-      return to_primitive_x_dist_to_primitive_x_esm_getMethod(value, to_primitive_x_dist_to_primitive_x_esm_symToPrimitive);
-    }
-
-    if (is_symbol_default()(value)) {
-      return to_primitive_x_dist_to_primitive_x_esm_symValueOf;
-    }
-  }
-
-  return to_primitive_x_dist_to_primitive_x_esm_UNDEFINED;
-};
-/**
- * This method converts a JavaScript object to a primitive value.
- * Note: When toPrimitive is called with no hint, then it generally behaves as
- * if the hint were Number. However, objects may over-ride this behaviour by
- * defining a @@toPrimitive method. Of the objects defined in this specification
- * only Date objects (see 20.3.4.45) and Symbol objects (see 19.4.3.4) over-ride
- * the default ToPrimitive behaviour. Date objects treat no hint as if the hint
- * were String.
- *
- * @param {*} input - The input to convert.
- * @param {NumberConstructor|StringConstructor} [preferredType] - The preferred type (String or Number).
- * @throws {TypeError} If unable to convert input to a primitive.
- * @returns {string|number} The converted input as a primitive.
- * @see {http://www.ecma-international.org/ecma-262/6.0/#sec-toprimitive}
- */
-
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) {
-  if (array_filter_x_node_modules_is_primitive_default()(input)) {
-    return input;
-  }
-
-  var hint = to_primitive_x_dist_to_primitive_x_esm_getHint(preferredType, arguments.length > to_primitive_x_dist_to_primitive_x_esm_ONE);
-  var exoticToPrim = node_modules_to_primitive_x_dist_to_primitive_x_esm_getExoticToPrim(input);
-
-  if (typeof exoticToPrim !== 'undefined') {
-    var result = exoticToPrim.call(input, hint);
-
-    if (array_filter_x_node_modules_is_primitive_default()(result)) {
-      return result;
-    }
-
-    throw new TypeError('unable to convert exotic object to primitive');
-  }
-
-  var newHint = hint === to_primitive_x_dist_to_primitive_x_esm_DEFAULT && (is_date_object_default()(input) || is_symbol_default()(input)) ? to_primitive_x_dist_to_primitive_x_esm_STRING : hint;
-  return to_primitive_x_dist_to_primitive_x_esm_ordinaryToPrimitive(input, newHint === to_primitive_x_dist_to_primitive_x_esm_DEFAULT ? to_primitive_x_dist_to_primitive_x_esm_NUMBER : newHint);
-};
-
-/* harmony default export */ var node_modules_to_primitive_x_dist_to_primitive_x_esm = (node_modules_to_primitive_x_dist_to_primitive_x_esm_toPrimitive);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/to-string-x/dist/to-string-x.esm.js
-
-var node_modules_to_string_x_dist_to_string_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
-var node_modules_to_string_x_dist_to_string_x_esm_castString = node_modules_to_string_x_dist_to_string_x_esm_ERROR_MESSAGE.constructor;
-/**
- * The abstract operation ToString converts argument to a value of type String.
- *
- * @param {*} [value] - The value to convert to a string.
- * @throws {TypeError} If `value` is a Symbol.
- * @returns {string} The converted value.
- */
-
-var array_filter_x_node_modules_to_string_x_dist_to_string_x_esm_ToString = function ToString(value) {
-  if (is_symbol_default()(value)) {
-    throw new TypeError(node_modules_to_string_x_dist_to_string_x_esm_ERROR_MESSAGE);
-  }
-
-  return node_modules_to_string_x_dist_to_string_x_esm_castString(value);
-};
-
-/* harmony default export */ var array_filter_x_node_modules_to_string_x_dist_to_string_x_esm = (array_filter_x_node_modules_to_string_x_dist_to_string_x_esm_ToString);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
-
-
-/**
- * This method requires an argument is corecible then converts using ToString.
- *
- * @param {*} [value] - The value to converted to a string.
- * @throws {TypeError} If value is null or undefined.
- * @returns {string} The value as a string.
- */
-
-var array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
-  return array_filter_x_node_modules_to_string_x_dist_to_string_x_esm(array_filter_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(value));
-};
-
-/* harmony default export */ var array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm = (array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm_requireCoercibleToString);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/white-space-x/dist/white-space-x.esm.js
-/**
- * A record of a white space character.
- *
- * @typedef {object} CharRecord
- * @property {number} code - The character code.
- * @property {string} description - A description of the character.
- * @property {boolean} es5 - Whether the spec lists this as a white space.
- * @property {boolean} es2015 - Whether the spec lists this as a white space.
- * @property {boolean} es2016 - Whether the spec lists this as a white space.
- * @property {boolean} es2017 - Whether the spec lists this as a white space.
- * @property {boolean} es2018 - Whether the spec lists this as a white space.
- * @property {string} string - The character string.
- */
-
-/**
- * An array of the whitespace char codes, string, descriptions and language
- * presence in the specifications.
- *
- * @type Array.<CharRecord>
- */
-var node_modules_white_space_x_dist_white_space_x_esm_list = [{
-  code: 0x0009,
-  description: 'Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\t"
-}, {
-  code: 0x000a,
-  description: 'Line Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\n"
-}, {
-  code: 0x000b,
-  description: 'Vertical Tab',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\x0B"
-}, {
-  code: 0x000c,
-  description: 'Form Feed',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\f"
-}, {
-  code: 0x000d,
-  description: 'Carriage Return',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\r"
-}, {
-  code: 0x0020,
-  description: 'Space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: " "
-},
-/*
-{
-  code: 0x0085,
-  description: 'Next line',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u0085'
-}
-*/
-{
-  code: 0x00a0,
-  description: 'No-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\xA0"
-}, {
-  code: 0x1680,
-  description: 'Ogham space mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u1680"
-}, {
-  code: 0x180e,
-  description: 'Mongolian vowel separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: false,
-  es2018: false,
-  string: "\u180E"
-}, {
-  code: 0x2000,
-  description: 'En quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2000"
-}, {
-  code: 0x2001,
-  description: 'Em quad',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2001"
-}, {
-  code: 0x2002,
-  description: 'En space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2002"
-}, {
-  code: 0x2003,
-  description: 'Em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2003"
-}, {
-  code: 0x2004,
-  description: 'Three-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2004"
-}, {
-  code: 0x2005,
-  description: 'Four-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2005"
-}, {
-  code: 0x2006,
-  description: 'Six-per-em space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2006"
-}, {
-  code: 0x2007,
-  description: 'Figure space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2007"
-}, {
-  code: 0x2008,
-  description: 'Punctuation space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2008"
-}, {
-  code: 0x2009,
-  description: 'Thin space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2009"
-}, {
-  code: 0x200a,
-  description: 'Hair space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u200A"
-},
-/*
-{
-  code: 0x200b,
-  description: 'Zero width space',
-  es5: false,
-  es2015: false,
-  es2016: false,
-  es2017: false,
-  es2018: false,
-  string: '\u200b'
-},
-*/
-{
-  code: 0x2028,
-  description: 'Line separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2028"
-}, {
-  code: 0x2029,
-  description: 'Paragraph separator',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u2029"
-}, {
-  code: 0x202f,
-  description: 'Narrow no-break space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u202F"
-}, {
-  code: 0x205f,
-  description: 'Medium mathematical space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u205F"
-}, {
-  code: 0x3000,
-  description: 'Ideographic space',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\u3000"
-}, {
-  code: 0xfeff,
-  description: 'Byte Order Mark',
-  es5: true,
-  es2015: true,
-  es2016: true,
-  es2017: true,
-  es2018: true,
-  string: "\uFEFF"
-}];
-/**
- * A string of the ES5 to ES2016 whitespace characters.
- *
- * @type string
- */
-
-var node_modules_white_space_x_dist_white_space_x_esm_stringES2016 = '';
-/**
- * A string of the ES2017 to ES2018 whitespace characters.
- *
- * @type string
- */
-
-var node_modules_white_space_x_dist_white_space_x_esm_stringES2018 = '';
-var array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_length = node_modules_white_space_x_dist_white_space_x_esm_list.length;
-
-for (var array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i = 0; array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i < array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_length; array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i += 1) {
-  if (node_modules_white_space_x_dist_white_space_x_esm_list[array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i].es2016) {
-    node_modules_white_space_x_dist_white_space_x_esm_stringES2016 += node_modules_white_space_x_dist_white_space_x_esm_list[array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i].string;
-  }
-
-  if (node_modules_white_space_x_dist_white_space_x_esm_list[array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i].es2018) {
-    node_modules_white_space_x_dist_white_space_x_esm_stringES2018 += node_modules_white_space_x_dist_white_space_x_esm_list[array_filter_x_node_modules_white_space_x_dist_white_space_x_esm_i].string;
-  }
-}
-
-var node_modules_white_space_x_dist_white_space_x_esm_string2018 = node_modules_white_space_x_dist_white_space_x_esm_stringES2018;
-/* harmony default export */ var array_filter_x_node_modules_white_space_x_dist_white_space_x_esm = (node_modules_white_space_x_dist_white_space_x_esm_string2018);
-var node_modules_white_space_x_dist_white_space_x_esm_string2016 = node_modules_white_space_x_dist_white_space_x_esm_stringES2016;
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/trim-left-x/dist/trim-left-x.esm.js
-
-
-var node_modules_trim_left_x_dist_trim_left_x_esm_EMPTY_STRING = '';
-var node_modules_trim_left_x_dist_trim_left_x_esm_RegExpCtr = /none/.constructor;
-var node_modules_trim_left_x_dist_trim_left_x_esm_reLeft2016 = new node_modules_trim_left_x_dist_trim_left_x_esm_RegExpCtr("^[".concat(node_modules_white_space_x_dist_white_space_x_esm_string2016, "]+"));
-var node_modules_trim_left_x_dist_trim_left_x_esm_reLeft = new node_modules_trim_left_x_dist_trim_left_x_esm_RegExpCtr("^[".concat(array_filter_x_node_modules_white_space_x_dist_white_space_x_esm, "]+"));
-var node_modules_trim_left_x_dist_trim_left_x_esm_replace = node_modules_trim_left_x_dist_trim_left_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the left end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-function node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2016(string) {
-  return node_modules_trim_left_x_dist_trim_left_x_esm_replace.call(array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), node_modules_trim_left_x_dist_trim_left_x_esm_reLeft2016, node_modules_trim_left_x_dist_trim_left_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the left end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the left end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The left trimmed string.
- */
-
-var array_filter_x_node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2018 = function trimLeft2018(string) {
-  return node_modules_trim_left_x_dist_trim_left_x_esm_replace.call(array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), node_modules_trim_left_x_dist_trim_left_x_esm_reLeft, node_modules_trim_left_x_dist_trim_left_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var array_filter_x_node_modules_trim_left_x_dist_trim_left_x_esm = (array_filter_x_node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/trim-right-x/dist/trim-right-x.esm.js
-
-
-var array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING = '';
-var array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_RegExpCtr = /none/.constructor;
-var node_modules_trim_right_x_dist_trim_right_x_esm_reRight2016 = new array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_RegExpCtr("[".concat(node_modules_white_space_x_dist_white_space_x_esm_string2016, "]+$"));
-var node_modules_trim_right_x_dist_trim_right_x_esm_reRight2018 = new array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_RegExpCtr("[".concat(array_filter_x_node_modules_white_space_x_dist_white_space_x_esm, "]+$"));
-var array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_replace = array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING.replace;
-/**
- * This method removes whitespace from the right end of a string. (ES2016).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-function node_modules_trim_right_x_dist_trim_right_x_esm_trimRight2016(string) {
-  return array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_replace.call(array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), node_modules_trim_right_x_dist_trim_right_x_esm_reRight2016, array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING);
-}
-/**
- * This method removes whitespace from the right end of a string. (ES2018).
- *
- * @param {string} [string] - The string to trim the right end whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The right trimmed string.
- */
-
-var array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_trimRight2018 = function trimRight2018(string) {
-  return array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_replace.call(array_filter_x_node_modules_require_coercible_to_string_x_dist_require_coercible_to_string_x_esm(string), node_modules_trim_right_x_dist_trim_right_x_esm_reRight2018, array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_EMPTY_STRING);
-};
-
-/* harmony default export */ var array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm = (array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm_trimRight2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/trim-x/dist/trim-x.esm.js
-
-
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2016).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-function node_modules_trim_x_dist_trim_x_esm_trim2016(string) {
-  return node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2016(node_modules_trim_right_x_dist_trim_right_x_esm_trimRight2016(string));
-}
-/**
- * This method removes whitespace from the left and right end of a string.
- * (ES2018).
- *
- * @param {string} [string] - The string to trim the whitespace from.
- * @throws {TypeError} If string is null or undefined or not coercible.
- * @returns {string} The trimmed string.
- */
-
-var array_filter_x_node_modules_trim_x_dist_trim_x_esm_trim2018 = function trim2018(string) {
-  return array_filter_x_node_modules_trim_left_x_dist_trim_left_x_esm(array_filter_x_node_modules_trim_right_x_dist_trim_right_x_esm(string));
-};
-
-/* harmony default export */ var array_filter_x_node_modules_trim_x_dist_trim_x_esm = (array_filter_x_node_modules_trim_x_dist_trim_x_esm_trim2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/nan-x/dist/nan-x.esm.js
-/**
- * The constant NaN derived mathematically by 0 / 0.
- *
- * @type number
- */
-/* harmony default export */ var node_modules_nan_x_dist_nan_x_esm = (0 / 0);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/parse-int-x/dist/parse-int-x.esm.js
-
-
-
-var parse_int_x_dist_parse_int_x_esm_nativeParseInt = parseInt;
-/**  @type {Function} */
-
-var parse_int_x_dist_parse_int_x_esm_castNumber = 0 .constructor; // noinspection JSPotentiallyInvalidConstructorUsage
-
-var parse_int_x_dist_parse_int_x_esm_ref = '',
-    parse_int_x_dist_parse_int_x_esm_charAt = parse_int_x_dist_parse_int_x_esm_ref.charAt;
-var parse_int_x_dist_parse_int_x_esm_hexRegex = /^[-+]?0[xX]/;
-var node_modules_parse_int_x_dist_parse_int_x_esm_test = parse_int_x_dist_parse_int_x_esm_hexRegex.test;
-/**
- * This method parses a string argument and returns an integer of the specified
- * radix (the base in mathematical numeral systems). (ES2016).
- *
- * @param {string} [string] - The value to parse. If the string argument is not a
- *  string, then it is converted to a string (using the ToString abstract
- *  operation). Leading whitespace in the string argument is ignored.
- * @param {number} [radix] - An integer between 2 and 36 that represents the radix
- *  (the base in mathematical numeral systems) of the above mentioned string.
- *  Specify 10 for the decimal numeral system commonly used by humans. Always
- *  specify this parameter to eliminate reader confusion and to guarantee
- *  predictable behavior. Different implementations produce different results
- *  when a radix is not specified, usually defaulting the value to 10.
- * @throws {TypeError} If target is a Symbol or is not coercible.
- * @returns {number} An integer number parsed from the given string. If the first
- *  character cannot be converted to a number, NaN is returned.
- */
-
-function parse_int_x_dist_parse_int_x_esm_parseInt2016(string, radix) {
-  var str = node_modules_trim_left_x_dist_trim_left_x_esm_trimLeft2016(array_filter_x_node_modules_to_string_x_dist_to_string_x_esm(string));
-  return parse_int_x_dist_parse_int_x_esm_nativeParseInt(str, parse_int_x_dist_parse_int_x_esm_castNumber(radix) || (node_modules_parse_int_x_dist_parse_int_x_esm_test.call(parse_int_x_dist_parse_int_x_esm_hexRegex, str) ? 16 : 10));
-}
-/**
- * This method parses a string argument and returns an integer of the specified
- * radix (the base in mathematical numeral systems). (ES2018).
- *
- * @param {string} [string] - The value to parse. If the string argument is not a
- *  string, then it is converted to a string (using the ToString abstract
- *  operation). Leading whitespace in the string argument is ignored.
- * @param {number} [radix] - An integer between 2 and 36 that represents the radix
- *  (the base in mathematical numeral systems) of the above mentioned string.
- *  Specify 10 for the decimal numeral system commonly used by humans. Always
- *  specify this parameter to eliminate reader confusion and to guarantee
- *  predictable behavior. Different implementations produce different results
- *  when a radix is not specified, usually defaulting the value to 10.
- * @throws {TypeError} If target is a Symbol or is not coercible.
- * @returns {number} An integer number parsed from the given string. If the first
- *  character cannot be converted to a number, NaN is returned.
- */
-
-var node_modules_parse_int_x_dist_parse_int_x_esm_parseInt2018 = function parseInt2018(string, radix) {
-  var str = array_filter_x_node_modules_trim_left_x_dist_trim_left_x_esm(array_filter_x_node_modules_to_string_x_dist_to_string_x_esm(string));
-
-  if (parse_int_x_dist_parse_int_x_esm_charAt.call(str, 0) === "\u180E") {
-    return node_modules_nan_x_dist_nan_x_esm;
-  }
-
-  return parse_int_x_dist_parse_int_x_esm_nativeParseInt(str, parse_int_x_dist_parse_int_x_esm_castNumber(radix) || (node_modules_parse_int_x_dist_parse_int_x_esm_test.call(parse_int_x_dist_parse_int_x_esm_hexRegex, str) ? 16 : 10));
-};
-
-/* harmony default export */ var node_modules_parse_int_x_dist_parse_int_x_esm = (node_modules_parse_int_x_dist_parse_int_x_esm_parseInt2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/to-number-x/dist/to-number-x.esm.js
-
-
-
-
-
-var to_number_x_dist_to_number_x_esm_binaryRadix = 2;
-var to_number_x_dist_to_number_x_esm_octalRadix = 8;
-var to_number_x_dist_to_number_x_esm_testCharsCount = 2;
-var node_modules_to_number_x_dist_to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
-var node_modules_to_number_x_dist_to_number_x_esm_castNumber = to_number_x_dist_to_number_x_esm_testCharsCount.constructor;
-var to_number_x_dist_to_number_x_esm_pStrSlice = node_modules_to_number_x_dist_to_number_x_esm_ERROR_MESSAGE.slice;
-var to_number_x_dist_to_number_x_esm_binaryRegex = /^0b[01]+$/i;
-var to_number_x_dist_to_number_x_esm_RegExpConstructor = to_number_x_dist_to_number_x_esm_binaryRegex.constructor; // Note that in IE 8, RegExp.prototype.test doesn't seem to exist: ie, "test" is
-// an own property of regexes. wtf.
-
-var node_modules_to_number_x_dist_to_number_x_esm_test = to_number_x_dist_to_number_x_esm_binaryRegex.test;
-
-var to_number_x_dist_to_number_x_esm_isBinary = function _isBinary(value) {
-  return node_modules_to_number_x_dist_to_number_x_esm_test.call(to_number_x_dist_to_number_x_esm_binaryRegex, value);
-};
-
-var to_number_x_dist_to_number_x_esm_octalRegex = /^0o[0-7]+$/i;
-
-var to_number_x_dist_to_number_x_esm_isOctal = function _isOctal(value) {
-  return node_modules_to_number_x_dist_to_number_x_esm_test.call(to_number_x_dist_to_number_x_esm_octalRegex, value);
-};
-
-var to_number_x_dist_to_number_x_esm_nonWSregex2016 = new to_number_x_dist_to_number_x_esm_RegExpConstructor("[\x85\u200B\uFFFE]", 'g');
-
-var to_number_x_dist_to_number_x_esm_hasNonWS2016 = function _hasNonWS(value) {
-  return node_modules_to_number_x_dist_to_number_x_esm_test.call(to_number_x_dist_to_number_x_esm_nonWSregex2016, value);
-};
-
-var to_number_x_dist_to_number_x_esm_nonWSregex2018 = new to_number_x_dist_to_number_x_esm_RegExpConstructor("[\x85\u180E\u200B\uFFFE]", 'g');
-
-var to_number_x_dist_to_number_x_esm_hasNonWS2018 = function _hasNonWS(value) {
-  return node_modules_to_number_x_dist_to_number_x_esm_test.call(to_number_x_dist_to_number_x_esm_nonWSregex2018, value);
-};
-
-var to_number_x_dist_to_number_x_esm_invalidHexLiteral = /^[-+]0x[0-9a-f]+$/i;
-
-var to_number_x_dist_to_number_x_esm_isInvalidHexLiteral = function _isInvalidHexLiteral(value) {
-  return node_modules_to_number_x_dist_to_number_x_esm_test.call(to_number_x_dist_to_number_x_esm_invalidHexLiteral, value);
-};
-/**
- * This method converts argument to a value of type Number. (ES2016).
- *
- * @param {*} [argument] - The argument to convert to a number.
- * @throws {TypeError} - If argument is a Symbol or not coercible.
- * @returns {*} The argument converted to a number.
- */
-
-
-function to_number_x_dist_to_number_x_esm_toNumber2016(argument) {
-  var value = node_modules_to_primitive_x_dist_to_primitive_x_esm(argument, Number);
-
-  if (is_symbol_default()(value)) {
-    throw new TypeError(node_modules_to_number_x_dist_to_number_x_esm_ERROR_MESSAGE);
-  }
-
-  if (typeof value === 'string') {
-    if (to_number_x_dist_to_number_x_esm_isBinary(value)) {
-      return to_number_x_dist_to_number_x_esm_toNumber2016(parse_int_x_dist_parse_int_x_esm_parseInt2016(to_number_x_dist_to_number_x_esm_pStrSlice.call(value, to_number_x_dist_to_number_x_esm_testCharsCount), to_number_x_dist_to_number_x_esm_binaryRadix));
-    }
-
-    if (to_number_x_dist_to_number_x_esm_isOctal(value)) {
-      return to_number_x_dist_to_number_x_esm_toNumber2016(parse_int_x_dist_parse_int_x_esm_parseInt2016(to_number_x_dist_to_number_x_esm_pStrSlice.call(value, to_number_x_dist_to_number_x_esm_testCharsCount), to_number_x_dist_to_number_x_esm_octalRadix));
-    }
-
-    if (to_number_x_dist_to_number_x_esm_hasNonWS2016(value) || to_number_x_dist_to_number_x_esm_isInvalidHexLiteral(value)) {
-      return node_modules_nan_x_dist_nan_x_esm;
-    }
-
-    var trimmed = node_modules_trim_x_dist_trim_x_esm_trim2016(value);
-
-    if (trimmed !== value) {
-      return to_number_x_dist_to_number_x_esm_toNumber2016(trimmed);
-    }
-  }
-
-  return node_modules_to_number_x_dist_to_number_x_esm_castNumber(value);
-}
-/**
- * This method converts argument to a value of type Number. (ES2018).
- *
- * @param {*} [argument] - The argument to convert to a number.
- * @throws {TypeError} - If argument is a Symbol or not coercible.
- * @returns {*} The argument converted to a number.
- */
-
-var node_modules_to_number_x_dist_to_number_x_esm_toNumber2018 = function toNumber2018(argument) {
-  var value = node_modules_to_primitive_x_dist_to_primitive_x_esm(argument, node_modules_to_number_x_dist_to_number_x_esm_castNumber);
-
-  if (is_symbol_default()(value)) {
-    throw new TypeError(node_modules_to_number_x_dist_to_number_x_esm_ERROR_MESSAGE);
-  }
-
-  if (typeof value === 'string') {
-    if (to_number_x_dist_to_number_x_esm_isBinary(value)) {
-      return toNumber2018(node_modules_parse_int_x_dist_parse_int_x_esm(to_number_x_dist_to_number_x_esm_pStrSlice.call(value, to_number_x_dist_to_number_x_esm_testCharsCount), to_number_x_dist_to_number_x_esm_binaryRadix));
-    }
-
-    if (to_number_x_dist_to_number_x_esm_isOctal(value)) {
-      return toNumber2018(node_modules_parse_int_x_dist_parse_int_x_esm(to_number_x_dist_to_number_x_esm_pStrSlice.call(value, to_number_x_dist_to_number_x_esm_testCharsCount), to_number_x_dist_to_number_x_esm_octalRadix));
-    }
-
-    if (to_number_x_dist_to_number_x_esm_hasNonWS2018(value) || to_number_x_dist_to_number_x_esm_isInvalidHexLiteral(value)) {
-      return node_modules_nan_x_dist_nan_x_esm;
-    }
-
-    var trimmed = array_filter_x_node_modules_trim_x_dist_trim_x_esm(value);
-
-    if (trimmed !== value) {
-      return toNumber2018(trimmed);
-    }
-  }
-
-  return node_modules_to_number_x_dist_to_number_x_esm_castNumber(value);
-};
-
-/* harmony default export */ var node_modules_to_number_x_dist_to_number_x_esm = (node_modules_to_number_x_dist_to_number_x_esm_toNumber2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/is-nan-x/dist/is-nan-x.esm.js
-/**
- * This method determines whether the passed value is NaN and its type is
- * `Number`. It is a more robust version of the original, global isNaN().
- *
- * @param {*} [value] - The value to be tested for NaN.
- * @returns {boolean} `true` if the given value is NaN and its type is Number;
- *  otherwise, `false`.
- */
-var node_modules_is_nan_x_dist_is_nan_x_esm_isNaN = function isNaN(value) {
-  /* eslint-disable-next-line no-self-compare */
-  return value !== value;
-};
-
-/* harmony default export */ var node_modules_is_nan_x_dist_is_nan_x_esm = (node_modules_is_nan_x_dist_is_nan_x_esm_isNaN);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/infinity-x/dist/infinity-x.esm.js
-/**
- * The constant value Infinity derived mathematically by 1 / 0.
- *
- * @type number
- */
-/* harmony default export */ var node_modules_infinity_x_dist_infinity_x_esm = (1 / 0);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/is-finite-x/dist/is-finite-x.esm.js
-
-
-/**
- * This method determines whether the passed value is a finite number.
- *
- * @param {*} [number] - The value to be tested for finiteness.
- * @returns {boolean} A Boolean indicating whether or not the given value is a finite number.
- */
-
-var node_modules_is_finite_x_dist_is_finite_x_esm_isFinite = function isFinite(number) {
-  return typeof number === 'number' && node_modules_is_nan_x_dist_is_nan_x_esm(number) === false && number !== node_modules_infinity_x_dist_infinity_x_esm && number !== -node_modules_infinity_x_dist_infinity_x_esm;
-};
-
-/* harmony default export */ var node_modules_is_finite_x_dist_is_finite_x_esm = (node_modules_is_finite_x_dist_is_finite_x_esm_isFinite);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/math-sign-x/dist/math-sign-x.esm.js
-
-
-/**
- * This method returns the sign of a number, indicating whether the number is positive,
- * negative or zero. (ES2016).
- *
- * @param {*} x - A number.
- * @returns {number} A number representing the sign of the given argument. If the argument
- * is a positive number, negative number, positive zero or negative zero, the function will
- * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
- */
-
-function math_sign_x_dist_math_sign_x_esm_sign2016(x) {
-  var n = to_number_x_dist_to_number_x_esm_toNumber2016(x);
-
-  if (n === 0 || node_modules_is_nan_x_dist_is_nan_x_esm(n)) {
-    return n;
-  }
-
-  return n > 0 ? 1 : -1;
-}
-/**
- * This method returns the sign of a number, indicating whether the number is positive,
- * negative or zero. (ES2018).
- *
- * @param {*} x - A number.
- * @returns {number} A number representing the sign of the given argument. If the argument
- * is a positive number, negative number, positive zero or negative zero, the function will
- * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
- */
-
-var node_modules_math_sign_x_dist_math_sign_x_esm_sign2018 = function sign2018(x) {
-  var n = node_modules_to_number_x_dist_to_number_x_esm(x);
-
-  if (n === 0 || node_modules_is_nan_x_dist_is_nan_x_esm(n)) {
-    return n;
-  }
-
-  return n > 0 ? 1 : -1;
-};
-
-/* harmony default export */ var node_modules_math_sign_x_dist_math_sign_x_esm = (node_modules_math_sign_x_dist_math_sign_x_esm_sign2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/to-integer-x/dist/to-integer-x.esm.js
-
-
-
-
-var to_integer_x_dist_to_integer_x_esm_abs = Math.abs,
-    to_integer_x_dist_to_integer_x_esm_floor = Math.floor;
-/**
- * Converts `value` to an integer. (ES2016).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-function to_integer_x_dist_to_integer_x_esm_toInteger2016(value) {
-  var number = to_number_x_dist_to_number_x_esm_toNumber2016(value);
-
-  if (node_modules_is_nan_x_dist_is_nan_x_esm(number)) {
-    return 0;
-  }
-
-  if (number === 0 || node_modules_is_finite_x_dist_is_finite_x_esm(number) === false) {
-    return number;
-  }
-
-  return math_sign_x_dist_math_sign_x_esm_sign2016(number) * to_integer_x_dist_to_integer_x_esm_floor(to_integer_x_dist_to_integer_x_esm_abs(number));
-}
-/**
- * Converts `value` to an integer. (ES2018).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-var node_modules_to_integer_x_dist_to_integer_x_esm_toInteger2018 = function toInteger2018(value) {
-  var number = node_modules_to_number_x_dist_to_number_x_esm(value);
-
-  if (node_modules_is_nan_x_dist_is_nan_x_esm(number)) {
-    return 0;
-  }
-
-  if (number === 0 || node_modules_is_finite_x_dist_is_finite_x_esm(number) === false) {
-    return number;
-  }
-
-  return node_modules_math_sign_x_dist_math_sign_x_esm(number) * to_integer_x_dist_to_integer_x_esm_floor(to_integer_x_dist_to_integer_x_esm_abs(number));
-};
-
-/* harmony default export */ var node_modules_to_integer_x_dist_to_integer_x_esm = (node_modules_to_integer_x_dist_to_integer_x_esm_toInteger2018);
-
-
-// CONCATENATED MODULE: ./node_modules/array-filter-x/node_modules/to-length-x/dist/to-length-x.esm.js
-
-var to_length_x_dist_to_length_x_esm_MAX_SAFE_INTEGER = 9007199254740991;
-/**
- * Converts `value` to an integer suitable for use as the length of an
- * array-like object. (ES2016).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-function to_length_x_dist_to_length_x_esm_toLength2016(value) {
-  var len = to_integer_x_dist_to_integer_x_esm_toInteger2016(value); // includes converting -0 to +0
-
-  if (len <= 0) {
-    return 0;
-  }
-
-  if (len > to_length_x_dist_to_length_x_esm_MAX_SAFE_INTEGER) {
-    return to_length_x_dist_to_length_x_esm_MAX_SAFE_INTEGER;
-  }
-
-  return len;
-}
-/**
- * Converts `value` to an integer suitable for use as the length of an
- * array-like object. (ES2018).
- *
- * @param {*} value - The value to convert.
- * @returns {number} Returns the converted integer.
- */
-
-var node_modules_to_length_x_dist_to_length_x_esm_toLength2018 = function toLength2018(value) {
-  var len = node_modules_to_integer_x_dist_to_integer_x_esm(value); // includes converting -0 to +0
-
-  if (len <= 0) {
-    return 0;
-  }
-
-  if (len > to_length_x_dist_to_length_x_esm_MAX_SAFE_INTEGER) {
-    return to_length_x_dist_to_length_x_esm_MAX_SAFE_INTEGER;
-  }
-
-  return len;
-};
-
-/* harmony default export */ var node_modules_to_length_x_dist_to_length_x_esm = (node_modules_to_length_x_dist_to_length_x_esm_toLength2018);
 
 
 // CONCATENATED MODULE: ./node_modules/array-filter-x/dist/array-filter-x.esm.js
@@ -7578,8 +3322,8 @@ if (nativFilter) {
     var object = to_object_x_esm(array); // If no callback function or if callback is not a callable function
 
     assert_is_function_x_esm(callBack);
-    var iterable = node_modules_split_if_boxed_bug_x_dist_split_if_boxed_bug_x_esm(object);
-    var length = node_modules_to_length_x_dist_to_length_x_esm(iterable.length);
+    var iterable = split_if_boxed_bug_x_esm(object);
+    var length = to_length_x_esm(iterable.length);
     var thisArg;
 
     if (arguments.length > 2) {
@@ -7608,29 +3352,6 @@ var arrayFilter = $filter;
 /* harmony default export */ var array_filter_x_esm = (arrayFilter);
 
 
-// CONCATENATED MODULE: ./node_modules/get-own-property-symbols-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this = undefined;
-
-function get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(this, get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm = (get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.threw === false && get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
 // CONCATENATED MODULE: ./node_modules/get-own-property-symbols-x/dist/get-own-property-symbols-x.esm.js
 
 
@@ -7638,7 +3359,7 @@ var get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol
 var nativeGOPS = {}.constructor.getOwnPropertySymbols;
 var get_own_property_symbols_x_esm_isWorking;
 
-if (get_own_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && nativeGOPS && typeof nativeGOPS === 'function') {
+if (has_symbol_support_x_esm && nativeGOPS && typeof nativeGOPS === 'function') {
   /* eslint-disable-next-line compat/compat */
   var get_own_property_symbols_x_esm_symbol = Symbol('');
   var get_own_property_symbols_x_esm_testObj = {
@@ -7667,290 +3388,6 @@ var get_own_property_symbols_x_esm_getOwnPropertySymbols = function getOwnProper
 /* harmony default export */ var get_own_property_symbols_x_esm = (get_own_property_symbols_x_esm_getOwnPropertySymbols);
 
 
-// CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
-var get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this = undefined;
-
-function get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-var get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport = attempt_x_esm(function () {
-  get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_newArrowCheck(this, get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_this);
-
-  /* eslint-disable-next-line compat/compat */
-  return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
-}.bind(undefined));
-/**
- * Indicates if `Symbol`exists and creates the correct type.
- * `true`, if it exists and creates the correct type, otherwise `false`.
- *
- * @type boolean
- */
-
-/* harmony default export */ var get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm = (get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.threw === false && get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm_hasSymbolSupport.value === true);
-
-
-// EXTERNAL MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/is-primitive/index.js
-var get_own_enumerable_property_symbols_x_node_modules_is_primitive = __webpack_require__(8);
-var get_own_enumerable_property_symbols_x_node_modules_is_primitive_default = /*#__PURE__*/__webpack_require__.n(get_own_enumerable_property_symbols_x_node_modules_is_primitive);
-
-// CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-var get_own_enumerable_property_symbols_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
-  if (is_nil_x_esm(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-};
-
-/* harmony default export */ var get_own_enumerable_property_symbols_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm = (get_own_enumerable_property_symbols_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm_requireObjectCoercible);
-
-
-// CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/to-primitive-x/dist/to-primitive-x.esm.js
-
-
-
-
-
-
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_ZERO = 0;
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_ONE = 1;
-/* eslint-disable-next-line no-void */
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_UNDEFINED = void node_modules_to_primitive_x_dist_to_primitive_x_esm_ZERO;
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_NUMBER = 'number';
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_STRING = 'string';
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_DEFAULT = 'default';
-/** @type {StringConstructor} */
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_StringCtr = node_modules_to_primitive_x_dist_to_primitive_x_esm_STRING.constructor;
-/** @type {NumberConstructor} */
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_NumberCtr = node_modules_to_primitive_x_dist_to_primitive_x_esm_ZERO.constructor;
-/* eslint-disable-next-line compat/compat */
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_symToPrimitive = get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.toPrimitive;
-/* eslint-disable-next-line compat/compat */
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_symValueOf = get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && Symbol.prototype.valueOf;
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_toStringOrder = ['toString', 'valueOf'];
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_toNumberOrder = ['valueOf', 'toString'];
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_orderLength = 2;
-/**
- * @param {*} ordinary - The ordinary to convert.
- * @param {*} hint - The hint.
- * @returns {*} - The primitive.
- */
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  get_own_enumerable_property_symbols_x_node_modules_require_object_coercible_x_dist_require_object_coercible_x_esm(ordinary);
-
-  if (typeof hint !== 'string' || hint !== node_modules_to_primitive_x_dist_to_primitive_x_esm_NUMBER && hint !== node_modules_to_primitive_x_dist_to_primitive_x_esm_STRING) {
-    throw new TypeError('hint must be "string" or "number"');
-  }
-
-  var methodNames = hint === node_modules_to_primitive_x_dist_to_primitive_x_esm_STRING ? node_modules_to_primitive_x_dist_to_primitive_x_esm_toStringOrder : node_modules_to_primitive_x_dist_to_primitive_x_esm_toNumberOrder;
-  var method;
-  var result;
-
-  for (var i = node_modules_to_primitive_x_dist_to_primitive_x_esm_ZERO; i < node_modules_to_primitive_x_dist_to_primitive_x_esm_orderLength; i += node_modules_to_primitive_x_dist_to_primitive_x_esm_ONE) {
-    method = ordinary[methodNames[i]];
-
-    if (is_function_x_esm(method)) {
-      result = method.call(ordinary);
-
-      if (get_own_enumerable_property_symbols_x_node_modules_is_primitive_default()(result)) {
-        return result;
-      }
-    }
-  }
-
-  throw new TypeError('No default value');
-};
-/**
- * @param {*} object - The object.
- * @param {*} property - The property.
- * @returns {undefined|Function} - The method.
- */
-
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_getMethod = function _getMethod(object, property) {
-  var func = object[property];
-
-  if (is_nil_x_esm(func) === false) {
-    if (is_function_x_esm(func) === false) {
-      throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
-    }
-
-    return func;
-  }
-
-  return node_modules_to_primitive_x_dist_to_primitive_x_esm_UNDEFINED;
-};
-/**
- * Get the hint.
- *
- * @param {*} value - The value to compare.
- * @param {boolean} supplied - Was a value supplied.
- * @returns {string} - The hint string.
- */
-
-
-var node_modules_to_primitive_x_dist_to_primitive_x_esm_getHint = function getHint(value, supplied) {
-  if (supplied) {
-    if (value === node_modules_to_primitive_x_dist_to_primitive_x_esm_StringCtr) {
-      return node_modules_to_primitive_x_dist_to_primitive_x_esm_STRING;
-    }
-
-    if (value === node_modules_to_primitive_x_dist_to_primitive_x_esm_NumberCtr) {
-      return node_modules_to_primitive_x_dist_to_primitive_x_esm_NUMBER;
-    }
-  }
-
-  return node_modules_to_primitive_x_dist_to_primitive_x_esm_DEFAULT;
-};
-/**
- * Get the primitive from the exotic.
- *
- * @param {*} value - The exotic.
- * @returns {*} - The primitive.
- */
-
-
-var get_own_enumerable_property_symbols_x_node_modules_to_primitive_x_dist_to_primitive_x_esm_getExoticToPrim = function getExoticToPrim(value) {
-  if (get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm) {
-    if (node_modules_to_primitive_x_dist_to_primitive_x_esm_symToPrimitive) {
-      return node_modules_to_primitive_x_dist_to_primitive_x_esm_getMethod(value, node_modules_to_primitive_x_dist_to_primitive_x_esm_symToPrimitive);
-    }
-
-    if (is_symbol_default()(value)) {
-      return node_modules_to_primitive_x_dist_to_primitive_x_esm_symValueOf;
-    }
-  }
-
-  return node_modules_to_primitive_x_dist_to_primitive_x_esm_UNDEFINED;
-};
-/**
- * This method converts a JavaScript object to a primitive value.
- * Note: When toPrimitive is called with no hint, then it generally behaves as
- * if the hint were Number. However, objects may over-ride this behaviour by
- * defining a @@toPrimitive method. Of the objects defined in this specification
- * only Date objects (see 20.3.4.45) and Symbol objects (see 19.4.3.4) over-ride
- * the default ToPrimitive behaviour. Date objects treat no hint as if the hint
- * were String.
- *
- * @param {*} input - The input to convert.
- * @param {NumberConstructor|StringConstructor} [preferredType] - The preferred type (String or Number).
- * @throws {TypeError} If unable to convert input to a primitive.
- * @returns {string|number} The converted input as a primitive.
- * @see {http://www.ecma-international.org/ecma-262/6.0/#sec-toprimitive}
- */
-
-
-var get_own_enumerable_property_symbols_x_node_modules_to_primitive_x_dist_to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) {
-  if (get_own_enumerable_property_symbols_x_node_modules_is_primitive_default()(input)) {
-    return input;
-  }
-
-  var hint = node_modules_to_primitive_x_dist_to_primitive_x_esm_getHint(preferredType, arguments.length > node_modules_to_primitive_x_dist_to_primitive_x_esm_ONE);
-  var exoticToPrim = get_own_enumerable_property_symbols_x_node_modules_to_primitive_x_dist_to_primitive_x_esm_getExoticToPrim(input);
-
-  if (typeof exoticToPrim !== 'undefined') {
-    var result = exoticToPrim.call(input, hint);
-
-    if (get_own_enumerable_property_symbols_x_node_modules_is_primitive_default()(result)) {
-      return result;
-    }
-
-    throw new TypeError('unable to convert exotic object to primitive');
-  }
-
-  var newHint = hint === node_modules_to_primitive_x_dist_to_primitive_x_esm_DEFAULT && (is_date_object_default()(input) || is_symbol_default()(input)) ? node_modules_to_primitive_x_dist_to_primitive_x_esm_STRING : hint;
-  return node_modules_to_primitive_x_dist_to_primitive_x_esm_ordinaryToPrimitive(input, newHint === node_modules_to_primitive_x_dist_to_primitive_x_esm_DEFAULT ? node_modules_to_primitive_x_dist_to_primitive_x_esm_NUMBER : newHint);
-};
-
-/* harmony default export */ var get_own_enumerable_property_symbols_x_node_modules_to_primitive_x_dist_to_primitive_x_esm = (get_own_enumerable_property_symbols_x_node_modules_to_primitive_x_dist_to_primitive_x_esm_toPrimitive);
-
-
-// CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/to-string-x/dist/to-string-x.esm.js
-
-var get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
-var get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_castString = get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_ERROR_MESSAGE.constructor;
-/**
- * The abstract operation ToString converts argument to a value of type String.
- *
- * @param {*} [value] - The value to convert to a string.
- * @throws {TypeError} If `value` is a Symbol.
- * @returns {string} The converted value.
- */
-
-var get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_ToString = function ToString(value) {
-  if (is_symbol_default()(value)) {
-    throw new TypeError(get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_ERROR_MESSAGE);
-  }
-
-  return get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_castString(value);
-};
-
-/* harmony default export */ var get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm = (get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm_ToString);
-
-
-// CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/to-property-key-x/dist/to-property-key-x.esm.js
-function to_property_key_x_esm_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { to_property_key_x_esm_typeof = function _typeof(obj) { return typeof obj; }; } else { to_property_key_x_esm_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return to_property_key_x_esm_typeof(obj); }
-
-
-
-
-/**
- * This method Converts argument to a value that can be used as a property key.
- *
- * @param {*} argument - The argument to convert to a property key.
- * @throws {TypeError} If argument is not a symbol and is not coercible to a string.
- * @returns {string|Symbol} The converted argument.
- */
-
-var dist_to_property_key_x_esm_toPropertyKey = function toPropertyKey(argument) {
-  var key = get_own_enumerable_property_symbols_x_node_modules_to_primitive_x_dist_to_primitive_x_esm(argument, String);
-  return get_own_enumerable_property_symbols_x_node_modules_has_symbol_support_x_dist_has_symbol_support_x_esm && to_property_key_x_esm_typeof(key) === 'symbol' ? key : get_own_enumerable_property_symbols_x_node_modules_to_string_x_dist_to_string_x_esm(key);
-};
-
-/* harmony default export */ var dist_to_property_key_x_esm = (dist_to_property_key_x_esm_toPropertyKey);
-
-
-// CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/node_modules/property-is-enumerable-x/dist/property-is-enumerable-x.esm.js
-
-
-var property_is_enumerable_x_esm_propIsEnumerable = {}.propertyIsEnumerable;
-/**
- * This method returns a Boolean indicating whether the specified property is
- * enumerable. Does not attempt to fix bugs in IE<9 or old Opera, otherwise it
- * does ES6ify the method.
- *
- * @param {!object} object - The object on which to test the property.
- * @param {string|Symbol} property - The name of the property to test.
- * @throws {TypeError} If target is null or undefined.
- * @returns {boolean} A Boolean indicating whether the specified property is
- *  enumerable.
- */
-
-var dist_property_is_enumerable_x_esm_propertyIsEnumerable = function propertyIsEnumerable(object, property) {
-  return property_is_enumerable_x_esm_propIsEnumerable.call(to_object_x_esm(object), dist_to_property_key_x_esm(property));
-};
-
-/* harmony default export */ var dist_property_is_enumerable_x_esm = (dist_property_is_enumerable_x_esm_propertyIsEnumerable);
-
-
 // CONCATENATED MODULE: ./node_modules/get-own-enumerable-property-symbols-x/dist/get-own-enumerable-property-symbols-x.esm.js
 function get_own_enumerable_property_symbols_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
@@ -7973,7 +3410,7 @@ var get_own_enumerable_property_symbols_x_esm_getOwnEnumerablePropertySymbols = 
   return array_filter_x_esm(get_own_property_symbols_x_esm(object), function (symbol) {
     get_own_enumerable_property_symbols_x_esm_newArrowCheck(this, _this);
 
-    return dist_property_is_enumerable_x_esm(object, symbol);
+    return property_is_enumerable_x_esm(object, symbol);
   }.bind(this));
 };
 
