@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-26T15:00:47.917Z",
+  "date": "2019-07-27T15:14:12.031Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "6ca48e1a5a5618210328",
+  "hash": "40c66795c4ea457fbbac",
   "license": "MIT",
-  "version": "2.0.10"
+  "version": "2.0.11"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1571,8 +1571,6 @@ var binaryRadix = 2;
 var octalRadix = 8;
 var testCharsCount = 2;
 var to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
 var to_number_x_esm_castNumber = testCharsCount.constructor;
 var pStrSlice = to_number_x_esm_ERROR_MESSAGE.slice;
 var binaryRegex = /^0b[01]+$/i;
@@ -2126,8 +2124,8 @@ var object_get_own_property_descriptor_x_esm_doesGOPDWork = function doesGOPDWor
 var $getOwnPropertyDescriptor;
 
 if (nativeGOPD) {
-  var doc = typeof document !== 'undefined' && document;
-  var getOPDWorksOnDom = doc ? object_get_own_property_descriptor_x_esm_doesGOPDWork(doc.createElement('div'), 'sentinel') : true;
+  var object_get_own_property_descriptor_x_esm_doc = typeof document !== 'undefined' && document;
+  var getOPDWorksOnDom = object_get_own_property_descriptor_x_esm_doc ? object_get_own_property_descriptor_x_esm_doesGOPDWork(object_get_own_property_descriptor_x_esm_doc.createElement('div'), 'sentinel') : true;
 
   if (getOPDWorksOnDom) {
     var object_get_own_property_descriptor_x_esm_res = attempt_x_esm(nativeGOPD, object_get_own_property_descriptor_x_esm_castObject('abc'), 1);
@@ -2323,10 +2321,10 @@ var assert_is_object_x_esm_assertIsObject = function assertIsObject(value) {
 
 
 
-/** @type {BooleanConstructor} */
-
+var ObjectCtr = {}.constructor;
 var object_define_property_x_esm_castBoolean = true.constructor;
-var nativeDefProp = typeof Object.defineProperty === 'function' && Object.defineProperty;
+var nd = ObjectCtr.defineProperty;
+var nativeDefProp = typeof nd === 'function' && nd;
 var definePropertyFallback;
 
 var toPropertyDescriptor = function _toPropertyDescriptor(desc) {
@@ -2417,27 +2415,21 @@ if (nativeDefProp) {
 }
 
 if (object_define_property_x_esm_castBoolean(nativeDefProp) === false || definePropertyFallback) {
-  var object_define_property_x_esm_prototypeOfObject = Object.prototype; // If JS engine supports accessors creating shortcuts.
+  var object_define_property_x_esm_prototypeOfObject = ObjectCtr.prototype; // If JS engine supports accessors creating shortcuts.
 
-  var defineGetter;
-  var defineSetter;
-  var object_define_property_x_esm_lookupGetter;
-  var object_define_property_x_esm_lookupSetter;
   var object_define_property_x_esm_supportsAccessors = has_own_property_x_esm(object_define_property_x_esm_prototypeOfObject, '__defineGetter__');
+  /* eslint-disable-next-line no-underscore-dangle */
 
-  if (object_define_property_x_esm_supportsAccessors) {
-    /* eslint-disable-next-line no-underscore-dangle,no-restricted-properties */
-    defineGetter = object_define_property_x_esm_prototypeOfObject.__defineGetter__;
-    /* eslint-disable-next-line no-underscore-dangle,no-restricted-properties */
+  var defineGetter = object_define_property_x_esm_supportsAccessors && object_define_property_x_esm_prototypeOfObject.__defineGetter_;
+  /* eslint-disable-next-line no-underscore-dangle,no-restricted-properties */
 
-    defineSetter = object_define_property_x_esm_prototypeOfObject.__defineSetter__;
-    /* eslint-disable-next-line no-underscore-dangle */
+  var defineSetter = object_define_property_x_esm_supportsAccessors && object_define_property_x_esm_prototypeOfObject.__defineSetter__;
+  /* eslint-disable-next-line no-underscore-dangle */
 
-    object_define_property_x_esm_lookupGetter = object_define_property_x_esm_prototypeOfObject.__lookupGetter__;
-    /* eslint-disable-next-line no-underscore-dangle */
+  var object_define_property_x_esm_lookupGetter = object_define_property_x_esm_supportsAccessors && object_define_property_x_esm_prototypeOfObject.__lookupGetter__;
+  /* eslint-disable-next-line no-underscore-dangle */
 
-    object_define_property_x_esm_lookupSetter = object_define_property_x_esm_prototypeOfObject.__lookupSetter__;
-  }
+  var object_define_property_x_esm_lookupSetter = object_define_property_x_esm_supportsAccessors && object_define_property_x_esm_prototypeOfObject.__lookupSetter__;
 
   $defineProperty = function defineProperty(object, property, descriptor) {
     assert_is_object_x_esm(object);
@@ -2445,7 +2437,7 @@ if (object_define_property_x_esm_castBoolean(nativeDefProp) === false || defineP
     var propDesc = toPropertyDescriptor(descriptor); // make a valiant attempt to use the real defineProperty for IE8's DOM elements.
 
     if (definePropertyFallback) {
-      var result = attempt_x_esm.call(Object, definePropertyFallback, object, propKey, propDesc);
+      var result = attempt_x_esm.call(ObjectCtr, definePropertyFallback, object, propKey, propDesc);
 
       if (result.threw === false) {
         return result.value;
@@ -2565,8 +2557,8 @@ var object_keys_default = /*#__PURE__*/__webpack_require__.n(object_keys);
 
 
 
-var ObjectCtr = {}.constructor;
-var nativeKeys = typeof ObjectCtr.keys === 'function' && ObjectCtr.keys;
+var object_keys_x_esm_ObjectCtr = {}.constructor;
+var nativeKeys = typeof object_keys_x_esm_ObjectCtr.keys === 'function' && object_keys_x_esm_ObjectCtr.keys;
 var isWorking;
 var throwsWithNull;
 var object_keys_x_esm_worksWithPrim;
@@ -2755,16 +2747,16 @@ if (nativeReduce) {
     var array_reduce_x_esm_doc = typeof document !== 'undefined' && document;
 
     if (array_reduce_x_esm_doc) {
-      var fragment = array_reduce_x_esm_doc.createDocumentFragment();
-      var div = array_reduce_x_esm_doc.createElement('div');
-      fragment.appendChild(div);
-      array_reduce_x_esm_res = attempt_x_esm.call(fragment.childNodes, nativeReduce, function (acc, node) {
+      var array_reduce_x_esm_fragment = array_reduce_x_esm_doc.createDocumentFragment();
+      var array_reduce_x_esm_div = array_reduce_x_esm_doc.createElement('div');
+      array_reduce_x_esm_fragment.appendChild(array_reduce_x_esm_div);
+      array_reduce_x_esm_res = attempt_x_esm.call(array_reduce_x_esm_fragment.childNodes, nativeReduce, function (acc, node) {
         array_reduce_x_esm_newArrowCheck(this, array_reduce_x_esm_this);
 
         acc[acc.length] = node;
         return acc;
       }.bind(undefined), []);
-      array_reduce_x_esm_isWorking = array_reduce_x_esm_res.threw === false && array_reduce_x_esm_res.value.length === 1 && array_reduce_x_esm_res.value[0] === div;
+      array_reduce_x_esm_isWorking = array_reduce_x_esm_res.threw === false && array_reduce_x_esm_res.value.length === 1 && array_reduce_x_esm_res.value[0] === array_reduce_x_esm_div;
     }
   }
 
@@ -2994,154 +2986,125 @@ var gopn = getOPN;
 
 
 // CONCATENATED MODULE: ./node_modules/array-filter-x/dist/array-filter-x.esm.js
-var array_filter_x_esm_this = undefined;
-
-function array_filter_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
 
 
 
 
 
-/** @type {ArrayConstructor} */
+var nf = [].filter;
+var nativeFilter = typeof nf === 'function' && nf;
 
-var ArrayCtr = [].constructor;
-/** @type {ObjectConstructor} */
-
-var array_filter_x_esm_castObject = {}.constructor;
-/** @type {BooleanConstructor} */
-
-var array_filter_x_esm_castBoolean = true.constructor;
-var nativFilter = typeof ArrayCtr.prototype.filter === 'function' && ArrayCtr.prototype.filter;
-var array_filter_x_esm_isWorking;
-
-if (nativFilter) {
+var array_filter_x_esm_test1 = function test1() {
   var spy = 0;
-  var array_filter_x_esm_res = attempt_x_esm.call([1, 2], nativFilter, function (item) {
-    array_filter_x_esm_newArrowCheck(this, array_filter_x_esm_this);
-
+  var res = attempt_x_esm.call([1, 2], nativeFilter, function spyAdd1(item) {
     spy += item;
     return false;
-  }.bind(undefined));
-  array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 0 && spy === 3;
+  });
+  return res.threw === false && res.value && res.value.length === 0 && spy === 3;
+};
 
-  if (array_filter_x_esm_isWorking) {
-    spy = '';
-    array_filter_x_esm_res = attempt_x_esm.call(array_filter_x_esm_castObject('abc'), nativFilter, function (item, index) {
-      array_filter_x_esm_newArrowCheck(this, array_filter_x_esm_this);
+var array_filter_x_esm_test2 = function test2() {
+  var spy = '';
+  var res = attempt_x_esm.call({}.constructor('abc'), nativeFilter, function spyAdd2(item, index) {
+    spy += item;
+    return index === 1;
+  });
+  return res.threw === false && res.value && res.value.length === 1 && res.value[0] === 'b' && spy === 'abc';
+};
 
-      spy += item;
-      return index === 1;
-    }.bind(undefined));
-    array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 1 && array_filter_x_esm_res.value[0] === 'b' && spy === 'abc';
+var array_filter_x_esm_test3 = function test3() {
+  var spy = 0;
+  var res = attempt_x_esm.call(function getArgs() {
+    /* eslint-disable-next-line prefer-rest-params */
+    return arguments;
+  }(1, 2, 3), nativeFilter, function spyAdd3(item, index) {
+    spy += item;
+    return index === 2;
+  });
+  return res.threw === false && res.value && res.value.length === 1 && res.value[0] === 3 && spy === 6;
+};
+
+var array_filter_x_esm_test4 = function test4() {
+  var spy = 0;
+  var res = attempt_x_esm.call({
+    0: 1,
+    1: 2,
+    3: 3,
+    4: 4,
+    length: 4
+  }, nativeFilter, function spyAdd4(item) {
+    spy += item;
+    return false;
+  });
+  return res.threw === false && res.value && res.value.length === 0 && spy === 6;
+};
+
+var array_filter_x_esm_test5 = function test5() {
+  var doc = typeof document !== 'undefined' && document;
+
+  if (doc) {
+    var spy = null;
+    var fragment = doc.createDocumentFragment();
+    var div = doc.createElement('div');
+    fragment.appendChild(div);
+    var res = attempt_x_esm.call(fragment.childNodes, nativeFilter, function spyAssign(item) {
+      spy = item;
+      return item;
+    });
+    return res.threw === false && res.value && res.value.length === 1 && res.value[0] === div && spy === div;
   }
 
-  if (array_filter_x_esm_isWorking) {
-    spy = 0;
-    array_filter_x_esm_res = attempt_x_esm.call(function getArgs() {
-      /* eslint-disable-next-line prefer-rest-params */
-      return arguments;
-    }(1, 2, 3), nativFilter, function (item, index) {
-      array_filter_x_esm_newArrowCheck(this, array_filter_x_esm_this);
+  return true;
+};
 
-      spy += item;
-      return index === 2;
-    }.bind(undefined));
-    array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 1 && array_filter_x_esm_res.value[0] === 3 && spy === 6;
-  }
+var array_filter_x_esm_test6 = function test6() {
+  var isStrict = function returnIsStrict() {
+    /* eslint-disable-next-line babel/no-invalid-this */
+    return true.constructor(this) === false;
+  }();
 
-  if (array_filter_x_esm_isWorking) {
-    spy = 0;
-    array_filter_x_esm_res = attempt_x_esm.call({
-      0: 1,
-      1: 2,
-      3: 3,
-      4: 4,
-      length: 4
-    }, nativFilter, function (item) {
-      array_filter_x_esm_newArrowCheck(this, array_filter_x_esm_this);
-
-      spy += item;
-      return false;
-    }.bind(undefined));
-    array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 0 && spy === 6;
-  }
-
-  if (array_filter_x_esm_isWorking) {
-    var array_filter_x_esm_doc = typeof document !== 'undefined' && document;
-
-    if (array_filter_x_esm_doc) {
-      spy = null;
-      var array_filter_x_esm_fragment = array_filter_x_esm_doc.createDocumentFragment();
-      var array_filter_x_esm_div = array_filter_x_esm_doc.createElement('div');
-      array_filter_x_esm_fragment.appendChild(array_filter_x_esm_div);
-      array_filter_x_esm_res = attempt_x_esm.call(array_filter_x_esm_fragment.childNodes, nativFilter, function (item) {
-        array_filter_x_esm_newArrowCheck(this, array_filter_x_esm_this);
-
-        spy = item;
-        return item;
-      }.bind(undefined));
-      array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 1 && array_filter_x_esm_res.value[0] === array_filter_x_esm_div && spy === array_filter_x_esm_div;
-    }
-  }
-
-  if (array_filter_x_esm_isWorking) {
-    var isStrict = function returnIsStrict() {
+  if (isStrict) {
+    var spy = null;
+    var res = attempt_x_esm.call([1], nativeFilter, function testThis() {
       /* eslint-disable-next-line babel/no-invalid-this */
-      return array_filter_x_esm_castBoolean(this) === false;
-    }();
-
-    if (isStrict) {
-      spy = null;
-      array_filter_x_esm_res = attempt_x_esm.call([1], nativFilter, function () {
-        array_filter_x_esm_newArrowCheck(this, array_filter_x_esm_this);
-
-        /* eslint-disable-next-line babel/no-invalid-this */
-        spy = typeof this === 'string';
-      }.bind(undefined), 'x');
-      array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 0 && spy === true;
-    }
+      spy = typeof this === 'string';
+    }, 'x');
+    return res.threw === false && res.value && res.value.length === 0 && spy === true;
   }
 
-  if (array_filter_x_esm_isWorking) {
-    spy = {};
-    var fn = ['return nativFilter.call("foo", function (_, __, context) {', 'if (castBoolean(context) === false || typeof context !== "object") {', 'spy.value = true;}});'].join('');
-    /* eslint-disable-next-line no-new-func */
+  return true;
+};
 
-    array_filter_x_esm_res = attempt_x_esm(Function('nativFilter', 'spy', 'castBoolean', fn), nativFilter, spy);
-    array_filter_x_esm_isWorking = array_filter_x_esm_res.threw === false && array_filter_x_esm_res.value && array_filter_x_esm_res.value.length === 0 && spy.value !== true;
-  }
-}
-/**
- * This method creates a new array with all elements that pass the test
- * implemented by the provided function.
- *
- * @param {Array} array - The array to iterate over.
- * @param {Function} callBack - Function is a predicate, to test each element.
- * @param {*} [thisArg] - Value to use as this when executing callback.
- * @throws {TypeError} If array is null or undefined.
- * @throws {TypeError} If callBack is not a function.
- * @returns {Array} A new array with the elements that pass the test.
- */
+var array_filter_x_esm_test7 = function test7() {
+  var spy = {};
+  var fn = 'return nativeFilter.call("foo", function (_, __, context) {' + 'if (castBoolean(context) === false || typeof context !== "object") {' + 'spy.value = true;}});';
+  /* eslint-disable-next-line no-new-func */
 
+  var res = attempt_x_esm(Function('nativeFilter', 'spy', 'castBoolean', fn), nativeFilter, spy, true.constructor);
+  return res.threw === false && res.value && res.value.length === 0 && spy.value !== true;
+};
 
-var $filter;
+var array_filter_x_esm_isWorking = true.constructor(nativeFilter) && array_filter_x_esm_test1() && array_filter_x_esm_test2() && array_filter_x_esm_test3() && array_filter_x_esm_test4() && array_filter_x_esm_test5() && array_filter_x_esm_test6() && array_filter_x_esm_test7();
 
-if (nativFilter) {
-  $filter = function filter(array, callBack
+var array_filter_x_esm_patchedFilter = function patchedFilter() {
+  return function filter(array, callBack
   /* , thisArg */
   ) {
-    var args = [callBack];
+    require_object_coercible_x_esm(array);
+    var args = [assert_is_function_x_esm(callBack)];
 
     if (arguments.length > 2) {
       /* eslint-disable-next-line prefer-rest-params,prefer-destructuring */
       args[1] = arguments[2];
     }
 
-    return nativFilter.apply(array, args);
+    return nativeFilter.apply(array, args);
   };
-} else {
-  $filter = function filter(array, callBack
+};
+
+var array_filter_x_esm_implementation = function implementation() {
+  return function filter(array, callBack
   /* , thisArg */
   ) {
     var object = to_object_x_esm(array); // If no callback function or if callback is not a callable function
@@ -3149,13 +3112,9 @@ if (nativFilter) {
     assert_is_function_x_esm(callBack);
     var iterable = split_if_boxed_bug_x_esm(object);
     var length = to_length_x_esm(iterable.length);
-    var thisArg;
+    /* eslint-disable-next-line prefer-rest-params,no-void */
 
-    if (arguments.length > 2) {
-      /* eslint-disable-next-line prefer-rest-params,prefer-destructuring */
-      thisArg = arguments[2];
-    }
-
+    var thisArg = arguments.length > 2 ? arguments[2] : void 0;
     var noThis = typeof thisArg === 'undefined';
     var result = [];
 
@@ -3171,10 +3130,22 @@ if (nativFilter) {
 
     return result;
   };
-}
+};
+/**
+ * This method creates a new array with all elements that pass the test
+ * implemented by the provided function.
+ *
+ * @param {Array} array - The array to iterate over.
+ * @param {Function} callBack - Function is a predicate, to test each element.
+ * @param {*} [thisArg] - Value to use as this when executing callback.
+ * @throws {TypeError} If array is null or undefined.
+ * @throws {TypeError} If callBack is not a function.
+ * @returns {Array} A new array with the elements that pass the test.
+ */
 
-var arrayFilter = $filter;
-/* harmony default export */ var array_filter_x_esm = (arrayFilter);
+
+var $filter = array_filter_x_esm_isWorking ? array_filter_x_esm_patchedFilter() : array_filter_x_esm_implementation();
+/* harmony default export */ var array_filter_x_esm = ($filter);
 
 
 // CONCATENATED MODULE: ./node_modules/get-own-property-symbols-x/dist/get-own-property-symbols-x.esm.js
