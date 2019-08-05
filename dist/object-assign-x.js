@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-05T20:34:03.437Z",
+  "date": "2019-08-05T21:29:49.884Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "cd4bcfa814b9d36cecf0",
+  "hash": "d1d0d31537b7170ca29e",
   "license": "MIT",
-  "version": "2.0.13"
+  "version": "2.0.14"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -689,41 +689,28 @@ var toStringTag = function toStringTag(value) {
 
 
 // CONCATENATED MODULE: ./node_modules/is-array-x/dist/is-array-x.esm.js
-var is_array_x_esm_this = undefined;
-
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
 
-
-var nativeIsArray = [].isArray;
-var isArrayNative = typeof nativeIsArray === 'function' && nativeIsArray;
-var testRes = isArrayNative && attempt_x_esm(function () {
-  _newArrowCheck(this, is_array_x_esm_this);
-
-  return isArrayNative([]) === true && isArrayNative({
+var nia = [].isArray;
+var nativeIsArray = typeof nia === 'function' && nia;
+var is_array_x_esm_testResult = attempt_x_esm(function attemptee() {
+  return nativeIsArray([]) === true && nativeIsArray({
     length: 0
   }) === false;
-}.bind(undefined));
+});
+var isWorking = is_array_x_esm_testResult.threw === false && is_array_x_esm_testResult.value === true;
+var implementation = function isArray(value) {
+  return to_string_tag_x_esm(value) === '[object Array]';
+};
+/**
+ * Determines whether the passed value is an Array.
+ *
+ * @param {*} value - The value to test.
+ * @returns {boolean} - True if an array; otherwise false.
+ */
 
-var isArrayFn = function iife() {
-  if (testRes && testRes.threw === false && testRes.value === true) {
-    return isArrayNative;
-  }
-  /**
-   * The isArray() function determines whether the passed value is an Array.
-   *
-   * @function isArray
-   * @param {*} [value] - The object to be checked..
-   * @returns {boolean} `true` if the object is an Array; otherwise, `false`.
-   */
-
-
-  return function isArray(value) {
-    return to_string_tag_x_esm(value) === '[object Array]';
-  };
-}();
-
-/* harmony default export */ var is_array_x_esm = (isArrayFn);
+var is_array_x_esm_isArray = isWorking ? nativeIsArray : implementation;
+/* harmony default export */ var is_array_x_esm = (is_array_x_esm_isArray);
 
 
 // EXTERNAL MODULE: ./node_modules/is-arguments/index.js
@@ -737,12 +724,12 @@ var is_symbol_default = /*#__PURE__*/__webpack_require__.n(is_symbol);
 // CONCATENATED MODULE: ./node_modules/has-symbol-support-x/dist/has-symbol-support-x.esm.js
 var has_symbol_support_x_esm_this = undefined;
 
-function has_symbol_support_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
+function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
 
 
 var hasSymbolSupport = attempt_x_esm(function () {
-  has_symbol_support_x_esm_newArrowCheck(this, has_symbol_support_x_esm_this);
+  _newArrowCheck(this, has_symbol_support_x_esm_this);
 
   /* eslint-disable-next-line compat/compat */
   return typeof Symbol === 'function' && is_symbol_default()(Symbol(''));
@@ -2600,7 +2587,7 @@ var object_keys_default = /*#__PURE__*/__webpack_require__.n(object_keys);
 
 var object_keys_x_esm_ObjectCtr = {}.constructor;
 var nativeKeys = typeof object_keys_x_esm_ObjectCtr.keys === 'function' && object_keys_x_esm_ObjectCtr.keys;
-var isWorking;
+var object_keys_x_esm_isWorking;
 var throwsWithNull;
 var object_keys_x_esm_worksWithPrim;
 var worksWithRegex;
@@ -2623,16 +2610,16 @@ if (nativeKeys) {
     b: 2
   };
   var object_keys_x_esm_res = attempt_x_esm(nativeKeys, testObj);
-  isWorking = object_keys_x_esm_isCorrectRes(object_keys_x_esm_res, 2) && either(object_keys_x_esm_res, 'a', 'b');
+  object_keys_x_esm_isWorking = object_keys_x_esm_isCorrectRes(object_keys_x_esm_res, 2) && either(object_keys_x_esm_res, 'a', 'b');
 
-  if (isWorking) {
+  if (object_keys_x_esm_isWorking) {
     testObj = Object('a');
     testObj.y = 1;
     object_keys_x_esm_res = attempt_x_esm(nativeKeys, testObj);
-    isWorking = object_keys_x_esm_isCorrectRes(object_keys_x_esm_res, 2) && either(object_keys_x_esm_res, '0', 'y');
+    object_keys_x_esm_isWorking = object_keys_x_esm_isCorrectRes(object_keys_x_esm_res, 2) && either(object_keys_x_esm_res, '0', 'y');
   }
 
-  if (isWorking) {
+  if (object_keys_x_esm_isWorking) {
     throwsWithNull = attempt_x_esm(nativeKeys, null).threw;
     object_keys_x_esm_worksWithPrim = object_keys_x_esm_isCorrectRes(attempt_x_esm(nativeKeys, 42), 0);
     worksWithRegex = attempt_x_esm(nativeKeys, /a/g).threw === false;
@@ -2657,7 +2644,7 @@ if (nativeKeys) {
 
 var objectKeys;
 
-if (isWorking) {
+if (object_keys_x_esm_isWorking) {
   if (throwsWithNull && object_keys_x_esm_worksWithPrim && worksWithRegex && worksWithArgs && object_keys_x_esm_worksWithStr) {
     objectKeys = nativeKeys;
   } else {
@@ -2816,7 +2803,7 @@ var patchedReduce = function reduce(array, callBack
   return nativeReduce.apply(array, args);
 };
 
-var implementation = function reduce(array, callBack
+var array_reduce_x_esm_implementation = function reduce(array, callBack
 /* , initialValue */
 ) {
   var object = to_object_x_esm(array); // If no callback function or if callback is not a callable function
@@ -2881,7 +2868,7 @@ var implementation = function reduce(array, callBack
  * @returns {*} The value that results from the reduction.
  */
 
-var $reduce = array_reduce_x_esm_isWorking ? patchedReduce : implementation;
+var $reduce = array_reduce_x_esm_isWorking ? patchedReduce : array_reduce_x_esm_implementation;
 /* harmony default export */ var array_reduce_x_esm = ($reduce);
 
 

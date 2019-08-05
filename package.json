@@ -1,6 +1,6 @@
 {
   "name": "object-assign-x",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "homepage": "https://github.com/Xotic750/object-assign-x",
   "author": {
@@ -51,15 +51,15 @@
   },
   "dependencies": {
     "array-reduce-x": "^3.0.17",
-    "array-slice-x": "^4.0.26",
+    "array-slice-x": "^4.0.27",
     "attempt-x": "^2.0.23",
     "get-own-enumerable-property-symbols-x": "^2.0.19",
-    "get-own-property-names-x": "^3.0.13",
+    "get-own-property-names-x": "^3.0.14",
     "get-own-property-symbols-x": "^2.0.17",
     "is-function-x": "^4.0.28",
     "is-nil-x": "^2.0.26",
     "is-object-like-x": "^2.0.26",
-    "object-keys-x": "^3.0.19",
+    "object-keys-x": "^3.0.20",
     "to-object-x": "^2.0.21"
   },
   "devDependencies": {
