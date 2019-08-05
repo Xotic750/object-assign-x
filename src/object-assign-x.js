@@ -12,8 +12,8 @@ import getOEPS from 'get-own-enumerable-property-symbols-x';
 const EMPTY_STRING = '';
 const StringCtr = EMPTY_STRING.constructor;
 const {fromCharCode} = StringCtr;
-const castObject = {}.constructor;
-const nAssign = castObject.assign;
+const ObjectCtr = {}.constructor;
+const nAssign = ObjectCtr.assign;
 const nativeAssign = isFunction(nAssign) && nAssign;
 
 const workingNativeAssign = function nativeWorks() {
@@ -25,7 +25,7 @@ const workingNativeAssign = function nativeWorks() {
 
 const lacksProperEnumerationOrder = function enumOrder() {
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  const test1 = castObject('abc');
+  const test1 = toObject('abc');
   test1[5] = 'de';
 
   if (getOwnPropertyNames(test1)[0] === '5') {
@@ -74,13 +74,13 @@ const lacksProperEnumerationOrder = function enumOrder() {
 };
 
 const assignHasPendingExceptions = function exceptions() {
-  if (isFunction(castObject.preventExtensions) === false) {
+  if (isFunction(ObjectCtr.preventExtensions) === false) {
     return false;
   }
 
   // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
-  let result = attempt(castObject.preventExtensions, {1: 2});
+  let result = attempt(ObjectCtr.preventExtensions, {1: 2});
 
   if (result.threw || isObjectLike(result.value) === false) {
     return false;
@@ -132,7 +132,7 @@ if (shouldImplement) {
           return tgt;
         }
 
-        const object = castObject(source);
+        const object = toObject(source);
 
         return reduce(
           concat.call(objectKeys(object), getOEPS(object)),
