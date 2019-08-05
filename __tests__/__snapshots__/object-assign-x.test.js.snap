@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`assign should throw when target is null or undefined 1`] = `"Cannot convert undefined or null to object"`;
+exports[`assign 0 should throw when target is null or undefined 1`] = `"Cannot call method on undefined"`;
 
-exports[`assign should throw when target is null or undefined 2`] = `"Cannot convert undefined or null to object"`;
+exports[`assign 0 should throw when target is null or undefined 2`] = `"Cannot call method on undefined"`;
 
-exports[`assign should throw when target is null or undefined 3`] = `"Cannot convert undefined or null to object"`;
+exports[`assign 0 should throw when target is null or undefined 3`] = `"Cannot call method on null"`;
+
+exports[`assign 1 should throw when target is null or undefined 1`] = `"Cannot convert undefined or null to object"`;
+
+exports[`assign 1 should throw when target is null or undefined 2`] = `"Cannot convert undefined or null to object"`;
+
+exports[`assign 1 should throw when target is null or undefined 3`] = `"Cannot convert undefined or null to object"`;

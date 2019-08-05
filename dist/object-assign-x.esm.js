@@ -1,5 +1,3 @@
-function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
 import attempt from 'attempt-x';
 import objectKeys from 'object-keys-x';
 import isFunction from 'is-function-x';
@@ -16,6 +14,7 @@ var fromCharCode = StringCtr.fromCharCode;
 var ObjectCtr = {}.constructor;
 var nAssign = ObjectCtr.assign;
 var nativeAssign = isFunction(nAssign) && nAssign;
+var concat = [].concat;
 
 var workingNativeAssign = function nativeWorks() {
   var obj = {};
@@ -28,8 +27,6 @@ var workingNativeAssign = function nativeWorks() {
 };
 
 var lacksProperEnumerationOrder = function enumOrder() {
-  var _this = this;
-
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
   var test1 = toObject('abc');
   test1[5] = 'de';
@@ -38,19 +35,23 @@ var lacksProperEnumerationOrder = function enumOrder() {
     return true;
   }
 
-  var strNums = '0123456789'; // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+  var strNums = '0123456789';
 
-  var test2 = reduce(strNums.split(EMPTY_STRING), function (acc, ignore, index) {
-    _newArrowCheck(this, _this);
-
+  var iteratee1 = function iteratee1(acc) {
+    /* eslint-disable-next-line prefer-rest-params */
+    var index = arguments[2];
     acc["_".concat(fromCharCode(index))] = index;
     return acc;
-  }.bind(this), {});
-  var order = reduce(getOwnPropertyNames(test2), function (acc, name) {
-    _newArrowCheck(this, _this);
+  }; // https://bugs.chromium.org/p/v8/issues/detail?id=3056
 
+
+  var test2 = reduce(strNums.split(EMPTY_STRING), iteratee1, {});
+
+  var iteratee2 = function iteratee2(acc, name) {
     return acc + test2[name];
-  }.bind(this), EMPTY_STRING);
+  };
+
+  var order = reduce(getOwnPropertyNames(test2), iteratee2, EMPTY_STRING);
 
   if (order !== strNums) {
     return true;
@@ -58,12 +59,13 @@ var lacksProperEnumerationOrder = function enumOrder() {
 
 
   var letters = 'abcdefghijklmnopqrst';
-  var test3 = reduce(letters.split(EMPTY_STRING), function (acc, letter) {
-    _newArrowCheck(this, _this);
 
+  var iteratee3 = function iteratee3(acc, letter) {
     acc[letter] = letter;
     return acc;
-  }.bind(this), {});
+  };
+
+  var test3 = reduce(letters.split(EMPTY_STRING), iteratee3, {});
   var result = attempt(nativeAssign, {}, test3);
   return result.threw === false && objectKeys(result.value).join(EMPTY_STRING) !== letters;
 };
@@ -102,7 +104,29 @@ var shouldImplement = function getShouldImplement() {
   }
 
   return assignHasPendingExceptions();
-}();
+}(); // 19.1.3.1
+
+
+export var implementation = function assign(target) {
+  var outerIteratee = function outerIteratee(tgt, source) {
+    if (isNil(source)) {
+      return tgt;
+    }
+
+    var object = toObject(source);
+
+    var innerIteratee = function innerIteratee(tar, key) {
+      tar[key] = object[key];
+      return tar;
+    };
+
+    return reduce(concat.call(objectKeys(object), getOEPS(object)), innerIteratee, tgt);
+  };
+  /* eslint-disable-next-line prefer-rest-params */
+
+
+  return reduce(slice(arguments, 1), outerIteratee, toObject(target));
+};
 /**
  * This method is used to copy the values of all enumerable own properties from
  * one or more source objects to a target object. It will return the target object.
@@ -113,40 +137,7 @@ var shouldImplement = function getShouldImplement() {
  * @returns {object} The target object.
  */
 
-
-var $assign;
-
-if (shouldImplement) {
-  var concat = [].concat; // 19.1.3.1
-
-  $assign = function assign(target) {
-    var _this2 = this;
-
-    return reduce(
-    /* eslint-disable-next-line prefer-rest-params */
-    slice(arguments, 1), function (tgt, source) {
-      var _this3 = this;
-
-      _newArrowCheck(this, _this2);
-
-      if (isNil(source)) {
-        return tgt;
-      }
-
-      var object = toObject(source);
-      return reduce(concat.call(objectKeys(object), getOEPS(object)), function (tar, key) {
-        _newArrowCheck(this, _this3);
-
-        tar[key] = object[key];
-        return tar;
-      }.bind(this), tgt);
-    }.bind(this), toObject(target));
-  };
-} else {
-  $assign = nativeAssign;
-}
-
-var assign = $assign;
-export default assign;
+var $assign = shouldImplement ? implementation : nativeAssign;
+export default $assign;
 
 //# sourceMappingURL=object-assign-x.esm.js.map

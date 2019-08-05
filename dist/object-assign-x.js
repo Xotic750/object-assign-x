@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-05T15:58:28.191Z",
+  "date": "2019-08-05T17:32:56.176Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "b1c55b0783ceb8990682",
+  "hash": "d39656dbf7eb906db254",
   "license": "MIT",
   "version": "2.0.12"
 }
@@ -3265,8 +3265,7 @@ var get_own_enumerable_property_symbols_x_esm_getOwnEnumerablePropertySymbols = 
 
 
 // CONCATENATED MODULE: ./dist/object-assign-x.esm.js
-function object_assign_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "implementation", function() { return object_assign_x_esm_implementation; });
 
 
 
@@ -3283,6 +3282,7 @@ var fromCharCode = object_assign_x_esm_StringCtr.fromCharCode;
 var object_assign_x_esm_ObjectCtr = {}.constructor;
 var nAssign = object_assign_x_esm_ObjectCtr.assign;
 var nativeAssign = is_function_x_esm(nAssign) && nAssign;
+var concat = [].concat;
 
 var workingNativeAssign = function nativeWorks() {
   var obj = {};
@@ -3295,8 +3295,6 @@ var workingNativeAssign = function nativeWorks() {
 };
 
 var lacksProperEnumerationOrder = function enumOrder() {
-  var _this = this;
-
   // https://bugs.chromium.org/p/v8/issues/detail?id=4118
   var test1 = to_object_x_esm('abc');
   test1[5] = 'de';
@@ -3305,19 +3303,23 @@ var lacksProperEnumerationOrder = function enumOrder() {
     return true;
   }
 
-  var strNums = '0123456789'; // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+  var strNums = '0123456789';
 
-  var test2 = array_reduce_x_esm(strNums.split(object_assign_x_esm_EMPTY_STRING), function (acc, ignore, index) {
-    object_assign_x_esm_newArrowCheck(this, _this);
-
+  var iteratee1 = function iteratee1(acc) {
+    /* eslint-disable-next-line prefer-rest-params */
+    var index = arguments[2];
     acc["_".concat(fromCharCode(index))] = index;
     return acc;
-  }.bind(this), {});
-  var order = array_reduce_x_esm(get_own_property_names_x_esm(test2), function (acc, name) {
-    object_assign_x_esm_newArrowCheck(this, _this);
+  }; // https://bugs.chromium.org/p/v8/issues/detail?id=3056
 
+
+  var test2 = array_reduce_x_esm(strNums.split(object_assign_x_esm_EMPTY_STRING), iteratee1, {});
+
+  var iteratee2 = function iteratee2(acc, name) {
     return acc + test2[name];
-  }.bind(this), object_assign_x_esm_EMPTY_STRING);
+  };
+
+  var order = array_reduce_x_esm(get_own_property_names_x_esm(test2), iteratee2, object_assign_x_esm_EMPTY_STRING);
 
   if (order !== strNums) {
     return true;
@@ -3325,12 +3327,13 @@ var lacksProperEnumerationOrder = function enumOrder() {
 
 
   var letters = 'abcdefghijklmnopqrst';
-  var test3 = array_reduce_x_esm(letters.split(object_assign_x_esm_EMPTY_STRING), function (acc, letter) {
-    object_assign_x_esm_newArrowCheck(this, _this);
 
+  var iteratee3 = function iteratee3(acc, letter) {
     acc[letter] = letter;
     return acc;
-  }.bind(this), {});
+  };
+
+  var test3 = array_reduce_x_esm(letters.split(object_assign_x_esm_EMPTY_STRING), iteratee3, {});
   var result = attempt_x_esm(nativeAssign, {}, test3);
   return result.threw === false && object_keys_x_esm(result.value).join(object_assign_x_esm_EMPTY_STRING) !== letters;
 };
@@ -3369,7 +3372,29 @@ var shouldImplement = function getShouldImplement() {
   }
 
   return assignHasPendingExceptions();
-}();
+}(); // 19.1.3.1
+
+
+var object_assign_x_esm_implementation = function assign(target) {
+  var outerIteratee = function outerIteratee(tgt, source) {
+    if (is_nil_x_esm(source)) {
+      return tgt;
+    }
+
+    var object = to_object_x_esm(source);
+
+    var innerIteratee = function innerIteratee(tar, key) {
+      tar[key] = object[key];
+      return tar;
+    };
+
+    return array_reduce_x_esm(concat.call(object_keys_x_esm(object), get_own_enumerable_property_symbols_x_esm(object)), innerIteratee, tgt);
+  };
+  /* eslint-disable-next-line prefer-rest-params */
+
+
+  return array_reduce_x_esm(array_slice_x_esm(arguments, 1), outerIteratee, to_object_x_esm(target));
+};
 /**
  * This method is used to copy the values of all enumerable own properties from
  * one or more source objects to a target object. It will return the target object.
@@ -3380,41 +3405,8 @@ var shouldImplement = function getShouldImplement() {
  * @returns {object} The target object.
  */
 
-
-var $assign;
-
-if (shouldImplement) {
-  var concat = [].concat; // 19.1.3.1
-
-  $assign = function assign(target) {
-    var _this2 = this;
-
-    return array_reduce_x_esm(
-    /* eslint-disable-next-line prefer-rest-params */
-    array_slice_x_esm(arguments, 1), function (tgt, source) {
-      var _this3 = this;
-
-      object_assign_x_esm_newArrowCheck(this, _this2);
-
-      if (is_nil_x_esm(source)) {
-        return tgt;
-      }
-
-      var object = to_object_x_esm(source);
-      return array_reduce_x_esm(concat.call(object_keys_x_esm(object), get_own_enumerable_property_symbols_x_esm(object)), function (tar, key) {
-        object_assign_x_esm_newArrowCheck(this, _this3);
-
-        tar[key] = object[key];
-        return tar;
-      }.bind(this), tgt);
-    }.bind(this), to_object_x_esm(target));
-  };
-} else {
-  $assign = nativeAssign;
-}
-
-var object_assign_x_esm_assign = $assign;
-/* harmony default export */ var object_assign_x_esm = __webpack_exports__["default"] = (object_assign_x_esm_assign);
+var $assign = shouldImplement ? object_assign_x_esm_implementation : nativeAssign;
+/* harmony default export */ var object_assign_x_esm = __webpack_exports__["default"] = ($assign);
 
 
 

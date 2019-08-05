@@ -15,6 +15,7 @@ const {fromCharCode} = StringCtr;
 const ObjectCtr = {}.constructor;
 const nAssign = ObjectCtr.assign;
 const nativeAssign = isFunction(nAssign) && nAssign;
+const {concat} = [];
 
 const workingNativeAssign = function nativeWorks() {
   const obj = {};
@@ -33,24 +34,23 @@ const lacksProperEnumerationOrder = function enumOrder() {
   }
 
   const strNums = '0123456789';
+  const iteratee1 = function iteratee1(acc) {
+    /* eslint-disable-next-line prefer-rest-params */
+    const index = arguments[2];
+
+    acc[`_${fromCharCode(index)}`] = index;
+
+    return acc;
+  };
+
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  const test2 = reduce(
-    strNums.split(EMPTY_STRING),
-    (acc, ignore, index) => {
-      acc[`_${fromCharCode(index)}`] = index;
+  const test2 = reduce(strNums.split(EMPTY_STRING), iteratee1, {});
 
-      return acc;
-    },
-    {},
-  );
+  const iteratee2 = function iteratee2(acc, name) {
+    return acc + test2[name];
+  };
 
-  const order = reduce(
-    getOwnPropertyNames(test2),
-    (acc, name) => {
-      return acc + test2[name];
-    },
-    EMPTY_STRING,
-  );
+  const order = reduce(getOwnPropertyNames(test2), iteratee2, EMPTY_STRING);
 
   if (order !== strNums) {
     return true;
@@ -58,15 +58,13 @@ const lacksProperEnumerationOrder = function enumOrder() {
 
   // https://bugs.chromium.org/p/v8/issues/detail?id=3056
   const letters = 'abcdefghijklmnopqrst';
-  const test3 = reduce(
-    letters.split(EMPTY_STRING),
-    (acc, letter) => {
-      acc[letter] = letter;
+  const iteratee3 = function iteratee3(acc, letter) {
+    acc[letter] = letter;
 
-      return acc;
-    },
-    {},
-  );
+    return acc;
+  };
+
+  const test3 = reduce(letters.split(EMPTY_STRING), iteratee3, {});
 
   const result = attempt(nativeAssign, {}, test3);
 
@@ -108,6 +106,28 @@ const shouldImplement = (function getShouldImplement() {
   return assignHasPendingExceptions();
 })();
 
+// 19.1.3.1
+export const implementation = function assign(target) {
+  const outerIteratee = function outerIteratee(tgt, source) {
+    if (isNil(source)) {
+      return tgt;
+    }
+
+    const object = toObject(source);
+
+    const innerIteratee = function innerIteratee(tar, key) {
+      tar[key] = object[key];
+
+      return tar;
+    };
+
+    return reduce(concat.call(objectKeys(object), getOEPS(object)), innerIteratee, tgt);
+  };
+
+  /* eslint-disable-next-line prefer-rest-params */
+  return reduce(slice(arguments, 1), outerIteratee, toObject(target));
+};
+
 /**
  * This method is used to copy the values of all enumerable own properties from
  * one or more source objects to a target object. It will return the target object.
@@ -117,40 +137,6 @@ const shouldImplement = (function getShouldImplement() {
  * @throws {TypeError} If target is null or undefined.
  * @returns {object} The target object.
  */
-let $assign;
+const $assign = shouldImplement ? implementation : nativeAssign;
 
-if (shouldImplement) {
-  const {concat} = [];
-
-  // 19.1.3.1
-  $assign = function assign(target) {
-    return reduce(
-      /* eslint-disable-next-line prefer-rest-params */
-      slice(arguments, 1),
-      (tgt, source) => {
-        if (isNil(source)) {
-          return tgt;
-        }
-
-        const object = toObject(source);
-
-        return reduce(
-          concat.call(objectKeys(object), getOEPS(object)),
-          (tar, key) => {
-            tar[key] = object[key];
-
-            return tar;
-          },
-          tgt,
-        );
-      },
-      toObject(target),
-    );
-  };
-} else {
-  $assign = nativeAssign;
-}
-
-const assign = $assign;
-
-export default assign;
+export default $assign;
