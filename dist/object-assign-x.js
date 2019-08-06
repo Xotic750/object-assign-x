@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-06T01:14:51.267Z",
+  "date": "2019-08-06T21:42:35.602Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
