@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-13T15:43:40.568Z",
+  "date": "2019-08-14T15:58:20.322Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "fbf79c79aab8974552e8",
+  "hash": "a3701668b9d17f103aaf",
   "license": "MIT",
-  "version": "2.0.14"
+  "version": "2.1.0"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1538,7 +1538,8 @@ var to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) 
  *
  * @type number
  */
-/* harmony default export */ var nan_x_esm = (0 / 0);
+var constantNAN = 0 / 0;
+/* harmony default export */ var nan_x_esm = (constantNAN);
 
 
 // CONCATENATED MODULE: ./node_modules/parse-int-x/dist/parse-int-x.esm.js
@@ -1717,7 +1718,8 @@ var is_nan_x_esm_isNaN = function isNaN(value) {
  *
  * @type number
  */
-/* harmony default export */ var infinity_x_esm = (1 / 0);
+var constantInfinity = 1 / 0;
+/* harmony default export */ var infinity_x_esm = (constantInfinity);
 
 
 // CONCATENATED MODULE: ./node_modules/is-finite-x/dist/is-finite-x.esm.js
@@ -2356,13 +2358,15 @@ var gOPS = $getOwnPropertyDescriptor;
  * not. Otherwise returns the `value`.
  *
  * @param {*} value - The argument to be tested.
+ * @param {string} [message] - An alternative user message.
  * @throws {TypeError} Throws if `value` is not an object.
  * @returns {*} Returns `value` if it is an object.
  */
 
-var assert_is_object_x_esm_assertIsObject = function assertIsObject(value) {
+var assert_is_object_x_esm_assertIsObject = function assertIsObject(value, message) {
   if (is_primitive_default()(value)) {
-    throw new TypeError("".concat(to_string_symbols_supported_x_esm(value), " is not an object"));
+    var msg = arguments.length > 1 ? to_string_symbols_supported_x_esm(message) : "".concat(to_string_symbols_supported_x_esm(value), " is not an object");
+    throw new TypeError(msg);
   }
 
   return value;
@@ -2720,14 +2724,15 @@ var ok = objectKeys;
  * not. Otherwise returns the `callback`.
  *
  * @param {*} callback - The argument to be tested.
+ * @param {string} [message] - An alternative user message.
  * @throws {TypeError} Throws if `callback` is not a function.
  * @returns {*} Returns `callback` if it is function.
  */
 
-var assert_is_function_x_esm_assertIsFunction = function assertIsFunction(callback) {
+var assert_is_function_x_esm_assertIsFunction = function assertIsFunction(callback, message) {
   if (is_function_x_esm(callback) === false) {
-    var msg = is_primitive_default()(callback) ? to_string_symbols_supported_x_esm(callback) : '#<Object>';
-    throw new TypeError("".concat(msg, " is not a function"));
+    var msg = arguments.length > 1 ? to_string_symbols_supported_x_esm(message) : "".concat(is_primitive_default()(callback) ? to_string_symbols_supported_x_esm(callback) : '#<Object>', " is not a function");
+    throw new TypeError(msg);
   }
 
   return callback;
@@ -2971,6 +2976,14 @@ var array_slice_x_esm_slice = function slice(array, start, end) {
 // CONCATENATED MODULE: ./node_modules/get-own-property-names-x/dist/get-own-property-names-x.esm.js
 function get_own_property_names_x_esm_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { get_own_property_names_x_esm_typeof = function _typeof(obj) { return typeof obj; }; } else { get_own_property_names_x_esm_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return get_own_property_names_x_esm_typeof(obj); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2985,7 +2998,12 @@ var get_own_property_names_x_esm_isCorrectRes = function isCorrectRes(r, length)
   return r.threw === false && is_array_x_esm(r.value) && r.value.length === length;
 };
 
-var get_own_property_names_x_esm_either = function either(r, a, b) {
+var get_own_property_names_x_esm_either = function either(args) {
+  var _args = _slicedToArray(args, 3),
+      r = _args[0],
+      a = _args[1],
+      b = _args[2];
+
   var x = r.value[0];
   var y = r.value[1];
   return x === a && y === b || x === b && y === a;
@@ -2993,7 +3011,7 @@ var get_own_property_names_x_esm_either = function either(r, a, b) {
 
 var get_own_property_names_x_esm_test1 = function test1() {
   var res = attempt_x_esm(nativeGOPN, 'fo');
-  return get_own_property_names_x_esm_isCorrectRes(res, 3) && get_own_property_names_x_esm_either(res, '0', '1') && res.value[2] === 'length';
+  return get_own_property_names_x_esm_isCorrectRes(res, 3) && get_own_property_names_x_esm_either([res, '0', '1']) && res.value[2] === 'length';
 };
 
 var get_own_property_names_x_esm_test2 = function test2() {
@@ -3001,7 +3019,7 @@ var get_own_property_names_x_esm_test2 = function test2() {
     a: 1,
     b: 2
   });
-  return get_own_property_names_x_esm_isCorrectRes(res, 2) && get_own_property_names_x_esm_either(res, 'a', 'b');
+  return get_own_property_names_x_esm_isCorrectRes(res, 2) && get_own_property_names_x_esm_either([res, 'a', 'b']);
 };
 
 var get_own_property_names_x_esm_implementation1 = function implementation1() {
@@ -3052,13 +3070,13 @@ var getOPN = getImplementation();
 
 
 // CONCATENATED MODULE: ./node_modules/array-any-x/dist/array-any-x.esm.js
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+function array_any_x_esm_slicedToArray(arr, i) { return array_any_x_esm_arrayWithHoles(arr) || array_any_x_esm_iterableToArrayLimit(arr, i) || array_any_x_esm_nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+function array_any_x_esm_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function array_any_x_esm_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function array_any_x_esm_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -3066,7 +3084,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var performCallback = function performCallback(args) {
-  var _args = _slicedToArray(args, 6),
+  var _args = array_any_x_esm_slicedToArray(args, 6),
       noThis = _args[0],
       thisArg = _args[1],
       callBack = _args[2],
@@ -3108,7 +3126,7 @@ var array_any_x_esm_any = function any(array, callBack
   assert_is_function_x_esm(callBack);
 
   var _getIterableLengthPai = array_any_x_esm_getIterableLengthPair(object),
-      _getIterableLengthPai2 = _slicedToArray(_getIterableLengthPai, 2),
+      _getIterableLengthPai2 = array_any_x_esm_slicedToArray(_getIterableLengthPai, 2),
       iterable = _getIterableLengthPai2[0],
       length = _getIterableLengthPai2[1];
   /* eslint-disable-next-line prefer-rest-params,no-void */
