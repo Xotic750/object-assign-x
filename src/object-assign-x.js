@@ -8,6 +8,7 @@ import toObject from 'to-object-x';
 import slice from 'array-slice-x';
 import isNil from 'is-nil-x';
 import getOEPS from 'get-own-enumerable-property-symbols-x';
+import methodize from 'simple-methodize-x';
 
 const EMPTY_STRING = '';
 const StringCtr = EMPTY_STRING.constructor;
@@ -15,7 +16,7 @@ const {fromCharCode} = StringCtr;
 const ObjectCtr = {}.constructor;
 const nAssign = ObjectCtr.assign;
 const nativeAssign = isFunction(nAssign) && nAssign;
-const {concat} = [];
+const concat = methodize([].concat);
 
 const workingNativeAssign = function nativeWorks() {
   const obj = {};
@@ -121,7 +122,7 @@ export const implementation = function assign(target) {
       return tar;
     };
 
-    return reduce(concat.call(objectKeys(object), getOEPS(object)), innerIteratee, tgt);
+    return reduce(concat(objectKeys(object), getOEPS(object)), innerIteratee, tgt);
   };
 
   /* eslint-disable-next-line prefer-rest-params */
