@@ -12,7 +12,8 @@ import methodize from 'simple-methodize-x';
 
 const EMPTY_STRING = '';
 const StringCtr = EMPTY_STRING.constructor;
-const {fromCharCode} = StringCtr;
+const {fromCharCode, preventExtensions} = StringCtr;
+const split = methodize(EMPTY_STRING.split);
 const ObjectCtr = {}.constructor;
 const nAssign = ObjectCtr.assign;
 const nativeAssign = isFunction(nAssign) && nAssign;
@@ -65,7 +66,7 @@ const lacksProperEnumerationOrder = function enumOrder() {
     return acc;
   };
 
-  const test3 = reduce(letters.split(EMPTY_STRING), iteratee3, {});
+  const test3 = reduce(split(letters, EMPTY_STRING), iteratee3, {});
 
   const result = attempt(nativeAssign, {}, test3);
 
@@ -73,13 +74,13 @@ const lacksProperEnumerationOrder = function enumOrder() {
 };
 
 const assignHasPendingExceptions = function exceptions() {
-  if (isFunction(ObjectCtr.preventExtensions) === false) {
+  if (isFunction(preventExtensions) === false) {
     return false;
   }
 
   // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
-  let result = attempt(ObjectCtr.preventExtensions, {1: 2});
+  let result = attempt(preventExtensions, {1: 2});
 
   if (result.threw || isObjectLike(result.value) === false) {
     return false;

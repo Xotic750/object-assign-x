@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-18T19:17:03.654Z",
+  "date": "2019-08-19T12:42:29.258Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
-  "hash": "c61b122fd6912b6ab50c",
+  "hash": "d521988cbaaaf65b4984",
   "license": "MIT",
   "version": "2.1.0"
 }
@@ -3730,7 +3730,9 @@ var simple_methodize_x_esm_methodize = function methodize(prototypeMethod) {
 
 var object_assign_x_esm_EMPTY_STRING = '';
 var object_assign_x_esm_StringCtr = object_assign_x_esm_EMPTY_STRING.constructor;
-var fromCharCode = object_assign_x_esm_StringCtr.fromCharCode;
+var fromCharCode = object_assign_x_esm_StringCtr.fromCharCode,
+    preventExtensions = object_assign_x_esm_StringCtr.preventExtensions;
+var object_assign_x_esm_split = simple_methodize_x_esm(object_assign_x_esm_EMPTY_STRING.split);
 var object_assign_x_esm_ObjectCtr = {}.constructor;
 var nAssign = object_assign_x_esm_ObjectCtr.assign;
 var nativeAssign = is_function_x_esm(nAssign) && nAssign;
@@ -3785,19 +3787,19 @@ var lacksProperEnumerationOrder = function enumOrder() {
     return acc;
   };
 
-  var test3 = array_reduce_x_esm(letters.split(object_assign_x_esm_EMPTY_STRING), iteratee3, {});
+  var test3 = array_reduce_x_esm(object_assign_x_esm_split(letters, object_assign_x_esm_EMPTY_STRING), iteratee3, {});
   var result = attempt_x_esm(nativeAssign, {}, test3);
   return result.threw === false && object_keys_x_esm(result.value).join(object_assign_x_esm_EMPTY_STRING) !== letters;
 };
 
 var assignHasPendingExceptions = function exceptions() {
-  if (is_function_x_esm(object_assign_x_esm_ObjectCtr.preventExtensions) === false) {
+  if (is_function_x_esm(preventExtensions) === false) {
     return false;
   } // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
 
 
-  var result = attempt_x_esm(object_assign_x_esm_ObjectCtr.preventExtensions, {
+  var result = attempt_x_esm(preventExtensions, {
     1: 2
   });
 

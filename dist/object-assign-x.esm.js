@@ -11,7 +11,9 @@ import getOEPS from 'get-own-enumerable-property-symbols-x';
 import methodize from 'simple-methodize-x';
 var EMPTY_STRING = '';
 var StringCtr = EMPTY_STRING.constructor;
-var fromCharCode = StringCtr.fromCharCode;
+var fromCharCode = StringCtr.fromCharCode,
+    preventExtensions = StringCtr.preventExtensions;
+var split = methodize(EMPTY_STRING.split);
 var ObjectCtr = {}.constructor;
 var nAssign = ObjectCtr.assign;
 var nativeAssign = isFunction(nAssign) && nAssign;
@@ -66,19 +68,19 @@ var lacksProperEnumerationOrder = function enumOrder() {
     return acc;
   };
 
-  var test3 = reduce(letters.split(EMPTY_STRING), iteratee3, {});
+  var test3 = reduce(split(letters, EMPTY_STRING), iteratee3, {});
   var result = attempt(nativeAssign, {}, test3);
   return result.threw === false && objectKeys(result.value).join(EMPTY_STRING) !== letters;
 };
 
 var assignHasPendingExceptions = function exceptions() {
-  if (isFunction(ObjectCtr.preventExtensions) === false) {
+  if (isFunction(preventExtensions) === false) {
     return false;
   } // Firefox 37 still has "pending exception" logic in its Object.assign implementation,
   // which is 72% slower than our shim, and Firefox 40's native implementation.
 
 
-  var result = attempt(ObjectCtr.preventExtensions, {
+  var result = attempt(preventExtensions, {
     1: 2
   });
 
