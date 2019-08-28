@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-28T16:00:13.626Z",
+  "date": "2019-08-28T18:03:56.179Z",
   "describe": "",
   "description": "Used to copy the values of all enumerable own properties from one or more source objects to a target object.",
   "file": "object-assign-x.js",
   "hash": "3d35eaca9487afec2686",
   "license": "MIT",
-  "version": "2.1.1"
+  "version": "2.1.2"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
