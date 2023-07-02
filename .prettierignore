@@ -1,5 +1,0 @@
-!.eslintrc.js
-!jest.config.js
-node_modules/
-dist/
-__tests__/coverage/
